@@ -1,7 +1,7 @@
 #!/bin/bash
 ############################
 # install.sh
-# This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
+# This script creates symlinks from the home directory to any desired dotfiles in $dir
 ############################
 
 ########## Variables
@@ -23,6 +23,7 @@ while [[ $# > 0 ]]; do
   shift
 done
 
+dir=$PWD
 backupdir=${backupdir:-~/dotfiles_backup} # old dotfiles backup directory
 
 # list of files/folders to symlink in homedir
@@ -35,7 +36,7 @@ echo -e "\033[33mCreating $backupdir for backup of any existing dotfiles"
 mkdir -p $backupdir
 
 # change to the dotfiles directory
-cd ~/dotfiles
+cd $dir
 
 # move any existing dotfiles in homedir to backup directory, then create symlinks 
 for file in $files; do
@@ -45,15 +46,15 @@ for file in $files; do
   fi
   
   if [ -f ~/.$file ] || [ -d ~/$file ]; then
-    echo -e "\033[31mBacking up existing ~/$file to ~/dotfiles_backup/$file"
-    mv -f ~/.$file ~/dotfiles_backup/$file
+    echo -e "\033[31mBacking up existing ~/$file to $backupdir/$file"
+    mv -f ~/.$file $backupdir/$file
   fi
   
-  if [ -f ~/dotfiles/$file ] || [ -d ~/dotfiles/$file ]; then
+  if [ -f $dir/$file ] || [ -d $dir/$file ]; then
     echo -e "\033[32mCreating symlink to ~/.$file"
-    ln -sf ~/dotfiles/$file ~/.$file
+    ln -sf $dir/$file ~/.$file
   else
-    echo -e "\033[31m ~/.$file doesn't exist in ~/dotfiles. Unable to create symlink."
+    echo -e "\033[31m ~/.$file doesn't exist in $dir. Unable to create symlink."
   fi
 done
 

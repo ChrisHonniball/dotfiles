@@ -23,6 +23,7 @@ while [[ $# > 0 ]]; do
   shift
 done
 
+dir=$PWD
 backupdir=${backupdir:-~/dotfiles_backup} # old dotfiles backup directory
 
 # list of files/folders to symlink in homedir
@@ -40,6 +41,10 @@ for file in $files; do
   if [ -h ~/.$file ]; then
     echo -e "\033[32mRemoving symlink to ~/.$file"
     rm ~/.$file
+    
+    if [ -f $backupdir/$file ] || [ -d $backupdir/$file ]; then
+      mv $backupdir/$file ~/.$file
+    fi
   else
     echo -e "\033[31m ~/.$file doesn't exist. Unable to delete symlink."
   fi
