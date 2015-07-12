@@ -83,7 +83,24 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias tower=gittower
+alias ll='ls -l'
+alias la='ls -A'
+alias lla='ls -lA'
 
+
+# Functions
+function fd() {
+  echo -e "\033[32mSearching for folder...$reset_color"
+  find . -type d -iname "$1" -print 2>/dev/null
+  echo -e "\033[32mDone$reset_color"
+}
+function ff() {
+  echo -e "\033[32mSearching for file...$reset_color"
+  find . -type f -iname "$1" -print 2>/dev/null
+  echo -e "\033[32mDone$reset_color"
+}
+
+# Prompt setup
 function git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
   echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(current_branch)$ZSH_THEME_GIT_PROMPT_SUFFIX"
@@ -105,7 +122,9 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="]$reset_color"
 ZSH_THEME_GIT_PROMPT_DIRTY="$fg[red] "
 ZSH_THEME_GIT_PROMPT_CLEAN="$fg[green] " 
 
+# iTerm2 integration
 source /Users/cjhonniball/.iterm2_shell_integration.zsh
 
+# Simpler command history nav.
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
