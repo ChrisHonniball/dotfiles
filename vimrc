@@ -206,6 +206,10 @@ let g:indent_guides_enable_on_vim_startup=1
 " not sure what this line does...
 filetype plugin on
 
+" autoclose
+au filetype markdown
+  \ let b:AutoClosePairs = AutoClose#DefaultPairsModified("", "`")
+
 " git gutter
 let g:gitgutter_max_signs = 5000
 
