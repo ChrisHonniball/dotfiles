@@ -1,0 +1,328 @@
+snippet for "Object loop"
+for(var ${1:property} in ${2:object}){
+	if( !$2.hasOwnProperty($1) ){ continue; }
+	
+	$0
+}
+endsnippet
+
+snippet function "function"
+function($0) {
+	var that = this;
+},
+endsnippet
+
+# Comments
+snippet //title "Comment Title"
+////${1/./\//g}///
+//! ${1:Title} //
+////${1/./\//g}///
+$0
+endsnippet
+
+# console.log()
+snippet log "Standard console.log()"
+/* */
+console.log($1);
+//*/
+endsnippet
+
+snippet log "Colored console.log()"
+/* */
+console.log(
+	"%c$1",
+	"color: ${2:purple}"$0
+);
+//*/
+endsnippet
+
+# jQuery
+snippet ajax "jQuery AJAX request"
+var ajaxSettings = {
+	"type": "${1:POST}",
+	"url": "${2:URL}",
+	"dataType": "json",
+	"data": $3,
+	
+	"success": function(response){
+		$4
+	},
+	"error": function(error){
+		$0
+	}
+};
+
+jQuery.ajax(ajaxSettings);
+endsnippet
+
+# Moment.js
+snippet moment "'YYYY-MM-DD HH:mm:ss'" i
+'YYYY-MM-DD HH:mm:ss'
+endsnippet
+
+snippet moment "'YYYY-MM-DD'" i
+'YYYY-MM-DD'
+endsnippet
+
+snippet moment "'MM/DD/YYYY'" i
+'MM/DD/YYYY'
+endsnippet
+
+snippet moment "'Feb 2nd, 1983 8:00 am'" i
+'MMM Do, YYYY h:mm a'
+endsnippet
+
+snippet moment "'February 2nd, 1983 8:00 am'" i
+'MMMM Do, YYYY h:mm a'
+endsnippet
+
+snippet moment "'Wed, Feb 2nd, 1983 8:00 am'" i
+'ddd, MMM Do, YYYY h:mm a'
+endsnippet
+
+snippet moment "'Wednesday, February 2nd, 1983 8:00 am'" i
+'dddd, MMMM Do YYYY h:mm a'
+endsnippet
+
+# Gozooga Criteria
+snippet range "Criteria Range" i
+{"operator":"Range","from":"${1}","to":"${2}"}
+endsnippet
+
+snippet less "Criteria Less than" i
+{"operator":"Less than","value":"${1}"}
+endsnippet
+
+snippet greater "Criteria Greater than" i
+{"operator":"Greater than","value":"${1}"}
+endsnippet
+
+# Bootbox.js
+snippet dialog "Bootbox Dialog"
+bootbox.dialog({
+	title: "${1:Title}",
+	message: '${2:message}',
+	closeButton: false,
+	buttons: {
+		no: {
+			label: "No",
+			className: "btn-default",
+			callback: function() {
+				${3:loadingOverlay.fadeOut();}
+			}
+		},
+		yes: {
+			label: "Yes",
+			className: "btn-primary",
+			callback: function() {
+				$0
+			}
+		}
+	}
+});
+endsnippet
+
+snippet alert "Bootbox Alert"
+bootbox.dialog({
+	title: "${1:Title}",
+	message: '${2:message}',
+	buttons: {
+		ok: {
+			label: "OK",
+			className: "btn-primary",
+			callback: function() {
+				${3:loadingOverlay.fadeOut();}
+			}
+		}
+	}
+});
+endsnippet
+
+# iGrowl.js
+snippet igrowl "Condensed iGrowl notification"
+${1:Ember.\$}.iGrowl({
+	"type": '${2:error}', // info, success, notice, error, simple, info-sat, success-sat, notice-sat, error-sat
+
+	"title": ${3:null},
+	"message": ${4:response.responseText || response.statusText || "Unknown error. Check logs."},
+
+	"delay": 2500
+});
+endsnippet
+
+snippet igrowl "Full iGrowl notification"
+${1:Ember.\$}.iGrowl({
+	"type": '${2:error}', // info, success, notice, error, simple, info-sat, success-sat, notice-sat, error-sat
+
+	"title": ${3:null},
+	"message": ${4:response.responseText || response.statusText || "Unknown error. Check logs."},
+
+	"delay": 2500, // {number} Delay before alert auto-dismisses (optional). Set to 0 for persistence.
+
+	"link": null, // {string} Encapsulates the entire alert in a link
+	"target": 'self', // {string} Anchor target of alert (if link property above is specified) - self, blank
+
+	"small": false, // {boolean} Size of alert - regular, small
+
+	"spacing": 30, // {number} Spacing between alerts
+	"placement": {
+		"x" : "right", // {string} Horizontal placement - left, center, right
+		"y": "left" // {string} Vertical placement - top, bottom
+	},
+	"offset": {
+		"x": 20, // {number} Horizontal offset from edge of window
+		"y": 20 // {number} Vertical offset from edge of window
+	},
+
+	"animation": true, // {boolean} Enable or disable animation
+	"animShow": 'bounceIn', // {string} Alert animation on enter - animate.css
+	"animHide": 'bounceOut', // {string} Alert animation on exit - animate.css
+
+	// Callbacks
+	"onShow": null, // {function} Run once enter animation begins
+	"onShown": null, // {function} Run once enter animation completes
+	"onHide": null, // {function} Run once exit animation begins
+	"onHidden": null, // {function} Run once exit animation completes
+});
+endsnippet
+
+# Ember.js
+snippet promise "Ember.RSVP.Promise"
+var promise = new Ember.RSVP.Promise(function(resolve, reject){
+	var ajaxSettings = {
+		"type": "${1:POST}",
+		"url": ${2:url},
+		"dataType": "json",
+		"data": {$3},
+		"success": resolve,
+		"error": reject
+	};
+	
+	Ember.$.ajax(ajaxSettings);
+}).then(
+	function(response) {
+		// Success
+	}, function(error) {
+		// Fail
+		console.log(
+			"%c%s#loadPost ERROR: %O",
+			"color: red", // http://www.w3schools.com/html/html_colornames.asp
+			that.toString(),
+			error
+		);
+	}
+).finally();
+endsnippet
+
+snippet modelsave "Save model"
+${1:that.get('model')}.save().then(
+	function(response){
+		// Success
+	}, function(response){
+		$1.rollback();
+		
+		console.log(
+			"%c%s# save ERROR: %O",
+			"color: red", // http://www.w3schools.com/html/html_colornames.asp
+			$1.toString(),
+			response
+		);
+
+		Ember.$.iGrowl({
+			"type": 'error', // info, success, notice, error, simple, info-sat, success-sat, notice-sat, error-sat
+
+			"title": "Unable to Save",
+			"message": response.responseText || response.statusText || "Unknown error. Check logs",
+
+			"delay": 2500,
+		});
+	}
+);
+endsnippet
+
+snippet ajaxheaders "Set AJAX Headers"
+Ember.\$.ajaxSetup({
+	headers: {
+		$0
+	}
+});
+endsnippet
+
+snippet log "Ember Colored console.log()"
+/* */
+console.log(
+	"%c%s#$1",
+	"color: ${2:purple}", // http://www.w3schools.com/html/html_colornames.asp
+	${3:this}.toString()$4
+);
+//*/
+endsnippet
+
+snippet computed "Ember Computed Property" b
+${1:property}: Ember.computed($0{
+	get: function(){
+		var that = this;
+	}
+}),
+endsnippet
+
+snippet computed "Ember Computed Property" i
+Ember.computed($0{
+	get: function(){
+		var that = this;
+	}
+}),
+endsnippet
+
+snippet observer "Ember Property Observer" b
+${1:property}: Ember.observer($0{
+	get: function(){
+		var that = this;
+	}
+}),
+endsnippet
+
+snippet observer "Ember Property Observer" i
+Ember.observer($0{
+	get: function(){
+		var that = this;
+	}
+}),
+endsnippet
+
+snippet csp "Standard Content Security Policy"
+	contentSecurityPolicy: {
+		'default-src': "'none'",
+
+		'script-src': [
+			"'self'",
+			"maxcdn.bootstrapcdn.com"
+		].join(' '),
+
+		'font-src': [
+			"'self'",
+			"fonts.gstatic.com",
+			"maxcdn.bootstrapcdn.com",
+			"fonts.googleapis.com"
+		].join(' '),
+
+		'connect-src': [
+			"'self'"
+		].join(' '),
+
+		'img-src': [
+			"'self'"
+		].join(' '),
+
+		'style-src': [
+			"'self'",
+			"'unsafe-inline'",
+			"fonts.googleapis.com",
+			"maxcdn.bootstrapcdn.com"
+		].join(' '),
+
+		'media-src': [
+			"'self'"
+		].join(' ')
+	},
+endsnippet

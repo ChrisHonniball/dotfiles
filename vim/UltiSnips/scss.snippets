@@ -1,0 +1,37 @@
+extends css
+
+# Comments
+snippet //title "Comment Title"
+////${1/./\//g}///
+//! ${1:Title} //
+////${1/./\//g}///
+$0
+endsnippet
+
+snippet media "Bootstrap variable xs"
+/* Bootstrap variable xs */
+@media (max-width: \$screen-xs-max) {
+	$0
+}
+endsnippet
+
+snippet media "Bootstrap variable sm"
+/* Bootstrap variable sm */
+@media (min-width: \$screen-sm-min) and (max-width: \$screen-sm-max) {
+	$0
+}
+endsnippet
+
+snippet media "Bootstrap variable md"
+/* Bootstrap variable md */
+@media (min-width: \$screen-md-min) and (max-width: \$screen-md-max) {
+	$0
+}
+endsnippet
+
+snippet media "Bootstrap variable lg"
+/* Bootstrap variable lg */
+@media (min-width: \$screen-lg-min) {
+	$0
+}
+endsnippet
