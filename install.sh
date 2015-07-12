@@ -1,31 +1,64 @@
 #!/bin/bash
 ############################
-# .make.sh
+# install.sh
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 ############################
 
+source settings.sh
+
 ########## Variables
 
-dir=~/dotfiles                    # dotfiles directory
-olddir=~/dotfiles_old             # old dotfiles backup directory
-files="vimrc gvimrc vim zshrc oh-my-zsh bash_profile gitconfig"    # list of files/folders to symlink in homedir
+while [[ $# > 0 ]]; do
+  KEY=$1
+  
+  case $KEY in
+    -b|--backupdir)
+      backupdir="$2"
+      shift
+    ;;
+    -f|--files)
+      files="$2"
+      shift
+    ;;
+  esac
+  
+  shift
+done
+
+backupdir=${backupdir:-~/dotfiles_backup} # old dotfiles backup directory
+
+# list of files/folders to symlink in homedir
+files=${files:-"vimrc gvimrc vim zshrc oh-my-zsh bash_profile gitconfig atom"}
 
 ##########
 
-# create dotfiles_old in homedir
-echo "Creating $olddir for backup of any existing dotfiles in ~"
-mkdir -p $olddir
-echo "...done"
+# create dotfiles_backup in homedir
+echo -e "\033[33mCreating $backupdir for backup of any existing dotfiles"
+mkdir -p $backupdir
 
 # change to the dotfiles directory
-echo "Changing to the $dir directory"
-cd $dir
-echo "...done"
+echo -e "\033[32mChanging to the ~/dotfiles directory"
+cd ~/dotfiles
 
-# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
+# move any existing dotfiles in homedir to dotfiles_backup directory, then create symlinks 
 for file in $files; do
-    echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/.$file ~/dotfiles_old/
-    echo "Creating symlink to $file in home directory."
-    ln -s $dir/$file ~/.$file
+  if [ -f ~/.$file ]; then
+    if [ ! -h ~/.$file ]; then
+      echo -e "\033[31mBacking up existing ~/$file to ~/dotfiles_backup/$file"
+      mv -f ~/.$file ~/dotfiles_backup/$file
+    fi
+  fi
+  
+  if [ -f ~/dotfiles/$file ] || [ -d ~/dotfiles/$file ]; then
+    echo -e "\033[32mCreating symlink to ~/.$file"
+    ln -sf ~/dotfiles/$file ~/.$file
+  else
+    echo -e "\033[31m ~/.$file doesn't exist in ~/dotfiles. Unable to create symlink."
+  fi
 done
+
+# remove backup directory if empty
+if [ ! "$(ls -A $backupdir)" ]; then
+  rmdir $backupdir
+  echo -e "\033[31mNo Backups required. Backup directory removed."
+fi
