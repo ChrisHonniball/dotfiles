@@ -4,8 +4,6 @@
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 ############################
 
-source settings.sh
-
 ########## Variables
 
 while [[ $# > 0 ]]; do
@@ -28,7 +26,7 @@ done
 backupdir=${backupdir:-~/dotfiles_backup} # old dotfiles backup directory
 
 # list of files/folders to symlink in homedir
-files=${files:-"vimrc gvimrc vim zshrc oh-my-zsh bash_profile gitconfig atom"}
+files=${files:-"vimrc gvimrc vim zshrc oh-my-zsh bash_profile bashrc gitconfig atom"}
 
 ##########
 

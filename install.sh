@@ -4,8 +4,6 @@
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 ############################
 
-source settings.sh
-
 ########## Variables
 
 while [[ $# > 0 ]]; do
@@ -28,7 +26,7 @@ done
 backupdir=${backupdir:-~/dotfiles_backup} # old dotfiles backup directory
 
 # list of files/folders to symlink in homedir
-files=${files:-"vimrc gvimrc vim zshrc oh-my-zsh bash_profile gitconfig atom"}
+files=${files:-"vimrc gvimrc vim zshrc oh-my-zsh bash_profile bashrc gitconfig atom"}
 
 ##########
 
@@ -37,16 +35,18 @@ echo -e "\033[33mCreating $backupdir for backup of any existing dotfiles"
 mkdir -p $backupdir
 
 # change to the dotfiles directory
-echo -e "\033[32mChanging to the ~/dotfiles directory"
 cd ~/dotfiles
 
-# move any existing dotfiles in homedir to dotfiles_backup directory, then create symlinks 
+# move any existing dotfiles in homedir to backup directory, then create symlinks 
 for file in $files; do
-  if [ -f ~/.$file ]; then
-    if [ ! -h ~/.$file ]; then
-      echo -e "\033[31mBacking up existing ~/$file to ~/dotfiles_backup/$file"
-      mv -f ~/.$file ~/dotfiles_backup/$file
-    fi
+  if [ -h ~/.$file ]; then
+    echo -e "\033[31m~/.$file symlink exists. Removing..."
+    rm ~/.$file
+  fi
+  
+  if [ -f ~/.$file ] || [ -d ~/$file ]; then
+    echo -e "\033[31mBacking up existing ~/$file to ~/dotfiles_backup/$file"
+    mv -f ~/.$file ~/dotfiles_backup/$file
   fi
   
   if [ -f ~/dotfiles/$file ] || [ -d ~/dotfiles/$file ]; then
