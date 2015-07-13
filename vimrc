@@ -6,7 +6,8 @@ Helptags
 
 " set <leader> to , (comma)
 let mapleader=","
-let timeoutlen=250
+
+set timeoutlen=250 ttimeoutlen=0
 
 filetype plugin on
 
@@ -20,6 +21,8 @@ set t_Co=256
 set guifont=Liberation\ Mono\ for\ Powerline:h16
 
 set clipboard=unnamed
+
+set mouse=a
 
 " KEY MAPPINGS
 
@@ -231,17 +234,21 @@ let g:ctrlp_prompt_mappings = {
   \ }
 let g:ctrlp_extensions = ['line']
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.git|\.hg|\.svn|bower_components|node_modules|composer_packages|tmp|dist)$',
+  \ 'dir':  '\v[\/](\.git|\.hg|\.svn|bower_components|node_modules|composer_packages|tmp|dist|bundle)$',
   \ 'file': '\v(.exe|.so|.dll|.DS_Store|.gitkeep)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
+nnoremap <silent> <C-b> :CtrlPBuffer<cr>
+nnoremap <silent> <C-l> :CtrlPLine<cr>
 
 " Multiple Cursors
 let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
-let g:multi_cursor_next_key='<C-n>'
 let g:multi_cursor_prev_key='<C-b>'
+let g:multi_cursor_next_key='<C-n>'
 let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
+
 ca MF MultipleCursorsFind
 " Called once right before you start selecting multiple cursors
 function! Multiple_cursors_before()
@@ -272,7 +279,7 @@ endif
 
 " YouCompleteMe
 let g:ycm_key_list_select_completion = ['<c-n>']
-let g:ycm_key_list_previous_completion = ['<c-p>']
+let g:ycm_key_list_previous_completion = ['<c-b>']
 
 " unicode symbols
 let g:airline_left_sep = '»'
@@ -342,4 +349,3 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
-

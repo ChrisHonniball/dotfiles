@@ -10,22 +10,22 @@ endif
 
 " Cursor Settings
 set guicursor=a:block-Cursor-blinkon0
-set guicursor+=n:block-nCursor-blinkon0
-set guicursor+=v:block-vCursor-blinkon0
-set guicursor+=i:block-iCursor-blinkon0
-set guicursor+=c:block-cCursor-blinkon0
-set guicursor+=r:block-rCursor-blinkon0
+"set guicursor+=n:block-nCursor-blinkon0
+"set guicursor+=v:block-vCursor-blinkon0
+"set guicursor+=i:block-iCursor-blinkon0
+"set guicursor+=c:block-cCursor-blinkon0
+"set guicursor+=r:block-rCursor-blinkon0
 
 
 let g:colors_name = "afterglow-custom"
 
 " Cursor Colors based on mode - synced with airline colors.
-hi Cursor                         ctermfg=0       ctermbg=190    cterm=NONE           guifg=#000000   guibg=#dfff00   gui=NONE
-hi link nCursor Cursor
-hi link cCursor Cursor
-hi iCursor                        ctermbg=0       ctermbg=190    cterm=NONE           guifg=#000000   guibg=#00dfff   gui=NONE
-hi rCursor                        ctermbg=0       ctermbg=124    cterm=NONE           guifg=#000000   guibg=#af0000   gui=NONE
-hi vCursor                        ctermfg=0       ctermbg=214    cterm=NONE           guifg=#000000   guibg=#ffaf00   gui=NONE
+hi Cursor                         ctermfg=0       ctermbg=7      cterm=NONE           guifg=#000000   guibg=#c0c0c0   gui=NONE
+"hi link nCursor Cursor
+"hi link cCursor Cursor
+"hi iCursor                        ctermbg=0       ctermbg=190    cterm=NONE           guifg=#000000   guibg=#00dfff   gui=NONE
+"hi rCursor                        ctermbg=0       ctermbg=124    cterm=NONE           guifg=#000000   guibg=#af0000   gui=NONE
+"hi vCursor                        ctermfg=0       ctermbg=214    cterm=NONE           guifg=#000000   guibg=#ffaf00   gui=NONE
 
 " Colors
 hi Normal                         ctermfg=251     ctermbg=235    cterm=NONE           guifg=#c6c6c6   guibg=#262626   gui=NONE

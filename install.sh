@@ -10,12 +10,20 @@ while [[ $# > 0 ]]; do
   KEY=$1
   
   case $KEY in
-    -b|--backupdir)
+    -b|--backup-dir)
       backupdir="$2"
       shift
     ;;
     -f|--files)
       files="$2"
+      shift
+    ;;
+    --install-fonts)
+      installfonts=true
+      shift
+    ;;
+    --font-dir)
+      fontdir="$2"
       shift
     ;;
   esac
@@ -25,6 +33,8 @@ done
 
 dir=$PWD
 backupdir=${backupdir:-~/dotfiles_backup} # old dotfiles backup directory
+installfonts=${installfonts:-false}
+fontdir=${fontdir:-~/Library/Fonts}
 
 # list of files/folders to symlink in homedir
 files=${files:-"vimrc gvimrc vim zshrc oh-my-zsh bash_profile bashrc gitconfig atom"}
@@ -54,9 +64,14 @@ for file in $files; do
     echo -e "\033[32mCreating symlink to ~/.$file"
     ln -sf $dir/$file ~/.$file
   else
-    echo -e "\033[31m ~/.$file doesn't exist in $dir. Unable to create symlink."
+    echo -e "\033[31m~/.$file doesn't exist in $dir. Unable to create symlink."
   fi
 done
+
+if [ $installfonts ]; then
+  echo -e "\033[31mInstalling Fonts..."
+  cp -f $dir/fonts/* $fontdir
+fi
 
 # remove backup directory if empty
 if [ ! "$(ls -A $backupdir)" ]; then
