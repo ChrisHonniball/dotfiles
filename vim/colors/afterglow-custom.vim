@@ -20,7 +20,7 @@ set guicursor=a:block-Cursor-blinkon0
 let g:colors_name = "afterglow-custom"
 
 " Cursor Colors based on mode - synced with airline colors.
-hi Cursor                         ctermfg=0       ctermbg=7      cterm=NONE           guifg=#000000   guibg=#c0c0c0   gui=NONE
+hi Cursor                         ctermfg=0       ctermbg=15     cterm=NONE           guifg=#000000   guibg=#ffffff   gui=NONE
 "hi link nCursor Cursor
 "hi link cCursor Cursor
 "hi iCursor                        ctermbg=0       ctermbg=190    cterm=NONE           guifg=#000000   guibg=#00dfff   gui=NONE
