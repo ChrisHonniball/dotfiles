@@ -56,7 +56,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(z vi-mode git cloudapp node npm bower brew osx extract)
+plugins=(z git node npm bower brew osx extract)
 
 # User configuration
 
@@ -93,6 +93,8 @@ alias tower=gittower
 alias ll='ls -l'
 alias la='ls -A'
 alias lla='ls -lA'
+alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'
+alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
 
 
 # Functions
