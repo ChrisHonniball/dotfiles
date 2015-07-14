@@ -1,3 +1,10 @@
+GIT_PS1_SHOWCOLORHINTS=true
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_STATESEPARATOR=""
+
+source ~/dotfiles/shell/colors.sh
+source ~/dotfiles/shell/git-prompt.sh
+
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/cjhonniball/.oh-my-zsh
 
@@ -90,14 +97,14 @@ alias lla='ls -lA'
 
 # Functions
 function fd() {
-  echo -e "\033[32mSearching for folder...$reset_color"
+  echo -e "${Green}Searching for folder...$reset_color"
   find . -type d -iname "$1" -print 2>/dev/null
-  echo -e "\033[32mDone$reset_color"
+  echo -e "${Green}Done$reset_color"
 }
 function ff() {
-  echo -e "\033[32mSearching for file...$reset_color"
+  echo -e "${Green}Searching for file...$reset_color"
   find . -type f -iname "$1" -print 2>/dev/null
-  echo -e "\033[32mDone$reset_color"
+  echo -e "${Green}Done$reset_color"
 }
 
 # Prompt setup
@@ -110,17 +117,11 @@ function get_pwd() {
   print -D $PWD
 }
 
-function precmd() {
-print -rP '
-$fg[cyan]%m: $fg[yellow]$(get_pwd)$(git_prompt_info)'
+function precmd () {
+__git_ps1 "
+$fg[cyan]%n@%m:$fg[yellow]$(get_pwd)$reset_color" "
+↣ " " [%s]"
 }
-
-PROMPT='%{$reset_color%}↣ '
-
-ZSH_THEME_GIT_PROMPT_PREFIX="[git:"
-ZSH_THEME_GIT_PROMPT_SUFFIX="]$reset_color"
-ZSH_THEME_GIT_PROMPT_DIRTY="$fg[red] "
-ZSH_THEME_GIT_PROMPT_CLEAN="$fg[green] " 
 
 # iTerm2 integration
 source /Users/cjhonniball/.iterm2_shell_integration.zsh
