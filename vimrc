@@ -7,6 +7,8 @@ Helptags
 " set <leader> to , (comma)
 let mapleader=","
 
+set viminfo='0,<0,s10,h
+
 set timeoutlen=250 ttimeoutlen=0
 
 filetype plugin on
@@ -326,18 +328,15 @@ command! Reveal call <SID>RevealInFinder()
 com! FormatJSON %!python -m json.tool
 
 function! ClearRegisters()
-    let regs='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-="*+'
-    let i=0
-    while (i<strlen(regs))
-        exec 'let @'.regs[i].'=""'
-        let i=i+1
-    endwhile
+  let regs='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-="*+'
+  let i=0
+  while (i<strlen(regs))
+    exec 'let @'.regs[i].'=""'
+    let i=i+1
+  endwhile
 endfunction
  
 command! ClearRegisters call ClearRegisters()
-
-autocmd VimLeavePre * call ClearRegisters()
-
 
 " Color Scheme Stuff
 
