@@ -95,7 +95,7 @@ if(!$${1:this}->query($${2:query})){
 		$$2
 	);
 	error_log("${3:--} [" . __file__ . " (" . __LINE__ . ")] $e_message");
-	throw new Exception("$4Database error.", 200);
+	throw new Exception("$4Database error.", 400);
 } else {
 	if($$1->affected_rows() === 0){
 		// Error
