@@ -102,7 +102,7 @@ nnoremap <leader><tab> :retab<cr>
 nmap <leader>l :set list!<CR>
 
 " Reveal in finder
-nmap <leader><leader>f :Reveal<cr>
+nmap gf :Reveal<cr>
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
