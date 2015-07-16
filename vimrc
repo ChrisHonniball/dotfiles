@@ -4,6 +4,8 @@ runtime bundle/pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 Helptags
 
+ca config e $MYVIMRC
+
 " set <leader> to , (comma)
 let mapleader=","
 
@@ -225,11 +227,12 @@ let g:ctrlp_map = '<C-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:20'
 let g:ctrlp_switch_buffer = 'et'
-let g:ctrlp_tabpage_position = 'al'
 let g:ctrlp_max_files = 0
 let g:ctrlp_max_depth = 100
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_follow_symlinks = 1
+let g:ctrlp_open_new_file = 'r'
+let g:ctrlp_open_multiple_files = '1i'
 let g:ctrlp_prompt_mappings = {
   \ 'AcceptSelection("e")': ['<c-t>'],
   \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
