@@ -79,3 +79,6 @@
 [submodule "vim/bundle/tabline"]
 	path = vim/bundle/tabline
 	url = git@github.com:mkitt/tabline.vim.git
+[submodule "vim/bundle/buf-only"]
+	path = vim/bundle/buf-only
+	url = git@github.com:vim-scripts/BufOnly.vim.git
