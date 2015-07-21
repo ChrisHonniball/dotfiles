@@ -95,6 +95,7 @@ alias la='ls -A'
 alias lla='ls -lA'
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'
 alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
+alias mvim='mvim >& /dev/null'
 
 
 # Functions
@@ -121,8 +122,9 @@ function get_pwd() {
 
 function precmd () {
 __git_ps1 "
-$fg[cyan]%n@%m:$fg[yellow]$(get_pwd)$reset_color" "
-↣ " " [%s]"
+$bg[cyan]$fg[black] %n@%m $reset_color$fg[cyan]
+$bg[yellow]$fg[black] $(get_pwd) $reset_color$fg[yellow]
+$reset_color" "↣ " " %s "
 }
 
 # iTerm2 integration

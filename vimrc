@@ -37,9 +37,6 @@ vnoremap <leader>d "_d
 " select last paste
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-" Gundo
-nnoremap <c-u> :GundoToggle<CR>
-
 " EasyMotion
 map <Leader> <Plug>(easymotion-prefix)
 
@@ -78,6 +75,12 @@ elseif has('unix')
   ca gz cd /var/www/html/gozooga
   ca purls cd /var/www/html/gozooga-purls
 endif
+
+" line movement
+nnoremap <c-h> ^
+vnoremap <c-h> ^
+nnoremap <c-l> $
+vnoremap <c-l> $
 
 " movement without exiting insert mode
 inoremap <C-h> <Esc>ha
@@ -232,7 +235,7 @@ let g:ctrlp_max_depth = 100
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_open_new_file = 'r'
-let g:ctrlp_open_multiple_files = '1i'
+" let g:ctrlp_open_multiple_files = '1i'
 let g:ctrlp_prompt_mappings = {
   \ 'AcceptSelection("e")': ['<c-t>'],
   \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
@@ -244,7 +247,6 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 nnoremap <silent> <C-b> :CtrlPBuffer<cr>
-nnoremap <silent> <C-l> :CtrlPLine<cr>
 
 " Multiple Cursors
 let g:multi_cursor_exit_from_visual_mode=0
@@ -257,13 +259,11 @@ let g:multi_cursor_quit_key='<Esc>'
 ca MF MultipleCursorsFind
 " Called once right before you start selecting multiple cursors
 function! Multiple_cursors_before()
-  call youcompleteme#DisableCursorMovedAutocommands()
   set cursorcolumn!
 endfunction
 
 " Called once only when the multiple selection is canceled (default <Esc>)
 function! Multiple_cursors_after()
-  call youcompleteme#EnableCursorMovedAutocommands()
   set cursorcolumn
 endfunction
 
