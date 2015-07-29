@@ -1,7 +1,34 @@
-runtime bundle/pathogen/autoload/pathogen.vim
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-" Execute Pathogen-installed plugins
-execute pathogen#infect()
+Bundle 'plasticboy/vim-markdown'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'tpope/vim-surround'
+Bundle 'ctrlpvim/ctrlp.vim'
+Bundle 'godlygeek/tabular'
+Bundle 'ChrisHonniball/xterm-color-table.vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'Townk/vim-autoclose'
+Bundle 'nelstrom/vim-markdown-folding'
+Bundle 'mustache/vim-mustache-handlebars'
+Bundle 'SirVer/ultisnips'
+Bundle 'bling/vim-airline'
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'mattn/emmet-vim'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'edsono/vim-matchit'
+Bundle 'tpope/vim-repeat'
+Bundle 'sjl/gundo.vim'
+Bundle 'haya14busa/incsearch.vim'
+Bundle 'rking/ag.vim'
+Bundle 'StanAngeloff/php.vim'
+Bundle 'mkitt/tabline.vim'
+Bundle 'vim-scripts/BufOnly.vim'
+
 Helptags
 
 ca config e $MYVIMRC

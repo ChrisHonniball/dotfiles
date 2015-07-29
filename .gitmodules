@@ -1,84 +1,9 @@
-[submodule "vim/bundle/markdown"]
-	path = vim/bundle/markdown
-	url = git@github.com:plasticboy/vim-markdown.git
-[submodule "vim/bundle/gitgutter"]
-	path = vim/bundle/gitgutter
-	url = git@github.com:airblade/vim-gitgutter.git
-[submodule "vim/bundle/multiple-cursors"]
-	path = vim/bundle/multiple-cursors
-	url = git@github.com:terryma/vim-multiple-cursors.git
-[submodule "vim/bundle/surround"]
-	path = vim/bundle/surround
-	url = git@github.com:tpope/vim-surround.git
-[submodule "vim/bundle/ctrlp"]
-	path = vim/bundle/ctrlp
-	url = git@github.com:ctrlpvim/ctrlp.vim.git
-[submodule "vim/bundle/tabular"]
-	path = vim/bundle/tabular
-	url = git@github.com:godlygeek/tabular.git
-[submodule "vim/bundle/xterm-color-table"]
-	path = vim/bundle/xterm-color-table
-	url = git@github.com:ChrisHonniball/xterm-color-table.vim.git
-[submodule "vim/bundle/syntastic"]
-	path = vim/bundle/syntastic
-	url = git@github.com:scrooloose/syntastic.git
-[submodule "vim/bundle/autoclose"]
-	path = vim/bundle/autoclose
-	url = git@github.com:Townk/vim-autoclose.git
-[submodule "vim/bundle/markdown-folding"]
-	path = vim/bundle/markdown-folding
-	url = git@github.com:nelstrom/vim-markdown-folding.git
-[submodule "vim/bundle/mustache-handlebars"]
-	path = vim/bundle/mustache-handlebars
-	url = git@github.com:mustache/vim-mustache-handlebars.git
-[submodule "vim/bundle/ultisnips"]
-	path = vim/bundle/ultisnips
-	url = git@github.com:SirVer/ultisnips.git
-[submodule "vim/bundle/airline"]
-	path = vim/bundle/airline
-	url = git@github.com:bling/vim-airline.git
-[submodule "vim/bundle/javascript-syntax"]
-	path = vim/bundle/javascript-syntax
-	url = git@github.com:jelera/vim-javascript-syntax.git
-[submodule "vim/bundle/emmet"]
-	path = vim/bundle/emmet
-	url = git@github.com:mattn/emmet-vim.git
-[submodule "vim/bundle/indent-guides"]
-	path = vim/bundle/indent-guides
-	url = git@github.com:nathanaelkane/vim-indent-guides.git
-[submodule "vim/bundle/pathogen"]
-	path = vim/bundle/pathogen
-	url = git@github.com:tpope/vim-pathogen.git
-[submodule "vim/bundle/easymotion"]
-	path = vim/bundle/easymotion
-	url = git@github.com:Lokaltog/vim-easymotion.git
-[submodule "vim/bundle/matchit"]
-	path = vim/bundle/matchit
-	url = git@github.com:edsono/vim-matchit.git
-[submodule "vim/bundle/repeat"]
-	path = vim/bundle/repeat
-	url = git@github.com:tpope/vim-repeat.git
-[submodule "vim/bundle/gundo"]
-	path = vim/bundle/gundo
-	url = git@github.com:sjl/gundo.vim.git
-[submodule "vim/bundle/incsearch"]
-	path = vim/bundle/incsearch
-	url = git@github.com:haya14busa/incsearch.vim.git
-[submodule "vim/bundle/ag"]
-	path = vim/bundle/ag
-	url = git@github.com:rking/ag.vim.git
-[submodule "vim/bundle/php"]
-	path = vim/bundle/php
-	url = git@github.com:StanAngeloff/php.vim.git
 [submodule "oh-my-zsh"]
 	path = oh-my-zsh
 	url = git@github.com:robbyrussell/oh-my-zsh.git
-[submodule "vim/bundle/tabline"]
-	path = vim/bundle/tabline
-	url = git@github.com:mkitt/tabline.vim.git
-[submodule "vim/bundle/buf-only"]
-	path = vim/bundle/buf-only
-	url = git@github.com:vim-scripts/BufOnly.vim.git
 [submodule "sublime/Theme - Afterglow"]
 	path = sublime/Theme - Afterglow
 	url = git@github.com:ChrisHonniball/afterglow-theme.git
+[submodule "vim/bundle/vundle"]
+	path = vim/bundle/vundle
+	url = git@github.com:VundleVim/Vundle.vim.git
