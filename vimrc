@@ -249,7 +249,7 @@ let g:multi_cursor_next_key='<C-n>'
 let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
 
-ca MF MultipleCursorsFind
+ca mf MultipleCursorsFind
 " Called once right before you start selecting multiple cursors
 function! Multiple_cursors_before()
   set cursorcolumn!
