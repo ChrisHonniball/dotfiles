@@ -1,6 +1,7 @@
 [submodule "oh-my-zsh"]
 	path = oh-my-zsh
 	url = git@github.com:robbyrussell/oh-my-zsh.git
+	fetchrecursesubmodules = true
 [submodule "sublime/Theme - Afterglow"]
 	path = sublime/Theme - Afterglow
 	url = git@github.com:ChrisHonniball/afterglow-theme.git
