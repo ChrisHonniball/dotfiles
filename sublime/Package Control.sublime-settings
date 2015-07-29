@@ -1,0 +1,12 @@
+{
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"GitGutter",
+		"Handlebars",
+		"Markdown Extended",
+		"Package Control"
+	]
+}

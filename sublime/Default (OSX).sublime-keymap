@@ -1,0 +1,19 @@
+[
+  { "keys": ["ctrl+n"], "command": "find_under_expand" },
+  { "keys": ["ctrl+x"], "command": "find_under_expand_skip" },
+  { "keys": ["ctrl+p"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
+  {
+    "keys": ["j", "j"], "command": "exit_insert_mode",
+    "context": [
+      { "key": "setting.command_mode", "operand": false },
+      { "key": "setting.is_widget", "operand": false }
+    ]
+  },
+  {
+    "keys": ["k", "k"], "command": "exit_insert_mode",
+    "context": [
+      { "key": "setting.command_mode", "operand": false },
+      { "key": "setting.is_widget", "operand": false }
+    ]
+  }
+]

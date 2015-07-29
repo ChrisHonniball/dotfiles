@@ -66,16 +66,6 @@ ca Q q
 ca ag Ag
 ca AG Ag
 
-if has('mac')
-  ca gz cd /www/html/gozooga
-  ca purls cd /www/html/gozooga-purls
-  ca wiki cd /www/html/gozooga-wiki
-  ca addons cd ~/Projects/GitHub/ChrisHonniball/ember-addons
-elseif has('unix')
-  ca gz cd /var/www/html/gozooga
-  ca purls cd /var/www/html/gozooga-purls
-endif
-
 " line movement
 nnoremap <c-h> ^
 vnoremap <c-h> ^
@@ -247,6 +237,9 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 nnoremap <silent> <C-b> :CtrlPBuffer<cr>
+
+" Ag
+let g:ag_working_path_mode="r"
 
 " Multiple Cursors
 let g:multi_cursor_exit_from_visual_mode=0

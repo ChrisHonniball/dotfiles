@@ -79,3 +79,6 @@
 [submodule "vim/bundle/buf-only"]
 	path = vim/bundle/buf-only
 	url = git@github.com:vim-scripts/BufOnly.vim.git
+[submodule "sublime/Theme - Afterglow"]
+	path = sublime/Theme - Afterglow
+	url = git@github.com:ChrisHonniball/afterglow-theme.git

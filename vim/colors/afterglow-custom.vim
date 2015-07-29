@@ -10,11 +10,16 @@ endif
 
 " Cursor Settings
 set guicursor=a:block-Cursor-blinkon0
-"set guicursor+=n:block-nCursor-blinkon0
-"set guicursor+=v:block-vCursor-blinkon0
-"set guicursor+=i:block-iCursor-blinkon0
-"set guicursor+=c:block-cCursor-blinkon0
-"set guicursor+=r:block-rCursor-blinkon0
+set guicursor+=n:block-Cursor-blinkon0
+set guicursor+=v:block-Cursor-blinkon0
+set guicursor+=ve:block-Cursor-blinkon0
+set guicursor+=o:hor50-Cursor-blinkon0
+set guicursor+=i:ver25-Cursor-blinkon0
+set guicursor+=r:block-Cursor-blinkon0
+set guicursor+=c:block-Cursor-blinkon0
+set guicursor+=ci:block-Cursor-blinkon0
+set guicursor+=cr:block-Cursor-blinkon0
+set guicursor+=sm:block-Cursor-blinkon0
 
 
 let g:colors_name = "afterglow-custom"
