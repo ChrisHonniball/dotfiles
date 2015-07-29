@@ -5,5 +5,5 @@
 	path = sublime/Theme - Afterglow
 	url = git@github.com:ChrisHonniball/afterglow-theme.git
 [submodule "vim/bundle/vundle"]
-	path = vim/bundle/vundle
+	path = vim/vundle
 	url = git@github.com:VundleVim/Vundle.vim.git
