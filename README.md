@@ -2,7 +2,7 @@
 
 This (like other dotfiles) repositories are all of my dotfiles for setting on my computer.
 
-## Cloneing
+## Cloning
 
 ```
 cd ~

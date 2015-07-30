@@ -1,8 +1,20 @@
 set nocompatible
 filetype off
-set rtp+=~/.vim/vundle/
-call vundle#rc()
 
+" ======
+" VUNDLE
+" ======
+" 
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/vundle/
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+" call vundle#begin('~/some/path/here')
+"
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" other plugins
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'airblade/vim-gitgutter'
@@ -30,18 +42,19 @@ Plugin 'StanAngeloff/php.vim'
 Plugin 'mkitt/tabline.vim'
 Plugin 'vim-scripts/BufOnly.vim'
 
+" All of your Plugins must be added before the following line
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+call vundle#end()
+
 Helptags
 
-ca config e $MYVIMRC
-
-" set <leader> to , (comma)
-let mapleader=","
-
-set viminfo='0,<0,s10,h
-
-set timeoutlen=250 ttimeoutlen=0
-
-filetype plugin on
 
 " enable syntax highlighting
 syntax on
@@ -52,80 +65,13 @@ colorscheme afterglow-custom
 set t_Co=256
 set guifont=Liberation\ Mono\ for\ Powerline:h16
 
+" set <leader> to , (comma)
+let mapleader=","
+set viminfo='0,<0,s10,h
+set timeoutlen=300 ttimeoutlen=0
 set clipboard=unnamed
-
 set mouse=a
-
-" KEY MAPPINGS
-
-" yank/cut/delete alterations
-nnoremap <leader>d "_dd
-vnoremap <leader>d "_d
-
-" select last paste
-nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
-
-" EasyMotion
-map <Leader> <Plug>(easymotion-prefix)
-
-" prevent lines from removing indent
-inoremap <Return> <Return>x<BS>
-inoremap <CR> <CR>x<BS>
-nnoremap o ox<BS>
-nnoremap O Ox<BS>
-nnoremap cc ccx<BS>
-vnoremap c cx<BS>
-
-" Add alternate ways to get out of insert mode
-inoremap jj <Esc>
-inoremap kk <Esc>
-inoremap :w <Esc>:w
-inoremap :W <Esc>:w
-inoremap :q <Esc>:q
-
-" Closing HTML tags
-inoremap <leader>/ </<C-x><C-o>
-
-" Add mistyped commands
-ca W w
-ca Wq wq
-ca WQ wq
-ca Q q
-ca ag Ag
-ca AG Ag
-
-" line movement
-nnoremap <c-h> ^
-vnoremap <c-h> ^
-nnoremap <c-l> $
-vnoremap <c-l> $
-
-" movement without exiting insert mode
-inoremap <C-h> <Esc>ha
-inoremap <C-j> <Esc>gja
-inoremap <C-k> <Esc>gka
-inoremap <C-l> <Esc>la
-
-" insert lines without entering INSERT mode
-nnoremap <C-k> Ox<BS><Esc>
-nnoremap <C-j> ox<BS><Esc>
-
-" folding maps
-nnoremap <Space> za
-vnoremap <Space> za
-nnoremap <leader><Space> zA
-vnoremap <leader><Space> zA
-
-inoremap <leader>y <C-y>,
-
-" Easier retab
-nnoremap <leader><tab> :retab<cr>
-
-" Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
-
-" Reveal in finder
-nmap gf :Reveal<cr>
+filetype plugin on
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
@@ -170,20 +116,6 @@ set mat=2
 
 " highlight search results
 set hlsearch
-nnoremap <leader>/ :noh<cr>
-
-" incsearch
-let g:incsearch#auto_nohlsearch = 0
-let g:incsearch#separate_highlight = 1
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#) <Plug>(incsearch-stay)
 
 " use tabs, indent two (not four)
 set expandtab
@@ -191,24 +123,11 @@ set tabstop=2
 set shiftwidth=2
 set smarttab
 
-" set tabs for specific filetypes
-autocmd Filetype snippet setlocal ts=4 sts=4 sw=4
-autocmd Filetype snippets setlocal ts=4 sts=4 sw=4
-autocmd Filetype markdown setlocal ts=4 sts=4 sw=4
-
-" add syntaxes
-au BufReadPost,BufWritePost *.md set filetype=markdown syntax=markdown
-au BufReadPost,BufWritePost *.hbs set filetype=html.mustache syntax=html.mustache
-au BufNewFile,BufRead *.json set ft=javascript
-
 " turn on wrapping
 set wrap
 
 " make wrapping not break words
 set linebreak
-
-" fold by indentation
-set foldmethod=indent
 
 " set deepest fold to 10 levels
 set foldnestmax=10
@@ -225,14 +144,121 @@ set nrformats=
 " hide the mode in favor of airline
 set noshowmode
 
+" set tabs for specific filetypes
+autocmd Filetype snippet setlocal ts=4 sts=4 sw=4
+autocmd Filetype snippets setlocal ts=4 sts=4 sw=4
+autocmd Filetype markdown setlocal ts=4 sts=4 sw=4
+
+" add syntaxes
+au BufReadPost,BufWritePost *.md set filetype=markdown syntax=markdown
+au BufReadPost,BufWritePost *.hbs set filetype=html.mustache syntax=html.mustache
+au BufNewFile,BufRead *.json set ft=javascript
+
+
+" ====================
+" COMMAND ALTERNATIVES
+" ====================
+ca config e $MYVIMRC
+
+" mistyped commands
+ca W w
+ca Wq wq
+ca WQ wq
+ca Q q
+ca ag Ag
+ca AG Ag
+
+
+" ============
+" KEY MAPPINGS
+" ============
+
+" yank/cut/delete alterations
+nnoremap <leader>d "_dd
+vnoremap <leader>d "_d
+
+" select last paste
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+
+" EasyMotion
+map <Leader> <Plug>(easymotion-prefix)
+
+" prevent lines from removing indent
+inoremap <Return> <Return>x<BS>
+inoremap <CR> <CR>x<BS>
+nnoremap o ox<BS>
+nnoremap O Ox<BS>
+nnoremap cc ccx<BS>
+vnoremap c cx<BS>
+
+" Add alternate ways to get out of insert mode
+inoremap jj <Esc>
+inoremap kk <Esc>
+inoremap :w <Esc>:w
+inoremap :W <Esc>:w
+inoremap :q <Esc>:q
+
+" Closing HTML tags
+inoremap <leader>/ </<C-x><C-o>
+
+" line movement
+nnoremap <c-h> ^
+vnoremap <c-h> ^
+nnoremap <c-l> $
+vnoremap <c-l> $
+
+" movement without exiting insert mode
+inoremap <C-h> <Esc>ha
+inoremap <C-j> <Esc>gja
+inoremap <C-k> <Esc>gka
+inoremap <C-l> <Esc>la
+
+" insert lines without entering INSERT mode
+nnoremap <C-k> Ox<BS><Esc>
+nnoremap <C-j> ox<BS><Esc>
+
+" folding maps
+nnoremap <Space> za
+vnoremap <Space> za
+nnoremap <leader><Space> zA
+vnoremap <leader><Space> zA
+
+inoremap <leader>y <C-y>,
+
+" Easier retab
+nnoremap <leader><tab> :retab<cr>
+
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+
+" Reveal in finder
+nmap gf :Reveal<cr>
+
+nnoremap <leader>/ :noh<cr>
+
+" ===============
+" PLUGIN SETTINGS
+" ===============
+
+" incsearch
+let g:incsearch#auto_nohlsearch = 0
+let g:incsearch#separate_highlight = 1
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#) <Plug>(incsearch-stay)
+
 " indent-guides settings
 let g:indent_guides_auto_colors=0
 let g:indent_guides_start_level=1
 let g:indent_guides_guide_size=2
 let g:indent_guides_enable_on_vim_startup=1
-
-" not sure what this line does...
-filetype plugin on
+let g:indent_guides_exclude_filetypes = ['markdown', 'html.mustache', 'help']
 
 " autoclose
 au filetype markdown
@@ -336,6 +362,7 @@ function! NeatFoldText()
 endfunction
 set foldtext=NeatFoldText()
 
+" REveal in finder
 function! s:RevealInFinder()
   if filereadable(expand("%"))
     let l:command = "open -R %"
@@ -349,8 +376,10 @@ function! s:RevealInFinder()
 endfunction
 command! Reveal call <SID>RevealInFinder()
 
+" Format JSON
 com! FormatJSON %!python -m json.tool
 
+" Register clearing
 function! ClearRegisters()
   let regs='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-="*+'
   let i=0
@@ -359,7 +388,6 @@ function! ClearRegisters()
     let i=i+1
   endwhile
 endfunction
- 
 command! ClearRegisters call ClearRegisters()
 
 " Color Scheme Stuff
@@ -373,6 +401,7 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
+" Enable quickfix file migration with command
 command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
 function! QuickfixFilenames()
   " Building a hash ensures we get each buffer only once
