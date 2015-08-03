@@ -53,9 +53,6 @@ Plugin 'vim-scripts/BufOnly.vim'
 " see :h vundle for more details or wiki for FAQ
 call vundle#end()
 
-Helptags
-
-
 " enable syntax highlighting
 syntax on
 
