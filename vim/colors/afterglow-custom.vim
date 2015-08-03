@@ -9,31 +9,38 @@ endif
 
 
 " Cursor Settings
-set guicursor=a:block-Cursor-blinkon0
-set guicursor+=n:block-nCursor-blinkon0
-set guicursor+=v:block-vCursor-blinkon0
-set guicursor+=ve:block-vCursor-blinkon0
-set guicursor+=o:hor50-cCursor-blinkon0
+set guicursor=a:hor15-Cursor-blinkwait500-blinkoff500-blinkon500
+set guicursor+=n:hor15-nCursor-blinkon0
+set guicursor+=v:hor15-vCursor-blinkon0
+set guicursor+=ve:hor15-vCursor-blinkon0
+set guicursor+=o:hor15-cCursor-blinkwait500-blinkoff500-blinkon500
 set guicursor+=i:ver20-iCursor-blinkwait500-blinkoff500-blinkon500
-set guicursor+=r:block-rCursor-blinkon0
-set guicursor+=c:block-cCursor-blinkon0
-set guicursor+=ci:block-cCursor-blinkon0
-set guicursor+=cr:block-cCursor-blinkon0
-set guicursor+=sm:block-cCursor-blinkon0
+set guicursor+=r:hor15-rCursor-blinkwait500-blinkoff500-blinkon500
+set guicursor+=c:hor15-cCursor-blinkwait500-blinkoff500-blinkon500
+set guicursor+=ci:hor15-cCursor-blinkwait500-blinkoff500-blinkon500
+set guicursor+=cr:hor15-cCursor-blinkwait500-blinkoff500-blinkon500
+set guicursor+=sm:hor15-cCursor-blinkwait500-blinkoff500-blinkon500
 
 
 let g:colors_name = "afterglow-custom"
 
 " Cursor Colors based on mode - synced with airline colors.
-hi Cursor                         ctermfg=0       ctermbg=15     cterm=NONE           guifg=#000000   guibg=#ffffff   gui=NONE
-hi nCursor                        ctermfg=0       ctermbg=190    cterm=NONE           guifg=#000000   guibg=#dfff00   gui=NONE
-hi iCursor                        ctermbg=0       ctermbg=190    cterm=NONE           guifg=#000000   guibg=#00dfff   gui=NONE
-hi rCursor                        ctermbg=0       ctermbg=124    cterm=NONE           guifg=#000000   guibg=#af0000   gui=NONE
-hi vCursor                        ctermfg=0       ctermbg=214    cterm=NONE           guifg=#000000   guibg=#ffaf00   gui=NONE
+hi Cursor                         ctermfg=NONE    ctermbg=15     cterm=NONE           guifg=NONE      guibg=#ffffff   gui=NONE
+" hi Cursor                         ctermfg=0       ctermbg=15     cterm=NONE           guifg=#000000   guibg=#ffffff   gui=NONE
+" hi nCursor                        ctermfg=0       ctermbg=190    cterm=NONE           guifg=#000000   guibg=#dfff00   gui=NONE
+" hi vCursor                        ctermfg=0       ctermbg=214    cterm=NONE           guifg=#000000   guibg=#ffaf00   gui=NONE
+" hi iCursor                        ctermbg=0       ctermbg=190    cterm=NONE           guifg=#000000   guibg=#00dfff   gui=NONE
+" hi rCursor                        ctermbg=0       ctermbg=124    cterm=NONE           guifg=#000000   guibg=#af0000   gui=NONE
+
+hi link nCursor Cursor
+hi link vCursor Cursor
+hi link iCursor Cursor
+hi link rCursor Cursor
 hi link cCursor Cursor
 
 " Colors
 hi Normal                         ctermfg=251     ctermbg=235    cterm=NONE           guifg=#c6c6c6   guibg=#262626   gui=NONE
+hi Visual                         ctermfg=15      ctermbg=27     cterm=NONE           guifg=#ffffff   guibg=#005faf   gui=NONE
 hi NonText                        ctermfg=237     ctermbg=235    cterm=NONE           guifg=#3a3a3a   guibg=#262626   gui=NONE
 hi SpecialKey                     ctermfg=11      ctermbg=237    cterm=NONE           guifg=#ffff00   guibg=#3a3a3a   gui=NONE
 
@@ -63,8 +70,6 @@ hi link IncSearchCursor Cursor
 hi IncSearchOnCursor              ctermfg=34      ctermbg=0      cterm=NONE           guifg=#00af00   guibg=#000000   gui=NONE
 hi IncSearchMatch                 ctermfg=34      ctermbg=0      cterm=NONE           guifg=#00af00   guibg=#000000   gui=NONE
 hi IncSearchMatchReverse          ctermfg=34      ctermbg=0      cterm=NONE           guifg=#00af00   guibg=#000000   gui=NONE
-
-hi Visual                         ctermfg=15      ctermbg=27     cterm=NONE           guifg=#ffffff   guibg=#005faf   gui=NONE
 
 hi VertSplit                      ctermfg=232     ctermbg=232    cterm=NONE           guifg=#080808   guibg=#080808   gui=NONE
 

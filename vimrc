@@ -15,7 +15,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " other plugins
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'terryma/vim-multiple-cursors'
@@ -131,6 +131,9 @@ set linebreak
 
 " set deepest fold to 10 levels
 set foldnestmax=10
+
+" fold by indentation
+set foldmethod=indent
 
 " don't fold code by default
 set nofoldenable
@@ -286,8 +289,8 @@ let g:ctrlp_prompt_mappings = {
   \ }
 let g:ctrlp_extensions = ['line']
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.git|\.hg|\.svn|bower_components|node_modules|composer_packages|tmp|dist|bundle)$',
-  \ 'file': '\v(.exe|.so|.dll|.DS_Store|.gitkeep)$',
+  \ 'dir':  '\v[\/](\.git|\.hg|\.svn|bower_components|node_modules|composer_packages|tmp|dist|bundle|vendor|Mandrill)$',
+  \ 'file': '\v(.exe|.so|.dll|.DS_Store|.gitkeep|mandrill.php)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
 nnoremap <silent> <C-b> :CtrlPBuffer<cr>
