@@ -41,6 +41,7 @@ Plugin 'rking/ag.vim'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'mkitt/tabline.vim'
 Plugin 'vim-scripts/BufOnly.vim'
+Plugin 'samsonw/vim-task'
 
 " All of your Plugins must be added before the following line
 "
@@ -71,6 +72,7 @@ set mouse=a
 filetype plugin on
 
 " Use the same symbols as TextMate for tabstops and EOLs
+set list
 set listchars=tab:▸\ ,eol:¬
 
 " set splits to open on left or bottom
@@ -87,8 +89,8 @@ set wildmenu
 set ruler
 
 " highlight current line
-set cursorline
-set cursorcolumn
+"set cursorline
+"set cursorcolumn
 
 " turn on auto indentation
 set autoindent
@@ -159,6 +161,7 @@ au BufNewFile,BufRead *.json set ft=javascript
 " COMMAND ALTERNATIVES
 " ====================
 ca config e $MYVIMRC
+ca config-reload so $MYVIMRC
 
 " mistyped commands
 ca W w
@@ -172,6 +175,9 @@ ca AG Ag
 " ============
 " KEY MAPPINGS
 " ============
+
+" markdown TODOs
+inoremap ,- - [ ] 
 
 " yank/cut/delete alterations
 nnoremap <leader>d "_dd
@@ -201,11 +207,11 @@ inoremap :q <Esc>:q
 " Closing HTML tags
 inoremap <leader>/ </<C-x><C-o>
 
-" line movement
-nnoremap <c-h> ^
-vnoremap <c-h> ^
-nnoremap <c-l> $
-vnoremap <c-l> $
+" Split movement
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " movement without exiting insert mode
 inoremap <C-h> <Esc>ha
@@ -333,7 +339,7 @@ endif
 let g:ycm_key_list_select_completion = ['<c-n>']
 let g:ycm_key_list_previous_completion = ['<c-b>']
 
-" unicode symbols
+" AirLine
 let g:airline_left_sep = '»'
 let g:airline_left_sep = ''
 let g:airline_right_sep = '«'
@@ -347,6 +353,10 @@ let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 let g:airline#extensions#whitespace#enabled = 0
+
+" Vim Task
+inoremap <silent> <buffer> <C-CR> <ESC>:call Toggle_task_status()<CR>i
+noremap <silent> <buffer> <C-CR> :call Toggle_task_status()<CR>
 
 " custom folding function
 " http://dhruvasagar.com/2013/03/28/vim-better-foldtext
@@ -362,7 +372,7 @@ function! NeatFoldText()
 endfunction
 set foldtext=NeatFoldText()
 
-" REveal in finder
+" Reveal in finder
 function! s:RevealInFinder()
   if filereadable(expand("%"))
     let l:command = "open -R %"
@@ -371,7 +381,7 @@ function! s:RevealInFinder()
   else
     let l:command = "open ."
   endif
-  execute ":silent! !" . l:command
+  execute "silent! !" . l:command
   redraw!
 endfunction
 command! Reveal call <SID>RevealInFinder()
@@ -411,3 +421,18 @@ function! QuickfixFilenames()
   endfor
   return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
 endfunction
+
+" Custom quickfix commands
+function! QuickfixTodos()
+  " Build a list of TODOs into the quickfix list
+  execute "vimgrep /TODO/%"
+  execute "copen"
+endfunction
+command! Qtodos call QuickfixTodos()
+
+function! QuickfixFunctions()
+  " Build a list of TODOs into the quickfix list
+  execute "vimgrep /function/%"
+  execute "copen"
+endfunction
+command! Qfunc call QuickfixFunctions()

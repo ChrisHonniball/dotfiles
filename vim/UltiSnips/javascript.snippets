@@ -1,14 +1,14 @@
 snippet for "Object loop"
-for(var ${1:property} in ${2:object}){
+for(let ${1:property} in ${2:object}) {
 	if( !$2.hasOwnProperty($1) ){ continue; }
 	
 	$0
 }
 endsnippet
 
-snippet function "function"
-function($0) {
-	var that = this;
+snippet () "function" i
+($1) {
+	let that = this;$0
 },
 endsnippet
 
@@ -23,7 +23,7 @@ endsnippet
 # console.log()
 snippet log "Standard console.log()"
 /* */
-console.log($1);
+console.log($0);
 //*/
 endsnippet
 
@@ -38,7 +38,7 @@ endsnippet
 
 # jQuery
 snippet ajax "jQuery AJAX request"
-var ajaxSettings = {
+let ajaxSettings = {
 	"type": "${1:POST}",
 	"url": "${2:URL}",
 	"dataType": "json",
@@ -47,7 +47,7 @@ var ajaxSettings = {
 	"success": function(response){
 		$4
 	},
-	"error": function(error){
+	"error": function(response){
 		$0
 	}
 };
@@ -84,19 +84,6 @@ snippet moment "'Wednesday, February 2nd, 1983 8:00 am'" i
 'dddd, MMMM Do YYYY h:mm a'
 endsnippet
 
-# Gozooga Criteria
-snippet range "Criteria Range" i
-{"operator":"Range","from":"${1}","to":"${2}"}
-endsnippet
-
-snippet less "Criteria Less than" i
-{"operator":"Less than","value":"${1}"}
-endsnippet
-
-snippet greater "Criteria Greater than" i
-{"operator":"Greater than","value":"${1}"}
-endsnippet
-
 # Bootbox.js
 snippet dialog "Bootbox Dialog"
 bootbox.dialog({
@@ -107,14 +94,14 @@ bootbox.dialog({
 		no: {
 			label: "No",
 			className: "btn-default",
-			callback: function() {
+			callback() {
 				${3:loadingOverlay.fadeOut();}
 			}
 		},
 		yes: {
 			label: "Yes",
 			className: "btn-primary",
-			callback: function() {
+			callback() {
 				$0
 			}
 		}
@@ -130,8 +117,8 @@ bootbox.dialog({
 		ok: {
 			label: "OK",
 			className: "btn-primary",
-			callback: function() {
-				${3:loadingOverlay.fadeOut();}
+			callback() {
+				${3:loadingOverlay.fadeOut();}$0
 			}
 		}
 	}
@@ -144,52 +131,16 @@ ${1:Ember.\$}.iGrowl({
 	"type": '${2:error}', // info, success, notice, error, simple, info-sat, success-sat, notice-sat, error-sat
 
 	"title": ${3:null},
-	"message": ${4:response.responseText || response.statusText || "Unknown error. Check logs."},
+	"message": ${4:"Unknown error. Check logs."},
 
 	"delay": 2500
-});
-endsnippet
-
-snippet igrowl "Full iGrowl notification"
-${1:Ember.\$}.iGrowl({
-	"type": '${2:error}', // info, success, notice, error, simple, info-sat, success-sat, notice-sat, error-sat
-
-	"title": ${3:null},
-	"message": ${4:response.responseText || response.statusText || "Unknown error. Check logs."},
-
-	"delay": 2500, // {number} Delay before alert auto-dismisses (optional). Set to 0 for persistence.
-
-	"link": null, // {string} Encapsulates the entire alert in a link
-	"target": 'self', // {string} Anchor target of alert (if link property above is specified) - self, blank
-
-	"small": false, // {boolean} Size of alert - regular, small
-
-	"spacing": 30, // {number} Spacing between alerts
-	"placement": {
-		"x" : "right", // {string} Horizontal placement - left, center, right
-		"y": "left" // {string} Vertical placement - top, bottom
-	},
-	"offset": {
-		"x": 20, // {number} Horizontal offset from edge of window
-		"y": 20 // {number} Vertical offset from edge of window
-	},
-
-	"animation": true, // {boolean} Enable or disable animation
-	"animShow": 'bounceIn', // {string} Alert animation on enter - animate.css
-	"animHide": 'bounceOut', // {string} Alert animation on exit - animate.css
-
-	// Callbacks
-	"onShow": null, // {function} Run once enter animation begins
-	"onShown": null, // {function} Run once enter animation completes
-	"onHide": null, // {function} Run once exit animation begins
-	"onHidden": null, // {function} Run once exit animation completes
-});
+});$0
 endsnippet
 
 # Ember.js
 snippet promise "Ember.RSVP.Promise"
-var promise = new Ember.RSVP.Promise(function(resolve, reject){
-	var ajaxSettings = {
+let promise = new Ember.RSVP.Promise(function(resolve, reject) {
+	let ajaxSettings = {
 		"type": "${1:POST}",
 		"url": ${2:url},
 		"dataType": "json",
@@ -200,28 +151,30 @@ var promise = new Ember.RSVP.Promise(function(resolve, reject){
 	
 	Ember.$.ajax(ajaxSettings);
 }).then(
-	function(response) {
-		// Success
+	function(/*response*/) {
+		// Success$0
 	}, function(error) {
 		// Fail
-		console.log(
-			"%c%s#loadPost ERROR: %O",
+		Ember.Logger.log(
+			"%c%s promise ERROR: %O",
 			"color: red", // http://www.w3schools.com/html/html_colornames.asp
 			that.toString(),
 			error
 		);
 	}
-).finally();
+)${4://.finally(function() \{\})};
 endsnippet
 
 snippet modelsave "Save model"
-${1:that.get('model')}.save().then(
-	function(response){
-		// Success
+let ${1:model} = that.get('model');
+
+$1.save().then(
+	function(/*response*/){
+		// Success$0
 	}, function(response){
-		$1.rollback();
+		$1.rollbackAttributes();
 		
-		console.log(
+		Ember.Logger.log(
 			"%c%s# save ERROR: %O",
 			"color: red", // http://www.w3schools.com/html/html_colornames.asp
 			$1.toString(),
@@ -232,7 +185,7 @@ ${1:that.get('model')}.save().then(
 			"type": 'error', // info, success, notice, error, simple, info-sat, success-sat, notice-sat, error-sat
 
 			"title": "Unable to Save",
-			"message": response.responseText || response.statusText || "Unknown error. Check logs",
+			"message": response.errors[0].details || "Unknown error. Check logs",
 
 			"delay": 2500,
 		});
@@ -250,79 +203,77 @@ endsnippet
 
 snippet log "Ember Colored console.log()"
 /* */
-console.log(
+Ember.Logger.log(
 	"%c%s#$1",
 	"color: ${2:purple}", // http://www.w3schools.com/html/html_colornames.asp
-	${3:this}.toString()$4
+	${3:this}.toString()$0
 );
 //*/
 endsnippet
 
 snippet computed "Ember Computed Property" b
-${1:property}: Ember.computed($0{
-	get: function(){
-		var that = this;
+${1:property}: Ember.computed($1{
+	get(){
+		let that = this;$0
 	}
 }),
 endsnippet
 
 snippet computed "Ember Computed Property" i
-Ember.computed($0{
-	get: function(){
-		var that = this;
+Ember.computed($1{
+	get(){
+		let that = this;$0
 	}
 }),
 endsnippet
 
 snippet observer "Ember Property Observer" b
-${1:property}: Ember.observer($0{
-	get: function(){
-		var that = this;
-	}
+${1:property}: Ember.observer($1, function(){
+	let that = this;$0
 }),
 endsnippet
 
 snippet observer "Ember Property Observer" i
-Ember.observer($0{
+Ember.observer($1{
 	get: function(){
-		var that = this;
+		let that = this;$0
 	}
 }),
 endsnippet
 
 snippet csp "Standard Content Security Policy"
-	contentSecurityPolicy: {
-		'default-src': "'none'",
+contentSecurityPolicy: {
+	'default-src': "'none'",
 
-		'script-src': [
-			"'self'",
-			"maxcdn.bootstrapcdn.com"
-		].join(' '),
+	'script-src': [
+		"'self'",
+		"maxcdn.bootstrapcdn.com"
+	].join(' '),
 
-		'font-src': [
-			"'self'",
-			"fonts.gstatic.com",
-			"maxcdn.bootstrapcdn.com",
-			"fonts.googleapis.com"
-		].join(' '),
+	'font-src': [
+		"'self'",
+		"fonts.gstatic.com",
+		"maxcdn.bootstrapcdn.com",
+		"fonts.googleapis.com"
+	].join(' '),
 
-		'connect-src': [
-			"'self'"
-		].join(' '),
+	'connect-src': [
+		"'self'"
+	].join(' '),
 
-		'img-src': [
-			"'self'"
-		].join(' '),
+	'img-src': [
+		"'self'"
+	].join(' '),
 
-		'style-src': [
-			"'self'",
-			"'unsafe-inline'",
-			"fonts.googleapis.com",
-			"maxcdn.bootstrapcdn.com"
-		].join(' '),
+	'style-src': [
+		"'self'",
+		"'unsafe-inline'",
+		"fonts.googleapis.com",
+		"maxcdn.bootstrapcdn.com"
+	].join(' '),
 
-		'media-src': [
-			"'self'"
-		].join(' ')
-	},
+	'media-src': [
+		"'self'"
+	].join(' ')
+},
 endsnippet
