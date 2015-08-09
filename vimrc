@@ -208,6 +208,10 @@ inoremap :q <Esc>:q
 " Closing HTML tags
 inoremap <leader>/ </<C-x><C-o>
 
+" Line Movement
+nnoremap j gj
+nnoremap k gk
+
 " Split movement
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
