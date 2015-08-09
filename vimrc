@@ -41,7 +41,7 @@ Plugin 'rking/ag.vim'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'mkitt/tabline.vim'
 Plugin 'vim-scripts/BufOnly.vim'
-Plugin 'samsonw/vim-task'
+Plugin 'ChrisHonniball/vim-task'
 
 " All of your Plugins must be added before the following line
 "
@@ -53,15 +53,6 @@ Plugin 'samsonw/vim-task'
 "
 " see :h vundle for more details or wiki for FAQ
 call vundle#end()
-
-" enable syntax highlighting
-syntax on
-
-" theme settings
-set background=dark
-colorscheme afterglow-custom
-set t_Co=256
-set guifont=Liberation\ Mono\ for\ Powerline:h16
 
 " set <leader> to , (comma)
 let mapleader=","
@@ -146,6 +137,15 @@ set nrformats=
 " hide the mode in favor of airline
 set noshowmode
 
+" enable syntax highlighting
+syntax on
+
+" theme settings
+set background=dark
+colorscheme afterglow-custom
+set t_Co=256
+set guifont=Liberation\ Mono\ for\ Powerline:h16
+
 " set tabs for specific filetypes
 autocmd Filetype snippet setlocal ts=4 sts=4 sw=4
 autocmd Filetype snippets setlocal ts=4 sts=4 sw=4
@@ -161,7 +161,8 @@ au BufNewFile,BufRead *.json set ft=javascript
 " COMMAND ALTERNATIVES
 " ====================
 ca config e $MYVIMRC
-ca config-reload so $MYVIMRC
+ca tconfig tabe $MYVIMRC
+ca rconfig so $MYVIMRC
 
 " mistyped commands
 ca W w
@@ -355,7 +356,6 @@ let g:airline_symbols.whitespace = 'Ξ'
 let g:airline#extensions#whitespace#enabled = 0
 
 " Vim Task
-inoremap <silent> <buffer> <C-CR> <ESC>:call Toggle_task_status()<CR>i
 noremap <silent> <buffer> <C-CR> :call Toggle_task_status()<CR>
 
 " custom folding function

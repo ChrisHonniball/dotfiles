@@ -167,8 +167,8 @@ hi markdownLineBreak              ctermfg=238     ctermbg=238    cterm=inverse  
 " Vim Task
 hi link sectionTitle markdownH1
 hi taskKeyword NONE
-hi taskDoneItem                   ctermfg=34      ctermbg=NONE   cterm=NONE           guifg=#00af00   guibg=NONE      gui=NONE
-hi link  taskDoneIcon taskDoneItem
+hi taskDoneItem NONE
+hi taskDoneIcon                   ctermfg=10      ctermbg=NONE   cterm=NONE           guifg=#00ff00   guibg=NONE      gui=NONE
 hi taskWorkingItem                ctermfg=160     ctermbg=NONE   cterm=NONE           guifg=#df0000   guibg=NONE      gui=NONE
 hi link taskWorkingIcon taskWorkingItem
 
