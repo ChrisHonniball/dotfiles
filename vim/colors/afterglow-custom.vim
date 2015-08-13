@@ -39,17 +39,17 @@ hi link rCursor Cursor
 hi link cCursor Cursor
 
 " Colors
-hi Normal                         ctermfg=251     ctermbg=235    cterm=NONE           guifg=#c6c6c6   guibg=#262626   gui=NONE
+hi Normal                         ctermfg=251     ctermbg=234    cterm=NONE           guifg=#c6c6c6   guibg=#1c1c1c   gui=NONE
 hi Visual                         ctermfg=15      ctermbg=27     cterm=NONE           guifg=#ffffff   guibg=#005faf   gui=NONE
-hi NonText                        ctermfg=237     ctermbg=235    cterm=NONE           guifg=#3a3a3a   guibg=#262626   gui=NONE
+hi NonText                        ctermfg=237     ctermbg=234    cterm=NONE           guifg=#3a3a3a   guibg=#1c1c1c   gui=NONE
 hi link SpecialKey NonText
 
 hi TabLine                        ctermfg=245     ctermbg=234    cterm=NONE           guifg=#8a8a8a   guibg=#1c1c1c   gui=NONE
 hi TabLineFill                    ctermfg=232     ctermbg=232    cterm=NONE           guifg=#080808   guibg=#080808   gui=NONE
 hi TabLineSel                     ctermfg=253     ctermbg=235    cterm=bold           guifg=#dadada   guibg=#262626   gui=bold
 
-hi IndentGuidesOdd                ctermfg=NONE    ctermbg=234    cterm=NONE           guifg=NONE      guibg=#1c1c1c   gui=NONE
-hi IndentGuidesEven               ctermfg=NONE    ctermbg=235    cterm=NONE           guifg=NONE      guibg=#262626   gui=NONE
+hi IndentGuidesOdd                ctermfg=NONE    ctermbg=233    cterm=NONE           guifg=NONE      guibg=#121212   gui=NONE
+hi IndentGuidesEven               ctermfg=NONE    ctermbg=234    cterm=NONE           guifg=NONE      guibg=#1c1c1c   gui=NONE
 
 hi SignColumn                     ctermfg=244     ctermbg=NONE   cterm=NONE           guifg=#eeeeee   guibg=NONE      gui=NONE
 hi LineNr                         ctermfg=244     ctermbg=NONE   cterm=NONE           guifg=#6f6f6f   guibg=NONE      gui=NONE
@@ -60,8 +60,8 @@ hi multiple_cursors_visual        ctermfg=0       ctermbg=218    cterm=NONE     
 hi CursorLineNr                   ctermfg=190     ctermbg=NONE   cterm=NONE           guifg=#dfff00   guibg=NONE      gui=NONE
 
 " General Styles
-hi CursorLine                     ctermfg=NONE    ctermbg=236    cterm=NONE           guifg=NONE      guibg=#303030   gui=NONE
-hi CursorColumn                   ctermfg=NONE    ctermbg=236    cterm=NONE           guifg=NONE      guibg=#303030   gui=NONE
+hi CursorLine                     ctermfg=NONE    ctermbg=235    cterm=NONE           guifg=NONE      guibg=#262626   gui=NONE
+hi CursorColumn                   ctermfg=NONE    ctermbg=235    cterm=NONE           guifg=NONE      guibg=#262626   gui=NONE
 
 " Searches
 hi Search                         ctermfg=34      ctermbg=0      cterm=NONE           guifg=#00af00   guibg=#000000   gui=NONE

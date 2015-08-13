@@ -22,7 +22,7 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-surround'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'godlygeek/tabular'
-Plugin 'ChrisHonniball/xterm-color-table.vim'
+Plugin 'guns/xterm-color-table.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'Townk/vim-autoclose'
 Plugin 'nelstrom/vim-markdown-folding'
@@ -213,10 +213,10 @@ nnoremap j gj
 nnoremap k gk
 
 " Split movement
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap <D-h> <C-w>h
+nnoremap <D-j> <C-w>j
+nnoremap <D-k> <C-w>k
+nnoremap <D-l> <C-w>l
 
 " movement without exiting insert mode
 inoremap <C-h> <Esc>ha
