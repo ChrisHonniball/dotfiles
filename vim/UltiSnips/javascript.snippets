@@ -185,7 +185,7 @@ $1.save().then(
 			"type": 'error', // info, success, notice, error, simple, info-sat, success-sat, notice-sat, error-sat
 
 			"title": "Unable to Save",
-			"message": response.errors[0].details || "Unknown error. Check logs",
+			"message": response.errors[0].detail || "Unknown error. Check logs",
 
 			"delay": 2500,
 		});

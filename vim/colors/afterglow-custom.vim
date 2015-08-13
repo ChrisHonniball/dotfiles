@@ -42,7 +42,7 @@ hi link cCursor Cursor
 hi Normal                         ctermfg=251     ctermbg=235    cterm=NONE           guifg=#c6c6c6   guibg=#262626   gui=NONE
 hi Visual                         ctermfg=15      ctermbg=27     cterm=NONE           guifg=#ffffff   guibg=#005faf   gui=NONE
 hi NonText                        ctermfg=237     ctermbg=235    cterm=NONE           guifg=#3a3a3a   guibg=#262626   gui=NONE
-hi SpecialKey                     ctermfg=11      ctermbg=237    cterm=NONE           guifg=#ffff00   guibg=#3a3a3a   gui=NONE
+hi link SpecialKey NonText
 
 hi TabLine                        ctermfg=245     ctermbg=234    cterm=NONE           guifg=#8a8a8a   guibg=#1c1c1c   gui=NONE
 hi TabLineFill                    ctermfg=232     ctermbg=232    cterm=NONE           guifg=#080808   guibg=#080808   gui=NONE

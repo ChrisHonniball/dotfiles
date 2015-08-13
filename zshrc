@@ -122,9 +122,9 @@ function get_pwd() {
 
 function precmd () {
 __git_ps1 "
-$bg[cyan]$fg[black] %n@%m $reset_color$fg[cyan]
-$bg[yellow]$fg[black] $(get_pwd) $reset_color$fg[yellow]
-$reset_color" "↣ " " %s "
+%{$bg[cyan]%}%{$fg[black]%} %n@%m %{$reset_color%}%{$fg[cyan]%}
+%{$bg[yellow]%}%{$fg[black]%} $(get_pwd) %{$reset_color%}%{$fg[yellow]%}
+%{$reset_color%}" "↣ " " %s "
 }
 
 # iTerm2 integration

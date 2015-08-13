@@ -80,8 +80,8 @@ set wildmenu
 set ruler
 
 " highlight current line
-"set cursorline
-"set cursorcolumn
+set cursorline
+set cursorcolumn
 
 " turn on auto indentation
 set autoindent
@@ -360,7 +360,7 @@ let g:airline_symbols.whitespace = 'Ξ'
 let g:airline#extensions#whitespace#enabled = 0
 
 " Vim Task
-noremap <silent> <buffer> <C-CR> :call Toggle_task_status()<CR>
+noremap <leader><CR> :call Toggle_task_status()<CR>
 
 " custom folding function
 " http://dhruvasagar.com/2013/03/28/vim-better-foldtext
