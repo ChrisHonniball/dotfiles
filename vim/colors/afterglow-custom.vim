@@ -167,11 +167,10 @@ hi markdownLineBreak              ctermfg=238     ctermbg=238    cterm=inverse  
 " Vim Task
 hi link sectionTitle markdownH1
 hi taskKeyword NONE
-hi taskDoneItem NONE
+hi taskDoneItem                   ctermfg=241     ctermbg=NONE   cterm=NONE           guifg=#606060   guibg=NONE      gui=NONE
 hi taskDoneIcon                   ctermfg=10      ctermbg=NONE   cterm=NONE           guifg=#00ff00   guibg=NONE      gui=NONE
-hi taskWorkingItem                ctermfg=160     ctermbg=NONE   cterm=NONE           guifg=#df0000   guibg=NONE      gui=NONE
-hi link taskWorkingIcon taskWorkingItem
-
+hi taskWorkingItem NONE
+hi taskWorkingIcon                ctermfg=160     ctermbg=NONE   cterm=NONE           guifg=#df0000   guibg=NONE      gui=NONE
 
 
 " Unchanged from converted AfterGlow color scheme.

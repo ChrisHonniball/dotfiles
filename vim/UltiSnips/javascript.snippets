@@ -6,12 +6,6 @@ for(let ${1:property} in ${2:object}) {
 }
 endsnippet
 
-snippet () "function" i
-($1) {
-	let that = this;$0
-},
-endsnippet
-
 # Comments
 snippet //title "Comment Title"
 ////${1/./\//g}///
@@ -34,25 +28,6 @@ console.log(
 	"color: ${2:purple}"$0
 );
 //*/
-endsnippet
-
-# jQuery
-snippet ajax "jQuery AJAX request"
-let ajaxSettings = {
-	"type": "${1:POST}",
-	"url": "${2:URL}",
-	"dataType": "json",
-	"data": $3,
-	
-	"success": function(response){
-		$4
-	},
-	"error": function(response){
-		$0
-	}
-};
-
-jQuery.ajax(ajaxSettings);
 endsnippet
 
 # Moment.js
@@ -128,54 +103,56 @@ endsnippet
 # iGrowl.js
 snippet igrowl "Condensed iGrowl notification"
 ${1:Ember.\$}.iGrowl({
-	"type": '${2:error}', // info, success, notice, error, simple, info-sat, success-sat, notice-sat, error-sat
+	type: '${2:error}', // info, success, notice, error, simple, info-sat, success-sat, notice-sat, error-sat
 
-	"title": ${3:null},
-	"message": ${4:"Unknown error. Check logs."},
+	title: ${3:null},
+	message: ${4:"Unknown error. Check logs."},
 
-	"delay": 2500
+	delay: 2500
 });$0
 endsnippet
 
 # Ember.js
 snippet promise "Ember.RSVP.Promise"
-let promise = new Ember.RSVP.Promise(function(resolve, reject) {
+let promise = new Ember.RSVP.Promise((resolve, reject) => {
 	let ajaxSettings = {
-		"type": "${1:POST}",
-		"url": ${2:url},
-		"dataType": "json",
-		"data": {$3},
-		"success": resolve,
-		"error": reject
+		type: "${1:POST}",
+		url: ${2:url},
+		dataType: "json",
+		data: {$3},
+		success: resolve,
+		error: reject
 	};
 	
 	Ember.$.ajax(ajaxSettings);
 }).then(
-	function(/*response*/) {
+	(/*response*/) => {
 		// Success$0
-	}, function(error) {
+	}, (error) => {
 		// Fail
 		Ember.Logger.log(
-			"%c%s promise ERROR: %O",
+			"%c%s ${4:promise} ERROR: %O",
 			"color: red", // http://www.w3schools.com/html/html_colornames.asp
-			that.toString(),
+			this.toString(),
 			error
 		);
 	}
-)${4://.finally(function() \{\})};
+).finally(() => {
+	// Always
+});
 endsnippet
 
 snippet modelsave "Save model"
-let ${1:model} = that.get('model');
+let ${1:model} = this.get('model');
 
-$1.save().then(
-	function(/*response*/){
+$1.${2:save}().then(
+	(/*response*/) => {
 		// Success$0
-	}, function(response){
+	}, (response) => {
 		$1.rollbackAttributes();
 		
 		Ember.Logger.log(
-			"%c%s# save ERROR: %O",
+			"%c%s# ${3:$2} ERROR: %O",
 			"color: red", // http://www.w3schools.com/html/html_colornames.asp
 			$1.toString(),
 			response
@@ -184,7 +161,7 @@ $1.save().then(
 		Ember.$.iGrowl({
 			"type": 'error', // info, success, notice, error, simple, info-sat, success-sat, notice-sat, error-sat
 
-			"title": "Unable to Save",
+			"title": "Unable to $3",
 			"message": response.errors[0].detail || "Unknown error. Check logs",
 
 			"delay": 2500,

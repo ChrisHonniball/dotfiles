@@ -16,7 +16,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " other plugins
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'plasticboy/vim-markdown'
+Plugin 'tpope/vim-markdown'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-surround'
@@ -54,7 +54,7 @@ Plugin 'ChrisHonniball/vim-task'
 " see :h vundle for more details or wiki for FAQ
 call vundle#end()
 
-" set <leader> to , (comma)
+" set <leader>
 let mapleader=","
 set viminfo='0,<0,s10,h
 set timeoutlen=300 ttimeoutlen=0
@@ -144,7 +144,7 @@ syntax on
 set background=dark
 colorscheme afterglow-custom
 set t_Co=256
-set guifont=Liberation\ Mono\ for\ Powerline:h16
+set guifont=Hack:h14
 
 " set tabs for specific filetypes
 autocmd Filetype snippet setlocal ts=4 sts=4 sw=4
@@ -181,8 +181,10 @@ ca AG Ag
 inoremap ,- - [ ] 
 
 " yank/cut/delete alterations
-nnoremap <leader>d "_dd
-vnoremap <leader>d "_d
+nnoremap <Leader>p "0p
+nnoremap <Leader>P "0P
+vnoremap <Leader>p "0p
+vnoremap <Leader>P "0P
 
 " select last paste
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
@@ -208,10 +210,6 @@ inoremap :q <Esc>:q
 " Closing HTML tags
 inoremap <leader>/ </<C-x><C-o>
 
-" Line Movement
-nnoremap j gj
-nnoremap k gk
-
 " Split movement
 nnoremap <D-h> <C-w>h
 nnoremap <D-j> <C-w>j
@@ -219,10 +217,10 @@ nnoremap <D-k> <C-w>k
 nnoremap <D-l> <C-w>l
 
 " movement without exiting insert mode
-inoremap <C-h> <Esc>ha
-inoremap <C-j> <Esc>gja
-inoremap <C-k> <Esc>gka
-inoremap <C-l> <Esc>la
+inoremap <C-h> <C-o>h
+inoremap <C-j> <C-o>gj
+inoremap <C-k> <C-o>gk
+inoremap <C-l> <C-o>l
 
 " insert lines without entering INSERT mode
 nnoremap <C-k> Ox<BS><Esc>
@@ -230,10 +228,9 @@ nnoremap <C-j> ox<BS><Esc>
 
 " folding maps
 nnoremap <Space> za
-vnoremap <Space> za
 nnoremap <leader><Space> zA
-vnoremap <leader><Space> zA
 
+" Emmett map
 inoremap <leader>y <C-y>,
 
 " Easier retab
@@ -250,6 +247,9 @@ nnoremap <leader>/ :noh<cr>
 " ===============
 " PLUGIN SETTINGS
 " ===============
+
+" Syntastic
+let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 
 " incsearch
 let g:incsearch#auto_nohlsearch = 0
@@ -317,7 +317,7 @@ let g:multi_cursor_quit_key='<Esc>'
 ca mf MultipleCursorsFind
 " Called once right before you start selecting multiple cursors
 function! Multiple_cursors_before()
-  set cursorcolumn!
+  set nocursorcolumn
 endfunction
 
 " Called once only when the multiple selection is canceled (default <Esc>)
@@ -332,9 +332,6 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsListSnippets="<c-tab>"
 let g:UltiSnipsNoPythonWarning = 1
-
-" helper commands for snippets
-imap {{# hbs-element<c-r>=UltiSnips#ExpandSnippet()<cr>
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
