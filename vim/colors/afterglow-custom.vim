@@ -9,23 +9,23 @@ endif
 
 
 " Cursor Settings
-set guicursor=a:hor15-Cursor-blinkwait500-blinkoff500-blinkon500
-set guicursor+=n:hor15-nCursor-blinkwait500-blinkoff500-blinkon500
-set guicursor+=v:hor15-vCursor-blinkwait500-blinkoff500-blinkon500
-set guicursor+=ve:hor15-vCursor-blinkwait500-blinkoff500-blinkon500
-set guicursor+=o:hor15-cCursor-blinkwait500-blinkoff500-blinkon500
+set guicursor=a:block-Cursor-Cursor-blinkwait500-blinkoff500-blinkon500
+set guicursor+=n:block-Cursor-nCursor-blinkwait500-blinkoff500-blinkon500
+set guicursor+=v:block-Cursor-vCursor-blinkwait500-blinkoff500-blinkon500
+set guicursor+=ve:block-Cursor-vCursor-blinkwait500-blinkoff500-blinkon500
+set guicursor+=o:block-Cursor-cCursor-blinkwait500-blinkoff500-blinkon500
 set guicursor+=i:ver20-iCursor-blinkwait500-blinkoff500-blinkon500
-set guicursor+=r:hor15-rCursor-blinkwait500-blinkoff500-blinkon500
-set guicursor+=c:hor15-cCursor-blinkwait500-blinkoff500-blinkon500
-set guicursor+=ci:hor15-cCursor-blinkwait500-blinkoff500-blinkon500
-set guicursor+=cr:hor15-cCursor-blinkwait500-blinkoff500-blinkon500
-set guicursor+=sm:hor15-cCursor-blinkwait500-blinkoff500-blinkon500
+set guicursor+=r:block-Cursor-rCursor-blinkwait500-blinkoff500-blinkon500
+set guicursor+=c:block-Cursor-cCursor-blinkwait500-blinkoff500-blinkon500
+set guicursor+=ci:block-Cursor-cCursor-blinkwait500-blinkoff500-blinkon500
+set guicursor+=cr:block-Cursor-cCursor-blinkwait500-blinkoff500-blinkon500
+set guicursor+=sm:block-Cursor-cCursor-blinkwait500-blinkoff500-blinkon500
 
 
 let g:colors_name = "afterglow-custom"
 
 " Cursor Colors based on mode - synced with airline colors.
-hi Cursor                         ctermfg=NONE    ctermbg=15     cterm=NONE           guifg=NONE      guibg=#ffffff   gui=NONE
+hi Cursor                           ctermfg=234     ctermbg=15     cterm=NONE           guifg=#1c1c1c   guibg=#ffffff   gui=NONE
 " hi Cursor                         ctermfg=0       ctermbg=15     cterm=NONE           guifg=#000000   guibg=#ffffff   gui=NONE
 " hi nCursor                        ctermfg=0       ctermbg=190    cterm=NONE           guifg=#000000   guibg=#dfff00   gui=NONE
 " hi vCursor                        ctermfg=0       ctermbg=214    cterm=NONE           guifg=#000000   guibg=#ffaf00   gui=NONE
