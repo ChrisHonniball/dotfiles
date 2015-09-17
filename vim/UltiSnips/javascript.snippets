@@ -69,14 +69,14 @@ bootbox.dialog({
 		no: {
 			label: "No",
 			className: "btn-default",
-			callback() {
+			callback: () => {
 				${3:loadingOverlay.fadeOut();}
 			}
 		},
 		yes: {
 			label: "Yes",
 			className: "btn-primary",
-			callback() {
+			callback: () => {
 				$0
 			}
 		}
@@ -92,7 +92,7 @@ bootbox.dialog({
 		ok: {
 			label: "OK",
 			className: "btn-primary",
-			callback() {
+			callback: () => {
 				${3:loadingOverlay.fadeOut();}$0
 			}
 		}
@@ -190,7 +190,7 @@ endsnippet
 
 snippet computed "Ember Computed Property" b
 ${1:property}: Ember.computed($1{
-	get(){
+	get() {
 		let that = this;$0
 	}
 }),
@@ -198,7 +198,7 @@ endsnippet
 
 snippet computed "Ember Computed Property" i
 Ember.computed($1{
-	get(){
+	get() {
 		let that = this;$0
 	}
 }),
@@ -211,11 +211,11 @@ ${1:property}: Ember.observer($1, function(){
 endsnippet
 
 snippet observer "Ember Property Observer" i
-Ember.observer($1{
-	get: function(){
+Ember.observer($1
+	function() {
 		let that = this;$0
 	}
-}),
+),
 endsnippet
 
 snippet csp "Standard Content Security Policy"
