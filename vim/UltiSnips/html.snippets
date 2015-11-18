@@ -123,15 +123,9 @@ snippet chosen "Chosen Select"
 endsnippet
 
 snippet check-permission "Check Permission View"
-{{#check-permission user=${1:model} permission=${2:0} killRender=${3:true} viewName="${4:someView}"}}
-	{{#unless view.allowed}}
-		{{! Not allowed to view }}
-
-		$5
+{{#check-permission user=${1:model} permission=${2:0} killRender=${3:true} as |allowed|}}
+	{{#unless allowed}}
 	{{else}}
-		{{! Allowed to view }}
-
-		$6
 	{{/unless}}
 {{/check-permission}}
 endsnippet
