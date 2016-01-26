@@ -1,18 +1,18 @@
 <snippet>
-	<content><![CDATA[if( ($file_handle = fopen($filepath, "r")) === FALSE ){
+	<content><![CDATA[if( (\$file_handle = fopen(\$filepath, "r")) === FALSE ){
 	// Unable to open file...
 } else {
 	// Process file...
-	$row_count = 0;
+	\$row_count = 0;
 	
-	while( ($raw_data = fgetcsv($file_handle, 10000, ",")) !== FALSE ){
+	while( (\$raw_data = fgetcsv(\$file_handle, 10000, ",")) !== FALSE ){
 		$0
 		
-		$row_count++;
+		\$row_count++;
 	}
 	
 	// Close file...
-	fclose($file_handle);
+	fclose(\$file_handle);
 }
 ]]></content>
 	<tabTrigger>csv</tabTrigger>

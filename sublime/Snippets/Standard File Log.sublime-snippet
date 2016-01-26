@@ -1,9 +1,9 @@
 <snippet>
 	<content><![CDATA[/* */
-$e_message = sprintf(
+\$e_message = sprintf(
 	'${1}'
 );
-error_log("${2:==} [" . __file__ . " (" . __LINE__ . ")] $e_message");
+error_log("${2:==} [" . __file__ . " (" . __LINE__ . ")] \$e_message");
 //*/
 ]]></content>
 	<tabTrigger>log</tabTrigger>

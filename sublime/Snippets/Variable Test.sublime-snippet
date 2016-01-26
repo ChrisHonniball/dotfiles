@@ -1,10 +1,10 @@
 <snippet>
 	<content><![CDATA[/* */
-$e_message = sprintf(
+\$e_message = sprintf(
 	'VAR TEST: ${1:VarName}: %s',
 	print_r($1, true)
 );
-error_log("!! [" . __file__ . " (" . __LINE__ . ")] $e_message");
+error_log("!! [" . __file__ . " (" . __LINE__ . ")] \$e_message");
 //*/
 ]]></content>
 	<tabTrigger>log</tabTrigger>

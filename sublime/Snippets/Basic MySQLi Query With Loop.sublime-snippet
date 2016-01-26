@@ -6,7 +6,7 @@
 		// Error
 	} else {
 		// Success
-		while($row = $$1->fetch_assoc()){
+		while(\$row = $$1->fetch_assoc()){
 			$0
 		}
 	}

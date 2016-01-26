@@ -1,10 +1,10 @@
 <snippet>
-	<content><![CDATA[$e_message = sprintf(
+	<content><![CDATA[\$e_message = sprintf(
 	"%s\\n\\n%s",
 	$${1:MySQLiClass}->error(),
-	$query
+	\$query
 );
-error_log("${2:--} [" . __file__ . " (" . __LINE__ . ")] $e_message");
+error_log("${2:--} [" . __file__ . " (" . __LINE__ . ")] \$e_message");
 ]]></content>
 	<tabTrigger>log</tabTrigger>
 	<scope>source.php</scope>
