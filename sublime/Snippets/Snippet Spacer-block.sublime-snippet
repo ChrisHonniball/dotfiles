@@ -1,7 +1,0 @@
-<snippet>
-	<content><![CDATA[<div class="spacer-block" style="height: ${1:15}px;"></div>
-]]></content>
-	<tabTrigger>snippet spacer-block</tabTrigger>
-	<scope>source.html</scope>
-	<description>snippet spacer-block</description>
-</snippet>

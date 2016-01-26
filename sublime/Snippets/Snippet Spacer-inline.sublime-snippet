@@ -1,7 +1,0 @@
-<snippet>
-	<content><![CDATA[<span class="spacer-inline" style="width: ${1:15}px;"></span>
-]]></content>
-	<tabTrigger>snippet spacer-inline</tabTrigger>
-	<scope>source.html</scope>
-	<description>snippet spacer-inline</description>
-</snippet>

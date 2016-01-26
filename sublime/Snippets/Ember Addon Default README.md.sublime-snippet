@@ -1,8 +1,0 @@
-<snippet>
-	<content><![CDATA[
-View [documentation](https://chrishonniball.github.io/$1).
-]]></content>
-	<tabTrigger>addon-readme</tabTrigger>
-	<scope>source.markdown</scope>
-	<description>Ember Addon default README.md</description>
-</snippet>

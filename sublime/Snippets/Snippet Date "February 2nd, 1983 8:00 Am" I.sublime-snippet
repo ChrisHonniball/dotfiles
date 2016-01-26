@@ -1,7 +1,0 @@
-<snippet>
-	<content><![CDATA['F jS, Y g:i a'
-]]></content>
-	<tabTrigger>snippet date "February 2nd, 1983 8:00 am" i</tabTrigger>
-	<scope>source.php</scope>
-	<description>snippet date "February 2nd, 1983 8:00 am" i</description>
-</snippet>

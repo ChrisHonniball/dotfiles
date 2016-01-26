@@ -1,9 +1,0 @@
-<snippet>
-	<content><![CDATA[{% highlight ${1:syntax} %}
-$2
-{% endhighlight %}
-]]></content>
-	<tabTrigger>```</tabTrigger>
-	<scope>source.markdown</scope>
-	<description>Post Codeblock</description>
-</snippet>
