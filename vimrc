@@ -68,6 +68,9 @@ set clipboard=unnamed
 set mouse=a
 filetype plugin on
 
+" Auto read changed files
+set autoread
+
 " Use the same symbols as TextMate for tabstops and EOLs
 set list
 set listchars=tab:▸\ ,eol:¬
@@ -87,7 +90,7 @@ set ruler
 
 " highlight current line
 set cursorline
-set cursorcolumn
+set nocursorcolumn
 
 " turn on auto indentation
 set autoindent
@@ -195,6 +198,10 @@ vnoremap <Leader>P "0P
 " select last paste
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
+" Markdown Shortcuts
+map <leader>h1 yyp$v0r=
+map <leader>h2 yyp$v0r-
+
 " EasyMotion
 map <Leader> <Plug>(easymotion-prefix)
 
@@ -289,7 +296,7 @@ let g:ctrlp_tabpage_position = 'al'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_map = '<C-p>'
 let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:20'
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:40'
 let g:ctrlp_switch_buffer = 'et'
 let g:ctrlp_max_files = 0
 let g:ctrlp_max_depth = 100

@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[/* */
+$e_message = sprintf(
+	'${1}'
+);
+error_log("${2:==} [" . __file__ . " (" . __LINE__ . ")] $e_message");
+//*/
+]]></content>
+	<tabTrigger>log</tabTrigger>
+	<scope>source.php</source>
+	<description>Standard file log</description>
+</snippet>

@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[try {
+	$0
+} catch(Exception $e) {
+	throw new Exception($e->getMessage(), $e->getCode());
+}
+]]></content>
+	<tabTrigger>try</tabTrigger>
+	<scope>source.php</source>
+	<description>try{} catch(){}</description>
+</snippet>

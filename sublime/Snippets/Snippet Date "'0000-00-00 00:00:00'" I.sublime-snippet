@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA['0000-00-00 00:00:00'
+]]></content>
+	<tabTrigger>snippet date "'0000-00-00 00:00:00'" i</tabTrigger>
+	<scope>source.php</source>
+	<description>snippet date "'0000-00-00 00:00:00'" i</description>
+</snippet>

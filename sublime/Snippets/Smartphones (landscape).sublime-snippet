@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[/* Smartphones (landscape) */
+@media only screen and (min-width : 321px) {
+	$0
+}
+]]></content>
+	<tabTrigger>media</tabTrigger>
+	<scope>source.css</source>
+	<description>Smartphones (landscape)</description>
+</snippet>

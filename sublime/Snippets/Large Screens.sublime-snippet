@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[/* Large screens */
+@media only screen  and (min-width : 1824px) {
+	$0
+}
+]]></content>
+	<tabTrigger>media</tabTrigger>
+	<scope>source.css</source>
+	<description>Large screens</description>
+</snippet>

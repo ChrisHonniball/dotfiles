@@ -1,0 +1,14 @@
+<snippet>
+	<content><![CDATA[${1:Ember.\$}.iGrowl({
+	type: '${2:error}', // info, success, notice, error, simple, info-sat, success-sat, notice-sat, error-sat
+
+	title: ${3:null},
+	message: ${4:"Unknown error. Check logs."},
+
+	delay: 2500
+});$0
+]]></content>
+	<tabTrigger>igrowl</tabTrigger>
+	<scope>source.javascript</source>
+	<description>Condensed iGrowl notification</description>
+</snippet>

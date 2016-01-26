@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[/* Bootstrap variable xs */
+@media (max-width: \$screen-xs-max) {
+	$0
+}
+]]></content>
+	<tabTrigger>media</tabTrigger>
+	<scope>source.scss</source>
+	<description>Bootstrap variable xs</description>
+</snippet>

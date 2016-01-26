@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA['ddd, MMM Do, YYYY h:mm a'
+]]></content>
+	<tabTrigger>snippet moment "'Wed, Feb 2nd, 1983 8:00 am'" i</tabTrigger>
+	<scope>source.javascript</source>
+	<description>snippet moment "'Wed, Feb 2nd, 1983 8:00 am'" i</description>
+</snippet>

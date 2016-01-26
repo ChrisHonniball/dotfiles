@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[$e_message = sprintf(
+	"%s\\n\\n%s",
+	$${1:MySQLiClass}->error(),
+	$query
+);
+error_log("${2:--} [" . __file__ . " (" . __LINE__ . ")] $e_message");
+]]></content>
+	<tabTrigger>log</tabTrigger>
+	<scope>source.php</source>
+	<description>MySQLi Error</description>
+</snippet>

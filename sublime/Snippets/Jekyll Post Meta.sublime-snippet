@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[---
+layout: post
+title: $1
+---
+]]></content>
+	<tabTrigger>post</tabTrigger>
+	<scope>source.mkd</source>
+	<description>Jekyll Post Meta</description>
+</snippet>

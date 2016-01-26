@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[{{#check-permission user=${1:model} permission=${2:0} killRender=${3:true} as |allowed|}}
+	{{#unless allowed}}
+	{{else}}
+	{{/unless}}
+{{/check-permission}}
+]]></content>
+	<tabTrigger>check-permission</tabTrigger>
+	<scope>source.html</source>
+	<description>Check Permission View</description>
+</snippet>

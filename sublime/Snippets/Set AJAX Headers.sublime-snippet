@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[Ember.\$.ajaxSetup({
+	headers: {
+		$0
+	}
+});
+]]></content>
+	<tabTrigger>ajaxheaders</tabTrigger>
+	<scope>source.javascript</source>
+	<description>Set AJAX Headers</description>
+</snippet>

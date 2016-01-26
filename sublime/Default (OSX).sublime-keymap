@@ -1,19 +1,65 @@
-[
-  { "keys": ["ctrl+n"], "command": "find_under_expand" },
-  { "keys": ["ctrl+x"], "command": "find_under_expand_skip" },
-  { "keys": ["ctrl+p"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
-  {
-    "keys": ["j", "j"], "command": "exit_insert_mode",
-    "context": [
+ [
+  // Exiting INSERT Mode
+  { "keys": ["j", "j"], "command": "exit_insert_mode",
+    "context":
+    [
       { "key": "setting.command_mode", "operand": false },
       { "key": "setting.is_widget", "operand": false }
     ]
   },
-  {
-    "keys": ["k", "k"], "command": "exit_insert_mode",
-    "context": [
+  { "keys": ["k", "k"], "command": "exit_insert_mode",
+    "context":
+    [
       { "key": "setting.command_mode", "operand": false },
       { "key": "setting.is_widget", "operand": false }
     ]
-  }
+  },
+  // Movement in the overlay
+  {
+    "keys": ["ctrl+j"],
+    "command": "move",
+    "args": { "by": "lines", "forward": true },
+    "context": [
+      { "key": "overlay_visible", "operator": "equal", "operand": true }
+    ]
+  },
+  {
+    "keys": ["ctrl+k"],
+    "command": "move",
+    "args": { "by": "lines", "forward": false },
+    "context": [
+      { "key": "overlay_visible", "operator": "equal", "operand": true }
+    ]
+  },
+  // Add/remove lines
+  {
+    "keys": ["ctrl+j"],
+    "command": "run_macro_file",
+    "args": {"file": "res://Packages/Default/Add Line.sublime-macro"},
+    "context":
+    [
+      { "key": "setting.command_mode", "operand": true },
+      { "key": "setting.is_widget", "operand": false }
+    ]
+  },
+  {
+    "keys": ["ctrl+k"],
+    "command": "run_macro_file",
+    "args": {"file": "res://Packages/Default/Add Line Before.sublime-macro"},
+    "context":
+    [
+      { "key": "setting.command_mode", "operand": true },
+      { "key": "setting.is_widget", "operand": false }
+    ]
+  },
+  // Multiple selections
+  { "keys": ["ctrl+n"], "command": "find_under_expand" },
+  { "keys": ["ctrl+x"], "command": "find_under_expand_skip" },
+
+  // EasyMotion
+  { 
+    "keys": [",", "f", "<character>"],
+    "command": "easy_motion",
+    "args": {"select_text": false}
+  },
 ]

@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[/* Samsung Galaxy S3 (landscape) */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+	$0
+}
+]]></content>
+	<tabTrigger>media</tabTrigger>
+	<scope>source.css</source>
+	<description>Samsung Galaxy S3 (landscape)</description>
+</snippet>

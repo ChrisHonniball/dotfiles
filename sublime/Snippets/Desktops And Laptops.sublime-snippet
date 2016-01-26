@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[/* Desktops and laptops */
+@media only screen  and (min-width : 1224px) {
+	$0
+}
+]]></content>
+	<tabTrigger>media</tabTrigger>
+	<scope>source.css</source>
+	<description>Desktops and laptops</description>
+</snippet>

@@ -1,12 +1,22 @@
 {
+	"bootstrapped": true,
 	"in_process_packages":
 	[
 	],
 	"installed_packages":
 	[
+		"EasyMotion",
 		"GitGutter",
 		"Handlebars",
 		"Markdown Extended",
-		"Package Control"
+		"Package Control",
+		"Pretty JSON",
+		"RailsCasts Colour Scheme",
+		"Sass",
+		"SideBarEnhancements",
+		"SublimeLinter",
+		"SublimeLinter-php",
+		"Theme - Afterglow",
+		"WordHighlight"
 	]
 }

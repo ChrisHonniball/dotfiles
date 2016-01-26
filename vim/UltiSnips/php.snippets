@@ -89,12 +89,6 @@ endsnippet
 # MySQLi
 snippet query "Basic MySQLi Query with Loop"
 if(!$${1:this}->query($${2:query})){
-	$e_message = sprintf(
-		"%s\\n\\n%s",
-		$$1->error(),
-		$$2
-	);
-	error_log("${3:--} [" . __file__ . " (" . __LINE__ . ")] $e_message");
 	throw new Exception("$4Database error.", 400);
 } else {
 	if($$1->affected_rows() === 0){

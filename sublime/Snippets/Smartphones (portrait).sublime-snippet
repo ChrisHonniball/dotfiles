@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[/* Smartphones (portrait) */
+@media only screen and (max-width : 320px) {
+	$0
+}
+]]></content>
+	<tabTrigger>media</tabTrigger>
+	<scope>source.css</source>
+	<description>Smartphones (portrait)</description>
+</snippet>

@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[/* Bootstrap variable sm */
+@media (min-width: \$screen-sm-min) and (max-width: \$screen-sm-max) {
+	$0
+}
+]]></content>
+	<tabTrigger>media</tabTrigger>
+	<scope>source.scss</source>
+	<description>Bootstrap variable sm</description>
+</snippet>

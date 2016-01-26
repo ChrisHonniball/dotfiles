@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[Ember.computed($1{
+	get() {
+		let that = this;$0
+	}
+}),
+]]></content>
+	<tabTrigger>snippet computed "Ember Computed Property" i</tabTrigger>
+	<scope>source.javascript</source>
+	<description>snippet computed "Ember Computed Property" i</description>
+</snippet>

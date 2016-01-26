@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[/* iPad 3 (portrait) */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+	$0
+}
+]]></content>
+	<tabTrigger>media</tabTrigger>
+	<scope>source.css</source>
+	<description>iPad 3 (portrait)</description>
+</snippet>

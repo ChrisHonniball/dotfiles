@@ -1,0 +1,15 @@
+<snippet>
+	<content><![CDATA[@media (min-width: 768px) {
+	.dl-horizontal dt {
+		width: 200px;
+	}
+
+	.dl-horizontal dd {
+		margin-left: 220px;
+	}
+}
+]]></content>
+	<tabTrigger>addon-css</tabTrigger>
+	<scope>source.css</source>
+	<description>Ember Addon default CSS</description>
+</snippet>

@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[/* Bootstrap default xs */
+@media (max-width: 767px) {
+	$0
+}
+]]></content>
+	<tabTrigger>media</tabTrigger>
+	<scope>source.css</source>
+	<description>Bootstrap default xs</description>
+</snippet>
