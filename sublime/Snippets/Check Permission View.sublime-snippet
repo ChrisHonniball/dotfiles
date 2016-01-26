@@ -1,0 +1,14 @@
+<snippet>
+	<content><![CDATA[{{#check-permission user=${1:model} permission=${2:0} killRender=${3:true} as |allowed|}}
+	{{#unless allowed}}
+	{{else}}
+	{{/unless}}
+{{/check-permission}}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>check-permission</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.html.handlebars</scope>
+	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
+	<description>Check Permission View</description>
+</snippet>

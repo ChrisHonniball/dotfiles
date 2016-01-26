@@ -1,0 +1,13 @@
+<snippet>
+	<content><![CDATA[/* Bootstrap variable sm */
+@media (min-width: \$screen-sm-min) and (max-width: \$screen-sm-max) {
+	$0
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>media</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.sass</scope>
+	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
+	<description>Bootstrap variable sm</description>
+</snippet>

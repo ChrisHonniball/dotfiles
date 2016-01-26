@@ -111,17 +111,6 @@ snippet model "Check Model isLoaded"
 {{/unless}}
 endsnippet
 
-snippet chosen "Chosen Select"
-{{chosenSelect
-	content=${1:opts}
-	optionValuePath="content.${2:value}"
-	optionLabelPath="content.${3:label}"
-	value=${4:someVar}
-	viewName="${5:chosenView}"
-	placeholder_text_single="${6:Select an Option...}"
-}}$0
-endsnippet
-
 snippet check-permission "Check Permission View"
 {{#check-permission user=${1:model} permission=${2:0} killRender=${3:true} as |allowed|}}
 	{{#unless allowed}}

@@ -1,0 +1,24 @@
+<snippet>
+	<content><![CDATA[<div class="modal fade" id="${1:modal-name}" data-backdrop="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4>${2:Modal Window}</h4>
+			</div>
+			<div class="modal-body">
+				$0
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>modal</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.html</scope>
+	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
+	<description>Bootstrap Modal</description>
+</snippet>

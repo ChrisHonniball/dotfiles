@@ -1,0 +1,13 @@
+<snippet>
+	<content><![CDATA[---
+layout: ${1:post}
+title: ${2:Post Title}
+---	
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>post</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.markdown</scope>
+	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
+	<description>Post Header</description>
+</snippet>

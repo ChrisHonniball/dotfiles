@@ -1,0 +1,30 @@
+<snippet>
+	<content><![CDATA[bootbox.dialog({
+	title: "${1:Title}",
+	message: '${2:message}',
+	closeButton: false,
+	buttons: {
+		no: {
+			label: "No",
+			className: "btn-default",
+			callback: () => {
+				${3:loadingOverlay.fadeOut();}
+			}
+		},
+		yes: {
+			label: "Yes",
+			className: "btn-primary",
+			callback: () => {
+				$0
+			}
+		}
+	}
+});
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>dialog</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
+	<description>Bootbox Dialog</description>
+</snippet>

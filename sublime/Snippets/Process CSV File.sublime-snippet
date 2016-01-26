@@ -1,0 +1,24 @@
+<snippet>
+	<content><![CDATA[if( (\$file_handle = fopen(\$filepath, "r")) === FALSE ){
+	// Unable to open file...
+} else {
+	// Process file...
+	\$row_count = 0;
+	
+	while( (\$raw_data = fgetcsv(\$file_handle, 10000, ",")) !== FALSE ){
+		$0
+		
+		\$row_count++;
+	}
+	
+	// Close file...
+	fclose(\$file_handle);
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>csv</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.php</scope>
+	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
+	<description>Process CSV file</description>
+</snippet>

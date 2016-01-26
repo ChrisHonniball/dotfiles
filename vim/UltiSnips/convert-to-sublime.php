@@ -11,22 +11,29 @@ foreach($files as $filename) {
     while(($line = fgets($handle, 4096)) !== false) {
       // Detect if this line is the begining of a snippet.
       if(preg_match("/^snippet/", $line) === 1) {
-        // Extract the name/description for the snippet
+        // Extract the parts of the string
+        $parts = [];
+        preg_match_all("/snippet\s([a-zA-Z-]+)\s\"([a-zA-Z-_\s0-9,':]+)\"(.*)/", $line, $parts);
+        
         // Expected format: snippet addon-app "Ember Addon Default application.hbs"
-        $description = preg_replace("/^snippet ([a-zA-z-\/]+) \"(.*)\"$/", "$2", $line);
+        $description = $parts[2][0];
         $new_filename = preg_replace( "/\r|\n|\//", "", ucwords(str_replace(
-          ['.hbs'],
-          [' Template'],
+          ['.hbs', '.'],
+          [' Template', ' '],
           $description
         ))) . '.sublime-snippet';
         
         error_log($new_filename . ' Snippet Started...');
         
         // Extract the tabTrigger
-        $tab_trigger = '<tabTrigger>' . preg_replace("/^snippet ([a-zA-z-]+) \"(.*)\"$/", "$1", $line) . '</tabTrigger>';
+        $tab_trigger = '<tabTrigger>' . $parts[1][0] . '</tabTrigger>';
+        
+        if($parts[1][0] === 'date' || $parts[1][0] === 'moment') {
+          $new_filename = ucwords($parts[1][0]) . ' ' . $new_filename;
+        }
         
         // Set the scope
-        $scope = '<scope>source.' . preg_replace("/^([a-zA-Z]+)\.(.*)$/", "$1", $filename) . '</scope>';
+        $scope = current(explode('.', $filename));
         
         // Start the content
         $snippet_content = "<content><![CDATA[";
@@ -37,20 +44,29 @@ foreach($files as $filename) {
         $snippet_content .= "]]></content>";
         
         $snippet = sprintf(
-          "<snippet>\n\t%s\n\t%s\n\t%s\n\t%s\n</snippet>",
+          "<snippet>\n\t%s\n\t%s\n\t%s\n\t%s\n\t%s\n\t%s\n\t%s\n</snippet>",
           $snippet_content,
+          '<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->',
           preg_replace( "/\r|\n/", "", $tab_trigger),
-          $scope,
-          '<description>' . preg_replace( "/\r|\n/", "", $description) . '</description>'
+          '<!-- Optional: Set a scope to limit where the snippet will trigger -->',
+          '<scope>' . $scope . '</scope>',
+          '<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->',
+          '<description>' . $description . '</description>'
         );
         
         // Wirte the string to a file.
         if(!file_exists('converted/')) {
           mkdir('converted');
         }
+        
+        if(file_exists('converted/' . $new_filename)) {
+          $new_filename = strtoupper($scope) . ' ' . $new_filename;
+        }
         $new_handle = fopen('converted/' . $new_filename, 'w');
         fwrite($new_handle, $snippet);
         fclose($new_handle);
+      } else if(preg_match("/^extends/", $line) === 1) {
+        continue;
       } else if(preg_match("/^#/", $line) === 1) {
         continue;
       } else if($line === "") {
