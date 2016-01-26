@@ -4,6 +4,6 @@
 {% endhighlight %}
 ]]></content>
 	<tabTrigger>```</tabTrigger>
-	<scope>source.mkd</source>
+	<scope>source.mkd</scope>
 	<description>Code Highlight</description>
 </snippet>

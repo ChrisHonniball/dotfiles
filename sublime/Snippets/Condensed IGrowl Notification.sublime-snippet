@@ -9,6 +9,6 @@
 });$0
 ]]></content>
 	<tabTrigger>igrowl</tabTrigger>
-	<scope>source.javascript</source>
+	<scope>source.javascript</scope>
 	<description>Condensed iGrowl notification</description>
 </snippet>

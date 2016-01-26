@@ -6,6 +6,6 @@
 }
 ]]></content>
 	<tabTrigger>for</tabTrigger>
-	<scope>source.javascript</source>
+	<scope>source.javascript</scope>
 	<description>Object loop</description>
 </snippet>

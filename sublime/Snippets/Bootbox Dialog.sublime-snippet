@@ -22,6 +22,6 @@
 });
 ]]></content>
 	<tabTrigger>dialog</tabTrigger>
-	<scope>source.javascript</source>
+	<scope>source.javascript</scope>
 	<description>Bootbox Dialog</description>
 </snippet>

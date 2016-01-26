@@ -6,6 +6,6 @@
 });
 ]]></content>
 	<tabTrigger>ajaxheaders</tabTrigger>
-	<scope>source.javascript</source>
+	<scope>source.javascript</scope>
 	<description>Set AJAX Headers</description>
 </snippet>

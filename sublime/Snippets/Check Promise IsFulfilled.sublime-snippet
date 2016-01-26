@@ -16,6 +16,6 @@
 {{/unless}}
 ]]></content>
 	<tabTrigger>promise</tabTrigger>
-	<scope>source.html</source>
+	<scope>source.html</scope>
 	<description>Check Promise isFulfilled</description>
 </snippet>

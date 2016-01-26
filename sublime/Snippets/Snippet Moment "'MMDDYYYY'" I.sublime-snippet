@@ -2,6 +2,6 @@
 	<content><![CDATA['MM/DD/YYYY'
 ]]></content>
 	<tabTrigger>snippet moment "'MM/DD/YYYY'" i</tabTrigger>
-	<scope>source.javascript</source>
+	<scope>source.javascript</scope>
 	<description>snippet moment "'MM/DD/YYYY'" i</description>
 </snippet>

@@ -13,6 +13,6 @@
 }
 ]]></content>
 	<tabTrigger>query</tabTrigger>
-	<scope>source.php</source>
+	<scope>source.php</scope>
 	<description>Basic MySQLi Query with Loop</description>
 </snippet>

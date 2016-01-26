@@ -5,6 +5,6 @@
 }
 ]]></content>
 	<tabTrigger>media</tabTrigger>
-	<scope>source.css</source>
+	<scope>source.css</scope>
 	<description>Bootstrap default xs</description>
 </snippet>

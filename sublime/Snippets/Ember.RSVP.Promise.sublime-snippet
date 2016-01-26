@@ -27,6 +27,6 @@
 });
 ]]></content>
 	<tabTrigger>promise</tabTrigger>
-	<scope>source.javascript</source>
+	<scope>source.javascript</scope>
 	<description>Ember.RSVP.Promise</description>
 </snippet>

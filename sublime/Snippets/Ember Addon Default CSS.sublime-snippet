@@ -10,6 +10,6 @@
 }
 ]]></content>
 	<tabTrigger>addon-css</tabTrigger>
-	<scope>source.css</source>
+	<scope>source.css</scope>
 	<description>Ember Addon default CSS</description>
 </snippet>

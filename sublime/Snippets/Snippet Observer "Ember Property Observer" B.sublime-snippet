@@ -4,6 +4,6 @@
 }),
 ]]></content>
 	<tabTrigger>snippet observer "Ember Property Observer" b</tabTrigger>
-	<scope>source.javascript</source>
+	<scope>source.javascript</scope>
 	<description>snippet observer "Ember Property Observer" b</description>
 </snippet>

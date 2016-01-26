@@ -5,6 +5,6 @@
 }
 ]]></content>
 	<tabTrigger>media</tabTrigger>
-	<scope>source.scss</source>
+	<scope>source.scss</scope>
 	<description>Bootstrap variable md</description>
 </snippet>

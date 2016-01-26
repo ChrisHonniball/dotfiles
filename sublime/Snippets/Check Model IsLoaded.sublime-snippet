@@ -16,6 +16,6 @@
 {{/unless}}
 ]]></content>
 	<tabTrigger>model</tabTrigger>
-	<scope>source.html</source>
+	<scope>source.html</scope>
 	<description>Check Model isLoaded</description>
 </snippet>

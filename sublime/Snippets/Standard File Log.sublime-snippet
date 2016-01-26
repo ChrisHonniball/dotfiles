@@ -7,6 +7,6 @@ error_log("${2:==} [" . __file__ . " (" . __LINE__ . ")] $e_message");
 //*/
 ]]></content>
 	<tabTrigger>log</tabTrigger>
-	<scope>source.php</source>
+	<scope>source.php</scope>
 	<description>Standard file log</description>
 </snippet>

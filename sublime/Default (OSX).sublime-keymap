@@ -14,6 +14,9 @@
       { "key": "setting.is_widget", "operand": false }
     ]
   },
+  // ctrlp command for overlay
+  { "keys": ["ctrl+p"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
+
   // Movement in the overlay
   {
     "keys": ["ctrl+j"],
@@ -27,6 +30,22 @@
     "keys": ["ctrl+k"],
     "command": "move",
     "args": { "by": "lines", "forward": false },
+    "context": [
+      { "key": "overlay_visible", "operator": "equal", "operand": true }
+    ]
+  },
+  {
+    "keys": ["ctrl+l"],
+    "command": "move",
+    "args": { "by": "characters", "forward": true },
+    "context": [
+      { "key": "overlay_visible", "operator": "equal", "operand": true }
+    ]
+  },
+  {
+    "keys": ["ctrl+h"],
+    "command": "move",
+    "args": { "by": "characters", "forward": false },
     "context": [
       { "key": "overlay_visible", "operator": "equal", "operand": true }
     ]
@@ -62,4 +81,21 @@
     "command": "easy_motion",
     "args": {"select_text": false}
   },
+  
+  // Emmet
+  {
+    "keys": [
+      "ctrl+t"
+    ], 
+    "args": {
+      "action": "matching_pair"
+    }, 
+    "command": "run_emmet_action", 
+    "context": [
+      {
+        "key": "emmet_action_enabled.matching_pair"
+      }
+    ]
+  }, 
+
 ]

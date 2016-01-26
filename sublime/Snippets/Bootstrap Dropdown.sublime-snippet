@@ -10,6 +10,6 @@
 </div>
 ]]></content>
 	<tabTrigger>dropdown</tabTrigger>
-	<scope>source.html</source>
+	<scope>source.html</scope>
 	<description>Bootstrap Dropdown</description>
 </snippet>

@@ -4,6 +4,6 @@ $2
 {% endhighlight %}
 ]]></content>
 	<tabTrigger>```</tabTrigger>
-	<scope>source.markdown</source>
+	<scope>source.markdown</scope>
 	<description>Post Codeblock</description>
 </snippet>

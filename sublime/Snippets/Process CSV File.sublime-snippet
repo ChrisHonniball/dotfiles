@@ -16,6 +16,6 @@
 }
 ]]></content>
 	<tabTrigger>csv</tabTrigger>
-	<scope>source.php</source>
+	<scope>source.php</scope>
 	<description>Process CSV file</description>
 </snippet>

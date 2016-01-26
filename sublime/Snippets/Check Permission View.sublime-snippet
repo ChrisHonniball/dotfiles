@@ -6,6 +6,6 @@
 {{/check-permission}}
 ]]></content>
 	<tabTrigger>check-permission</tabTrigger>
-	<scope>source.html</source>
+	<scope>source.html</scope>
 	<description>Check Permission View</description>
 </snippet>

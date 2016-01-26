@@ -29,6 +29,6 @@
 }
 ]]></content>
 	<tabTrigger>mandrill</tabTrigger>
-	<scope>source.php</source>
+	<scope>source.php</scope>
 	<description>MandrillMailer Email</description>
 </snippet>

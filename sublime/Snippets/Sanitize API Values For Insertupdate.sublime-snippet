@@ -15,6 +15,6 @@ $query = sprintf(
 );
 ]]></content>
 	<tabTrigger>sanitize</tabTrigger>
-	<scope>source.php</source>
+	<scope>source.php</scope>
 	<description>Sanitize API values for insert/update</description>
 </snippet>

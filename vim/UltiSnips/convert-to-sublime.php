@@ -26,7 +26,7 @@ foreach($files as $filename) {
         $tab_trigger = '<tabTrigger>' . preg_replace("/^snippet ([a-zA-z-]+) \"(.*)\"$/", "$1", $line) . '</tabTrigger>';
         
         // Set the scope
-        $scope = '<scope>source.' . preg_replace("/^([a-zA-Z]+)\.(.*)$/", "$1", $filename) . '</source>';
+        $scope = '<scope>source.' . preg_replace("/^([a-zA-Z]+)\.(.*)$/", "$1", $filename) . '</scope>';
         
         // Start the content
         $snippet_content = "<content><![CDATA[";

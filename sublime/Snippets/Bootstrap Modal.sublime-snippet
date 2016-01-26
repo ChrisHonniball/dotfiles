@@ -16,6 +16,6 @@
 </div>
 ]]></content>
 	<tabTrigger>modal</tabTrigger>
-	<scope>source.html</source>
+	<scope>source.html</scope>
 	<description>Bootstrap Modal</description>
 </snippet>

@@ -35,6 +35,6 @@
 },
 ]]></content>
 	<tabTrigger>csp</tabTrigger>
-	<scope>source.javascript</source>
+	<scope>source.javascript</scope>
 	<description>Standard Content Security Policy</description>
 </snippet>

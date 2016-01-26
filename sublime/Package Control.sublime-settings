@@ -6,6 +6,7 @@
 	"installed_packages":
 	[
 		"EasyMotion",
+		"Emmet",
 		"GitGutter",
 		"Handlebars",
 		"Markdown Extended",
@@ -13,10 +14,15 @@
 		"Pretty JSON",
 		"RailsCasts Colour Scheme",
 		"Sass",
+		"ScopeHunter",
 		"SideBarEnhancements",
 		"SublimeLinter",
 		"SublimeLinter-php",
+		"Surround",
+		"SyncedSideBar",
+		"Tag",
 		"Theme - Afterglow",
+		"Vintage Surround",
 		"WordHighlight"
 	]
 }

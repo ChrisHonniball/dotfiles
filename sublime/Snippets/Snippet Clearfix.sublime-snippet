@@ -2,6 +2,6 @@
 	<content><![CDATA[<div class="clearfix"></div>
 ]]></content>
 	<tabTrigger>snippet clearfix</tabTrigger>
-	<scope>source.html</source>
+	<scope>source.html</scope>
 	<description>snippet clearfix</description>
 </snippet>

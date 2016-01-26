@@ -26,6 +26,6 @@ $1.${2:save}().then(
 );
 ]]></content>
 	<tabTrigger>modelsave</tabTrigger>
-	<scope>source.javascript</source>
+	<scope>source.javascript</scope>
 	<description>Save model</description>
 </snippet>

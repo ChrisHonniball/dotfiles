@@ -5,6 +5,6 @@ title: $1
 ---
 ]]></content>
 	<tabTrigger>post</tabTrigger>
-	<scope>source.mkd</source>
+	<scope>source.mkd</scope>
 	<description>Jekyll Post Meta</description>
 </snippet>

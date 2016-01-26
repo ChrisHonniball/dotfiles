@@ -8,6 +8,6 @@ Ember.Logger.log(
 //*/
 ]]></content>
 	<tabTrigger>log</tabTrigger>
-	<scope>source.javascript</source>
+	<scope>source.javascript</scope>
 	<description>Ember Colored Console Log</description>
 </snippet>

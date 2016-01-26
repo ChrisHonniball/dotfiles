@@ -79,6 +79,6 @@
 }
 ]]></content>
 	<tabTrigger>endpoint</tabTrigger>
-	<scope>source.php</source>
+	<scope>source.php</scope>
 	<description>API endpoint</description>
 </snippet>

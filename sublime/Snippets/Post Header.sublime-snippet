@@ -5,6 +5,6 @@ title: ${2:Post Title}
 ---	
 ]]></content>
 	<tabTrigger>post</tabTrigger>
-	<scope>source.markdown</source>
+	<scope>source.markdown</scope>
 	<description>Post Header</description>
 </snippet>

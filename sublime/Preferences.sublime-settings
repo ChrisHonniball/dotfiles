@@ -95,7 +95,8 @@
 		"tmp",
 		"dist",
 		"node_modules",
-		"bower_components"
+		"bower_components",
+		"vendor"
 	],
 	"font_face": "Hack",
 	"font_options":
@@ -168,6 +169,7 @@
 	"use_simple_full_screen": false,
 	"use_tab_stops": true,
 	"vintage_start_in_command_mode": true,
+	"vintage_use_clipboard": true,
 	"word_separators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?",
 	"word_wrap": true,
 	"wrap_width": 0
