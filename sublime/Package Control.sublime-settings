@@ -5,8 +5,13 @@
 	],
 	"installed_packages":
 	[
+		"AutoSelect",
+		"Color Highlighter",
+		"Crontab Syntax",
+		"DocBlockr",
 		"EasyMotion",
 		"Emmet",
+		"Git",
 		"GitGutter",
 		"Handlebars",
 		"Markdown Extended",
@@ -20,9 +25,12 @@
 		"SublimeLinter-php",
 		"Surround",
 		"SyncedSideBar",
-		"Tag",
 		"Theme - Afterglow",
 		"Vintage Surround",
 		"WordHighlight"
+	],
+	"repositories":
+	[
+		"https://github.com/ChrisHonniball/VintageLines"
 	]
 }
