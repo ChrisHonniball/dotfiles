@@ -140,6 +140,7 @@
 	"preview_on_click": true,
 	"remember_full_screen": false,
 	"remember_open_files": false,
+	"reveal-on-activate": false,
 	"rulers":
 	[
 	],
@@ -153,7 +154,7 @@
 	"show_panel_on_build": true,
 	"show_tab_close_buttons": true,
 	"sidebar_size_14": true,
-	"smart_indent": true,
+	"smart_indent": false,
 	"spell_check": false,
 	"spelling_selector": "markup.raw, source string.quoted - punctuation - meta.preprocessor.c.include, source comment - source comment.block.preprocessor, -(source, constant, keyword, storage, support, variable, markup.underline.link, meta.tag)",
 	"status_bar_lighter": true,
@@ -161,16 +162,17 @@
 	"tab_size": 2,
 	"tabs_padding_small": true,
 	"tabs_small": true,
-	"theme": "Afterglow-green.sublime-theme",
+	"theme": "Afterglow-orange.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"tree_animation_enabled": true,
 	"trim_automatic_white_space": false,
 	"trim_trailing_white_space_on_save": false,
 	"use_simple_full_screen": false,
 	"use_tab_stops": true,
+	"vintage_lines_show_line_numbers": true,
 	"vintage_start_in_command_mode": true,
 	"vintage_use_clipboard": true,
 	"word_separators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?",
 	"word_wrap": true,
-	"wrap_width": 0
+	"wrap_width": 0,
 }
