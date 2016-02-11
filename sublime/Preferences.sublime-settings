@@ -174,5 +174,5 @@
 	"vintage_use_clipboard": true,
 	"word_separators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?",
 	"word_wrap": true,
-	"wrap_width": 0,
+	"wrap_width": 0
 }

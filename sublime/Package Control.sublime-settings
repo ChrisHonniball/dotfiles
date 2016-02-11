@@ -6,6 +6,7 @@
 	"installed_packages":
 	[
 		"AutoSelect",
+		"Chain of Command",
 		"Color Highlighter",
 		"Crontab Syntax",
 		"DocBlockr",
@@ -14,6 +15,7 @@
 		"Git",
 		"GitGutter",
 		"Handlebars",
+		"LineJumper",
 		"Markdown Extended",
 		"Package Control",
 		"Pretty JSON",

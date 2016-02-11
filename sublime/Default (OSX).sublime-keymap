@@ -1,8 +1,13 @@
 [
-  // VI Overrides
+  // VIM Overrides
   { "keys": ["ctrl+d"],
     "command": "vi_scroll_lines",
     "args": { "forward": true }
+  },
+  
+  { "keys": ["ctrl+u"],
+    "command": "vi_scroll_lines",
+    "args": { "forward": false }
   },
   
   // Exiting INSERT Mode
@@ -16,6 +21,20 @@
   },
   { "keys": ["k", "k"],
     "command": "exit_insert_mode",
+    "context":
+    [
+      { "key": "setting.command_mode", "operand": false },
+      { "key": "setting.is_widget", "operand": false }
+    ]
+  },
+  { "keys": [":", "w", "enter"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["exit_insert_mode"],
+        ["save"]
+      ]
+    },
     "context":
     [
       { "key": "setting.command_mode", "operand": false },
@@ -80,6 +99,40 @@
     "args": { "by": "characters", "forward": false }
   },
   
+  // VIM LineJumper
+  {
+    "keys": ["alt+j"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["line_jumper", { "cmd": "down_select", "number_of_lines": 10 }],
+        ["enter_visual_line_mode"]
+      ]
+    },
+    "context":
+    [
+      { "key": "setting.command_mode", "operand": true },
+      { "key": "setting.is_widget", "operand": false },
+      { "key": "selection_empty", "operator": "equal", "operand": false, "match_all": true },
+    ]
+  },
+  {
+    "keys": ["alt+k"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["line_jumper", { "cmd": "up_select", "number_of_lines": 10 }],
+        ["enter_visual_line_mode"]
+      ]
+    },
+    "context":
+    [
+      { "key": "setting.command_mode", "operand": true },
+      { "key": "setting.is_widget", "operand": false },
+      { "key": "selection_empty", "operator": "equal", "operand": false, "match_all": true },
+    ]
+  },
+  
   // vim-multiple-cursors style multiple selections
   { "keys": ["ctrl+n"],
     "command": "find_under_expand"
@@ -87,7 +140,13 @@
   { "keys": ["ctrl+x"],
     "command": "find_under_expand_skip",
     "context": [
-      { "key": "num_selections", "operator": "greater_than", "operand": 0 }
+      { "key": "num_selections", "operator": "not_equal", "operand": 0 }
+    ]
+  },
+  { "keys": ["ctrl+b"],
+    "command": "soft_undo",
+    "context": [
+      { "key": "num_selections", "operator": "not_equal", "operand": 0 }
     ]
   },
 
@@ -111,5 +170,12 @@
     "context": [
       { "key": "emmet_action_enabled.matching_pair" }
     ]
+  },
+  
+  // Tag
+  {
+    "keys": ["ctrl+shift+t"],
+    "command": "expand_selection",
+    "args": { "to": "tag" }
   },
 ]
