@@ -14,7 +14,7 @@ $1.${2:save}().then(
 			response
 		);
 
-		Ember.$.iGrowl({
+		Ember.\$.iGrowl({
 			"type": 'error', // info, success, notice, error, simple, info-sat, success-sat, notice-sat, error-sat
 
 			"title": "Unable to $3",

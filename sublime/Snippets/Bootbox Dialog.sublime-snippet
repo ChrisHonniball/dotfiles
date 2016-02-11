@@ -1,14 +1,15 @@
 <snippet>
 	<content><![CDATA[bootbox.dialog({
-	title: "${1:Title}",
-	message: '${2:message}',
+	backdrop: ${1:false},
+	title: "${2:Title}",
+	message: '${3:message}',
 	closeButton: false,
 	buttons: {
 		no: {
 			label: "No",
 			className: "btn-default",
 			callback: () => {
-				${3:loadingOverlay.fadeOut();}
+				${4:loadingOverlay.fadeOut();}
 			}
 		},
 		yes: {
