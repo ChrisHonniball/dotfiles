@@ -1,79 +1,95 @@
- [
+[
+  // VI Overrides
+  { "keys": ["ctrl+d"],
+    "command": "vi_scroll_lines",
+    "args": { "forward": true }
+  },
+  
   // Exiting INSERT Mode
-  { "keys": ["j", "j"], "command": "exit_insert_mode",
+  { "keys": ["j", "j"],
+    "command": "exit_insert_mode",
     "context":
     [
       { "key": "setting.command_mode", "operand": false },
       { "key": "setting.is_widget", "operand": false }
     ]
   },
-  { "keys": ["k", "k"], "command": "exit_insert_mode",
+  { "keys": ["k", "k"],
+    "command": "exit_insert_mode",
     "context":
     [
       { "key": "setting.command_mode", "operand": false },
       { "key": "setting.is_widget", "operand": false }
     ]
   },
+  
+  // Sidebar reveal file shortcut
+  { "keys": ["g", "f"],
+    "command": "side_bar_reveal",
+    "context":
+    [
+      { "key": "setting.command_mode", "operand": true },
+      { "key": "setting.is_widget", "operand": false }
+    ]
+  },
+  
+  // VIM-like Tab Navigation
+  { "keys": ["g", "t"],
+    "command": "next_view",
+    "context":
+    [
+      { "key": "setting.command_mode", "operand": true },
+      { "key": "setting.is_widget", "operand": false }
+    ]
+  },
+  { "keys": ["g", "T"],
+    "command": "prev_view",
+    "context":
+    [
+      { "key": "setting.command_mode", "operand": true },
+      { "key": "setting.is_widget", "operand": false }
+    ]
+  },
+  
+  
   // ctrlp command for overlay
-  { "keys": ["ctrl+p"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
+  { "keys": ["ctrl+p"],
+    "command": "show_overlay",
+    "args": { "overlay": "goto", "show_files": true }
+  },
 
-  // Movement in the overlay
+  // VIM-like Movement
   {
     "keys": ["ctrl+j"],
     "command": "move",
-    "args": { "by": "lines", "forward": true },
-    "context": [
-      { "key": "overlay_visible", "operator": "equal", "operand": true }
-    ]
+    "args": { "by": "lines", "forward": true }
   },
   {
     "keys": ["ctrl+k"],
     "command": "move",
-    "args": { "by": "lines", "forward": false },
-    "context": [
-      { "key": "overlay_visible", "operator": "equal", "operand": true }
-    ]
+    "args": { "by": "lines", "forward": false }
   },
   {
     "keys": ["ctrl+l"],
     "command": "move",
-    "args": { "by": "characters", "forward": true },
-    "context": [
-      { "key": "overlay_visible", "operator": "equal", "operand": true }
-    ]
+    "args": { "by": "characters", "forward": true }
   },
   {
     "keys": ["ctrl+h"],
     "command": "move",
-    "args": { "by": "characters", "forward": false },
+    "args": { "by": "characters", "forward": false }
+  },
+  
+  // vim-multiple-cursors style multiple selections
+  { "keys": ["ctrl+n"],
+    "command": "find_under_expand"
+  },
+  { "keys": ["ctrl+x"],
+    "command": "find_under_expand_skip",
     "context": [
-      { "key": "overlay_visible", "operator": "equal", "operand": true }
+      { "key": "num_selections", "operator": "greater_than", "operand": 0 }
     ]
   },
-  // Add/remove lines
-  {
-    "keys": ["ctrl+j"],
-    "command": "run_macro_file",
-    "args": {"file": "res://Packages/Default/Add Line.sublime-macro"},
-    "context":
-    [
-      { "key": "setting.command_mode", "operand": true },
-      { "key": "setting.is_widget", "operand": false }
-    ]
-  },
-  {
-    "keys": ["ctrl+k"],
-    "command": "run_macro_file",
-    "args": {"file": "res://Packages/Default/Add Line Before.sublime-macro"},
-    "context":
-    [
-      { "key": "setting.command_mode", "operand": true },
-      { "key": "setting.is_widget", "operand": false }
-    ]
-  },
-  // Multiple selections
-  { "keys": ["ctrl+n"], "command": "find_under_expand" },
-  { "keys": ["ctrl+x"], "command": "find_under_expand_skip" },
 
   // EasyMotion
   { 
@@ -81,21 +97,19 @@
     "command": "easy_motion",
     "args": {"select_text": false}
   },
+  { 
+    "keys": ["ctrl+f", "<character>"],
+    "command": "easy_motion",
+    "args": {"select_text": false}
+  },
   
   // Emmet
   {
-    "keys": [
-      "ctrl+t"
-    ], 
-    "args": {
-      "action": "matching_pair"
-    }, 
+    "keys": ["ctrl+t"],
     "command": "run_emmet_action", 
+    "args": { "action": "matching_pair" },
     "context": [
-      {
-        "key": "emmet_action_enabled.matching_pair"
-      }
+      { "key": "emmet_action_enabled.matching_pair" }
     ]
-  }, 
-
+  },
 ]
