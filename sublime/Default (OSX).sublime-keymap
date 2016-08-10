@@ -1,4 +1,10 @@
 [
+  { "keys": ["super+shift+,"], "command": "open_file", "args": {"file": "${packages}/User/Default (OSX).sublime-keymap"} },
+  
+  // Switch Paste Behavior
+  { "keys": ["super+v"], "command": "paste_and_indent" },
+  { "keys": ["super+shift+v"], "command": "paste" },
+  
   // VIM Overrides
   { "keys": ["ctrl+d"],
     "command": "vi_scroll_lines",
@@ -12,34 +18,91 @@
   
   // Exiting INSERT Mode
   { "keys": ["j", "j"],
-    "command": "exit_insert_mode",
-    "context":
-    [
+    "command": "run_multiple_commands",
+    "args": {
+      "commands": [
+        { "command": "single_selection" },
+        { "command": "exit_insert_mode" },
+        {
+          "command": "hide_overlay",
+          "context": [
+            { "key": "overlay_visible", "operator": "equal", "operand": true }
+          ]
+        },
+        {
+          "command": "hide_popup",
+          "context": [
+            { "key": "popup_visible", "operator": "equal", "operand": true }
+          ]
+        },
+        {
+          "command": "hide_auto_complete",
+          "context": [
+            { "key": "auto_complete_visible", "operator": "equal", "operand": true }
+          ]
+        }
+      ]
+    },
+    "context": [
       { "key": "setting.command_mode", "operand": false },
       { "key": "setting.is_widget", "operand": false }
     ]
   },
   { "keys": ["k", "k"],
-    "command": "exit_insert_mode",
-    "context":
-    [
+    "command": "run_multiple_commands",
+    "args": {
+      "commands": [
+        { "command": "single_selection" },
+        { "command": "exit_insert_mode" },
+        {
+          "command": "hide_overlay",
+          "context": [
+            { "key": "overlay_visible", "operator": "equal", "operand": true }
+          ]
+        },
+        {
+          "command": "hide_popup",
+          "context": [
+            { "key": "popup_visible", "operator": "equal", "operand": true }
+          ]
+        },
+        {
+          "command": "hide_auto_complete",
+          "context": [
+            { "key": "auto_complete_visible", "operator": "equal", "operand": true }
+          ]
+        }
+      ]
+    },
+    "context": [
       { "key": "setting.command_mode", "operand": false },
       { "key": "setting.is_widget", "operand": false }
     ]
   },
-  { "keys": [":", "w", "enter"],
-    "command": "chain",
+  
+  // Save Stuff
+  {
+    "keys": ["super+s"],
+    "command": "run_multiple_commands",
     "args": {
       "commands": [
-        ["exit_insert_mode"],
-        ["save"]
+        { "command": "single_selection" },
+        { "command": "exit_visual_mode" },
+        { "command": "exit_insert_mode" },
+        { "command": "save" }
       ]
-    },
-    "context":
-    [
-      { "key": "setting.command_mode", "operand": false },
-      { "key": "setting.is_widget", "operand": false }
-    ]
+    }
+  },
+  { "keys": [":", "w", "enter"],
+    "command": "run_multiple_commands",
+    "args": {
+      "commands": [
+        { "command": "single_selection" },
+        { "command": "exit_visual_mode" },
+        { "command": "exit_insert_mode" },
+        { "command": "save" }
+      ]
+    }
   },
   
   // Sidebar reveal file shortcut
@@ -99,40 +162,6 @@
     "args": { "by": "characters", "forward": false }
   },
   
-  // VIM LineJumper
-  {
-    "keys": ["alt+j"],
-    "command": "chain",
-    "args": {
-      "commands": [
-        ["line_jumper", { "cmd": "down_select", "number_of_lines": 10 }],
-        ["enter_visual_line_mode"]
-      ]
-    },
-    "context":
-    [
-      { "key": "setting.command_mode", "operand": true },
-      { "key": "setting.is_widget", "operand": false },
-      { "key": "selection_empty", "operator": "equal", "operand": false, "match_all": true },
-    ]
-  },
-  {
-    "keys": ["alt+k"],
-    "command": "chain",
-    "args": {
-      "commands": [
-        ["line_jumper", { "cmd": "up_select", "number_of_lines": 10 }],
-        ["enter_visual_line_mode"]
-      ]
-    },
-    "context":
-    [
-      { "key": "setting.command_mode", "operand": true },
-      { "key": "setting.is_widget", "operand": false },
-      { "key": "selection_empty", "operator": "equal", "operand": false, "match_all": true },
-    ]
-  },
-  
   // vim-multiple-cursors style multiple selections
   { "keys": ["ctrl+n"],
     "command": "find_under_expand"
@@ -170,6 +199,70 @@
     "context": [
       { "key": "emmet_action_enabled.matching_pair" }
     ]
+  },
+  {
+    "keys": ["ctrl+up"],
+    "command": "run_multiple_commands",
+    "args": {
+      "commands" : [
+        {
+          "command": "run_emmet_action", 
+          "args": {"action": "increment_number_by_1"},
+          "context": [
+              { "key": "emmet_action_enabled.increment_number_by_1" }
+          ]
+        },
+        { "command": "exit_visual_mode" },
+      ]
+    }
+  },
+  {
+    "keys": ["ctrl+down"],
+    "command": "run_multiple_commands",
+    "args": {
+      "commands" : [
+        {
+          "command": "run_emmet_action", 
+          "args": {"action": "decrement_number_by_1"},
+          "context": [
+              { "key": "emmet_action_enabled.decrement_number_by_1" }
+          ]
+        },
+        { "command": "exit_visual_mode" },
+      ]
+    }
+  },
+  {
+    "keys": ["ctrl+up"],
+    "command": "run_multiple_commands",
+    "args": {
+      "commands" : [
+        {
+          "command": "run_emmet_action", 
+          "args": {"action": "increment_number_by_1"},
+          "context": [
+              { "key": "emmet_action_enabled.increment_number_by_1" }
+          ]
+        },
+        { "command": "exit_visual_mode" },
+      ]
+    }
+  },
+  {
+    "keys": ["ctrl+down"],
+    "command": "run_multiple_commands",
+    "args": {
+      "commands" : [
+        {
+          "command": "run_emmet_action", 
+          "args": {"action": "decrement_number_by_1"},
+          "context": [
+              { "key": "emmet_action_enabled.decrement_number_by_1" }
+          ]
+        },
+        { "command": "exit_visual_mode" },
+      ]
+    }
   },
   
   // Tag

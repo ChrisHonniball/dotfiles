@@ -5,25 +5,29 @@
     url: ${2:url},
     dataType: "json",
     data: ${3:\{\}},
-    success: resolve,
-    error: reject
+    success: (response) => {
+      // Prior to the promise resolution.
+      return resolve(response);
+    },
+    error: (error) => {
+      // Prior to the promise rejection.
+      return reject(error);
+    }
   };
   
   Ember.\$.ajax(ajaxSettings);
 }).then(
   (/*response*/) => {
-    // Success$0
+    // After AJAX resolution but before promise result is passed back to app.$0
   }, (error) => {
-    // Fail
-    Ember.Logger.log(
-      "%c%s ${4:promise} ERROR: %O",
-      "color: red", // http://www.w3schools.com/html/html_colornames.asp
-      this.toString(),
-      error
-    );
+    // After AJAX resolution but before promise result is passed back to app.
+    return Ember.RSVP.reject({
+      status: error.responseJSON.errors[0].status,
+      message: error.responseJSON.errors[0].detail
+    });
   }
 ).finally(() => {
-  // Always
+  // After AJAX resolution but before promise result is passed back to app.
 });]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
   <tabTrigger>promise</tabTrigger>

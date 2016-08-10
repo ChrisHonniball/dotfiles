@@ -1,0 +1,27 @@
+<snippet>
+  <content><![CDATA[
+let promiseGroup, promises = [
+  
+];
+
+promiseGroup = Ember.RSVP.allSettled(promises).then((responseArray) => {
+  let rejections = responseArray.filterBy('state', 'rejected');
+  
+  if(rejections.length > 0) {
+    // Rejections present...
+    Ember.Logger.log(
+      "%c%s#beforeModel promiseGroup.allSettled ERRORS: %O",
+      "color: red", // http://www.w3schools.com/html/html_colornames.asp
+      this.toString(),
+      rejections
+    );
+  } else {
+    // No rejections...
+  }
+});
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>promiseGroup</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js</scope>
+</snippet>

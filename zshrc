@@ -22,7 +22,7 @@ ZSH_THEME="robbyrussell"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -66,7 +66,7 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -122,8 +122,8 @@ function get_pwd() {
 
 function precmd () {
 __git_ps1 "
-%{$bg[cyan]$fg[black]%} %n@%m %{$reset_color$fg[cyan]%}
-%{$bg[yellow]$fg[black]%} $(get_pwd) %{$reset_color$fg[yellow]%}
+%{$bg[cyan]$fg[black]%} %n@%m %{$reset_color$fg[cyan]%}
+%{$bg[yellow]$fg[black]%} $(get_pwd) %{$reset_color$fg[yellow]%}
 %{$reset_color%}" "↣ " " %s "
 }
 

@@ -4,6 +4,7 @@
 $1.${2:save}().then(
 	(/*response*/) => {
 		// Success$0
+		this.get('store').unloadRecord($1);
 	}, (response) => {
 		$1.rollbackAttributes();
 		

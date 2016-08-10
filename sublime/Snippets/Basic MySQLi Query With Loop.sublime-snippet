@@ -1,12 +1,12 @@
 <snippet>
-	<content><![CDATA[if(!\$${1:this}->query(\$${2:query})){
+	<content><![CDATA[if(!\$${1:this}->query(\$${2:query})) {
 	throw new Exception("$4Database error.", 400);
 } else {
-	if(\$$1->affected_rows() === 0){
+	if(\$$1->affected_rows() === 0) {
 		// Error
 	} else {
 		// Success
-		while(\$row = \$$1->fetch_assoc()){
+		while(\$row = \$$1->fetch_assoc()) {
 			$0
 		}
 	}

@@ -5,17 +5,22 @@
 	],
 	"installed_packages":
 	[
+		"All Autocomplete",
+		"Asterisk Config",
 		"AutoSelect",
-		"Chain of Command",
 		"Color Highlighter",
 		"Crontab Syntax",
+		"CSS Unminifier",
+		"CSS3",
+		"CSScomb",
 		"DocBlockr",
 		"EasyMotion",
 		"Emmet",
 		"Git",
 		"GitGutter",
 		"Handlebars",
-		"LineJumper",
+		"ImprovedMacros",
+		"Indent XML",
 		"Markdown Extended",
 		"Package Control",
 		"Pretty JSON",
@@ -27,12 +32,15 @@
 		"SublimeLinter-php",
 		"Surround",
 		"SyncedSideBar",
+		"Text Pastry",
 		"Theme - Afterglow",
 		"Vintage Surround",
-		"WordHighlight"
+		"WordHighlight",
+		"xml2json"
 	],
 	"repositories":
 	[
-		"https://github.com/ChrisHonniball/VintageLines"
+		"https://github.com/ChrisHonniball/VintageLines",
+		"https://github.com/skuroda/ImprovedMacros"
 	]
 }

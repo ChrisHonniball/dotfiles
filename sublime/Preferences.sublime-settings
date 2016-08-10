@@ -40,7 +40,7 @@
 	"bold_folder_labels": false,
 	"caret_extra_bottom": 0,
 	"caret_extra_top": 0,
-	"caret_extra_width": 0,
+	"caret_extra_width": 1,
 	"caret_style": "smooth",
 	"close_windows_when_empty": false,
 	"color_scheme": "Packages/Theme - Afterglow/Afterglow.tmTheme",
@@ -96,7 +96,9 @@
 		"dist",
 		"node_modules",
 		"bower_components",
-		"vendor"
+		"vendor",
+		"lib",
+		".sass-cache"
 	],
 	"font_face": "Hack",
 	"font_options":
@@ -140,7 +142,7 @@
 	"preview_on_click": true,
 	"remember_full_screen": false,
 	"remember_open_files": false,
-	"reveal-on-activate": false,
+	"reveal-on-activate": true,
 	"rulers":
 	[
 	],
@@ -154,7 +156,7 @@
 	"show_panel_on_build": true,
 	"show_tab_close_buttons": true,
 	"sidebar_size_14": true,
-	"smart_indent": false,
+	"smart_indent": true,
 	"spell_check": false,
 	"spelling_selector": "markup.raw, source string.quoted - punctuation - meta.preprocessor.c.include, source comment - source comment.block.preprocessor, -(source, constant, keyword, storage, support, variable, markup.underline.link, meta.tag)",
 	"status_bar_lighter": true,
@@ -165,8 +167,8 @@
 	"theme": "Afterglow-orange.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"tree_animation_enabled": true,
-	"trim_automatic_white_space": false,
-	"trim_trailing_white_space_on_save": false,
+	"trim_automatic_white_space": true,
+	"trim_trailing_white_space_on_save": true,
 	"use_simple_full_screen": false,
 	"use_tab_stops": true,
 	"vintage_lines_show_line_numbers": true,

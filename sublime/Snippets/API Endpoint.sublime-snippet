@@ -6,13 +6,13 @@
 	protected \$response_key = '${4:emberKey}';
 	
 	# SELECT an item from the database.
-	protected function GET(){
+	protected function GET() {
 		throw new Exception("Getting disabled", 405);
 		
 		\$session = \$this->authorize();
 		\$response = parent::GET();
 		
-		/*
+		/*  /
 		\$e_message = sprintf(
 			'\$response: %s',
 			print_r(\$response, true)
@@ -24,13 +24,13 @@
 	}
 	
 	# UPDATE and item in the database.
-	protected function PUT(){
+	protected function PUT() {
 		throw new Exception("Saving disabled", 405);
 		
 		\$session = \$this->authorize();
 		\$response = parent::PUT();
 		
-		/*
+		/*  /
 		\$e_message = sprintf(
 			'\$response: %s',
 			print_r(\$response, true)
@@ -42,13 +42,13 @@
 	}
 	
 	# INSERT an item into the database.
-	protected function POST(){
+	protected function POST() {
 		throw new Exception("Creating disabled", 405);
 		
 		\$session = \$this->authorize();
 		\$response = parent::POST();
 		
-		/*
+		/*  /
 		\$e_message = sprintf(
 			'\$response: %s',
 			print_r(\$response, true)
@@ -60,13 +60,13 @@
 	}
 	
 	# DELETE an item from the database.
-	protected function DELETE(){
+	protected function DELETE() {
 		throw new Exception("Deleting disabled", 405);
 		
 		\$session = \$this->authorize();
 		\$response = parent::DELETE();
 		
-		/*
+		/*  /
 		\$e_message = sprintf(
 			'\$response: %s',
 			print_r(\$response, true)
