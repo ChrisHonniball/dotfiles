@@ -1,0 +1,10 @@
+# Generated with Atomizr – https://atom.io/packages/atomizr
+".source.sass":
+	"Bootstrap variable xs":
+		prefix: "media"
+		body: """
+			/* Bootstrap variable xs */
+			@media (max-width: \\$screen-xs-max) {
+				$0
+			}$1
+		"""

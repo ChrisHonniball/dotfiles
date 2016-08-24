@@ -1,0 +1,10 @@
+# Generated with Atomizr – https://atom.io/packages/atomizr
+".source.gfm":
+	"Post Header":
+		prefix: "post"
+		body: """
+			---
+			layout: ${1:post}
+			title: ${2:Post Title}
+			---$3
+		"""

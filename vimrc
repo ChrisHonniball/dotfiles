@@ -4,7 +4,7 @@ filetype off
 " ======
 " VUNDLE
 " ======
-" 
+"
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/vundle/
 call vundle#begin()
@@ -27,7 +27,6 @@ Plugin 'scrooloose/syntastic'
 Plugin 'Townk/vim-autoclose'
 Plugin 'nelstrom/vim-markdown-folding'
 Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'SirVer/ultisnips'
 Plugin 'bling/vim-airline'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'mattn/emmet-vim'
@@ -187,7 +186,7 @@ ca AG Ag
 " ============
 
 " markdown TODOs
-inoremap ,- - [ ] 
+inoremap ,- - [ ]
 
 " yank/cut/delete alterations
 nnoremap <Leader>p "0p

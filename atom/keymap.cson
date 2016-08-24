@@ -23,3 +23,17 @@
 # This file uses CoffeeScript Object Notation (CSON).
 # If you are unfamiliar with CSON, you can read more about it here:
 # https://github.com/bevry/cson#what-is-cson
+
+'atom-text-editor.vim-mode.normal-mode':
+  'ctrl-f': 'easy-motion-redux:letter'
+  'shift-ctrl-f': 'easy-motion-redux:letter-select'
+
+'atom-text-editor.vim-mode.insert-mode':
+  'j': 'exit-insert-mode-if-preceded-by-j'
+
+'atom-text-editor':
+  'ctrl-f': 'easy-motion-redux:letter'
+  'shift-ctrl-f': 'easy-motion-redux:letter-select'
+
+'atom-workspace atom-text-editor:not([mini])':
+  'cmd-k cmd-j': 'editor:unfold-all'

@@ -15,7 +15,19 @@
 // style the background and foreground colors on the atom-text-editor-element
 // itself
 atom-text-editor {
-
+  &::shadow {
+    .fold-marker {
+      &::after {
+        font-size: 13px;
+        content: "•••";
+        padding: 0px 5px 0px 5px;
+        margin-left: 5px;
+        border-radius: 3px;
+        background: rgba(255, 255, 0, 0.52);
+        color: #555555;
+      }
+    }
+  }
 }
 
 // To style other content in the text editor's shadow DOM, use the ::shadow

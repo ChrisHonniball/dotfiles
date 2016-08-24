@@ -1,0 +1,10 @@
+# Generated with Atomizr – https://atom.io/packages/atomizr
+".source.sass":
+	"Bootstrap variable lg":
+		prefix: "media"
+		body: """
+			/* Bootstrap variable lg */
+			@media (min-width: \\$screen-lg-min) {
+				$0
+			}$1
+		"""

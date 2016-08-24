@@ -1,0 +1,10 @@
+# Generated with Atomizr – https://atom.io/packages/atomizr
+".source.css, source.sass":
+	"Retina displays":
+		prefix: "media"
+		body: """
+			/* Retina displays */
+			@media (min-device-pizel-ratio: 1.5) {
+				$0
+			}$1
+		"""

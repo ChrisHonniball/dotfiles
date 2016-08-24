@@ -1,0 +1,10 @@
+# Generated with Atomizr – https://atom.io/packages/atomizr
+".source.css, source.sass":
+	"Bootstrap default lg":
+		prefix: "media"
+		body: """
+			/* Bootstrap default lg */
+			@media (min-width: 1200px) {
+				$0
+			}$1
+		"""

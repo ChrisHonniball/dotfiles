@@ -1,0 +1,34 @@
+{
+  "name": "afterglow-plus",
+  "theme": "syntax",
+  "version": "1.6.0",
+  "description": "ST3 theme Afterglow with improved Angular JS coloring",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smlombardi/afterglow-plus.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">=0.174.0 <2.0.0"
+  },
+  "readme": "# Afterglow Plus\n\n\nA minimal dark syntax theme forked from [Afterglow Like](https://atom.io/themes/afterglow-like), which itself was converted from [Afterglow](https://github.com/YabataDesign/afterglow-theme) (Sublime Text). The syntax color scheme is mostly derived from [idlefingers](http://idlefingers.co.uk/).\n\nI forked this primarily to add selectors for Angular JS tags in HTML/AngularJS documents that were introduced in Atom .200 -- as more are added to Atom I will include them in the theme.\n\n![screenshot](https://github.com/smlombardi/afterglow-plus/raw/master/screenshot.png)\n\n### Notes\nRecommend theme [Isotope UI](https://github.com/braver/isotope-ui) with a custom background color of #252525.\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/smlombardi/afterglow-plus/issues"
+  },
+  "homepage": "https://github.com/smlombardi/afterglow-plus#readme",
+  "_id": "afterglow-plus@1.6.0",
+  "_shasum": "c1dd463e5785ec03735ae17fb43aae0712b831a2",
+  "_resolved": "file:../d-116723-2301-1b6toan/package.tgz",
+  "_from": "../d-116723-2301-1b6toan/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
+}

@@ -1,0 +1,344 @@
+@import "colors";
+@import "syntax-variables";
+
+atom-text-editor, :host {
+  background-color: @syntax-background-color;
+  color: @syntax-text-color;
+}
+
+atom-text-editor .gutter, :host .gutter {
+  background-color: @syntax-gutter-background-color;
+  color: @syntax-gutter-text-color;
+}
+
+atom-text-editor .gutter .line-number.cursor-line, :host .gutter .line-number.cursor-line {
+  background-color: @syntax-gutter-background-color-selected;
+  color: @syntax-gutter-text-color-selected;
+}
+
+atom-text-editor .gutter .line-number.cursor-line-no-selection, :host .gutter .line-number.cursor-line-no-selection {
+  color: @syntax-gutter-text-color-selected;
+}
+
+atom-text-editor::shadow .wrap-guide, :host .wrap-guide {
+  // color: @syntax-wrap-guide-color;
+  background-color: transparent;
+  border-left: 1px dashed @syntax-wrap-guide-color;
+}
+
+atom-text-editor .indent-guide, :host .indent-guide {
+  color: @syntax-indent-guide-color;
+}
+
+atom-text-editor .invisible-character, :host .invisible-character {
+  color: @syntax-invisible-character-color;
+}
+
+atom-text-editor .search-results .marker .region, :host .search-results .marker .region {
+  background-color: transparent;
+  border: @syntax-result-marker-color;
+}
+
+atom-text-editor .search-results .marker.current-result .region, :host .search-results .marker.current-result .region {
+  border: @syntax-result-marker-color-selected;
+}
+
+atom-text-editor.is-focused .cursor, :host(.is-focused) .cursor {
+  border-color: @syntax-cursor-color;
+}
+
+atom-text-editor.is-focused .selection .region, :host(.is-focused) .selection .region {
+  background-color: @syntax-selection-color;
+}
+
+atom-text-editor.is-focused .line-number.cursor-line-no-selection, atom-text-editor.is-focused .line.cursor-line, :host(.is-focused) .line-number.cursor-line-no-selection, :host(.is-focused) .line.cursor-line {
+  background-color: @oil;
+}
+
+
+
+
+.comment {
+  color: @monsoon;
+}
+
+.keyword, .storage {
+  color: @raw-sienna;
+}
+
+.storage {
+  color: @coral-tree;
+}
+
+.entity.name.function, .keyword.other.name-of-parameter.objc {
+  color: @koromiko;
+}
+
+.entity.name {
+  color: @white;
+}
+
+.constant.numeric {
+  color: @teal;
+}
+.constant.other.color.rgb-value.scss {
+  color: @dark-sea-green;
+}
+
+.variable.language, .variable.other, .variable.scss, .meta.set.variable .variable {
+  color: @rosybrown;
+}
+
+.variable.parameter.function.js {
+  color: @dark-salmon;
+  font-style: italic;
+}
+
+.constant {
+  color: @dark-sea-green;
+}
+
+.variable.other.constant {
+  color: @mojo;
+}
+
+.constant.language {
+  color: @ship-cove;
+}
+
+.string {
+  color: @wild-willow;
+}
+
+.support.function {
+  color: @indianred;
+}
+
+.support.type {
+  color: @ship-cove;
+}
+
+.support.constant {
+  color: @wild-willow;
+}
+
+.meta.tag, .declaration.tag, .entity.name.tag {
+  color: @rob-roy;
+}
+
+.invalid {
+  color: @white;
+  background-color: @red-berry;
+}
+
+.constant.character.escaped, .constant.character.escape, .string .source, .string .source.ruby {
+  color: @coral-tree;
+}
+
+.markup.inserted {
+  color: @smoke;
+  background-color: @parsley;
+}
+
+.markup.deleted {
+  color: @smoke;
+  background-color: @lonestar;
+}
+
+.meta.diff.header, .meta.separator.diff, .meta.diff.index, .meta.diff.range {
+  background-color: @govenor-bay;
+}
+
+.keyword.other.unit {
+  color: @wild-willow;
+}
+
+.entity.other.attribute-name.id.css {
+  color: @koromiko;
+}
+
+.entity.other.attribute-name.class {
+  color: @koromiko;
+}
+
+.entity.other.less.mixin {
+  color: @coral-tree;
+}
+
+.variable.declaration.less {
+  color: @rosybrown;
+}
+
+.keyword.control.html.elements {
+  color: #e5b567;
+}
+
+.punctuation.definition.constant.scss {
+  color: inherit;
+}
+
+.meta.attribute-selector.css {
+  color: @coral;
+}
+
+.keyword.control.at-rule.css.sass {
+  color: @coral-tree;
+}
+
+.keyword.control {
+  color: @lightsteelblue;
+  .punctuation {
+    color: inherit;
+  }
+}
+
+.markup.deleted.git_gutter {
+  color: @cannon-pink;
+}
+
+.markup.inserted.git_gutter {
+  color: @wild-willow;
+}
+
+.markup.changed.git_gutter {
+  color: @coral;
+}
+
+.markup.ignored.git_gutter {
+  color: @aluminum;
+}
+
+.markup.untracked.git_gutter {
+  color: @iron;
+}
+
+// TODO: use linter classes
+.sublimelinter.mark.warning {
+  color: @equator;
+}
+
+.sublimelinter.mark.error {
+  color: @tuscany;
+}
+
+.sublimelinter.gutter-mark {
+  color: @white;
+}
+
+.string.quoted.double.html .invalid.illegal.bad-ampersand.html {
+  color: @wild-willow;
+  background-color: hsla(0, 0%, 18%, 1);
+}
+
+.bracket-matcher .region {
+    border-bottom: 1px solid hsla(53, 100%, 47%, 0.6);
+    border-radius: 0;
+    background-color: hsla(53, 100%, 47%, 0.2);
+    z-index: 100;
+}
+
+// Sass and css
+.entity.other.attribute-name {
+  color: @brandy-punch;
+}
+.entity.other.attribute-name.pseudo-class.css, .entity.other.attribute-name.pseudo-element.css {
+  color: @coral-tree;
+}
+.entity.other.attribute-name.class.css {
+  color: @gold;
+}
+
+.entity.other.attribute-name.attribute.scss {
+  color: @tan;
+}
+
+.entity.other.attribute-name.id.css {
+  color: @tan;
+}
+
+.entity.name.function.scss {
+  color: @equator;
+}
+
+.support.type.property-name.scss, .support.type.property-name.css {
+  color: @base;
+}
+
+.meta.property-list.scss
+.meta.at-rule.import.scss
+.keyword.control.at-rule.import.scss {
+  color: @dark-sea-green;
+  .punctuation.definition.keyword.scss {
+    color: inherit;
+  }
+}
+
+.keyword.control.at-rule.import.scss {
+  color: @palegoldenrod;
+  .punctuation.definition.keyword.scss {
+    color: inherit;
+  }
+}
+
+.support.function.misc.scss {
+  color: @indianred;
+}
+
+.entity.other.attribute-name.placeholder.scss {
+  color: @cadetblue;
+}
+
+.variable.interpolation.scss {
+  color: @koromiko;
+}
+
+
+
+// i feel that in html, the colors that look ok elsewhere are too bright
+
+.string.quoted.double.html {
+  color: @base;
+}
+.punctuation.definition.tag.begin.html, .punctuation.definition.tag.end.html, .punctuation.definition.tag.html {
+  // color: @base;
+  color: @tan;
+}
+.entity.other.attribute-name.html {
+  color: @tan;
+}
+.meta.tag.inline.any.html, .meta.tag.structure.any.html, .meta.tag.any.html {
+  color: @rosybrown;
+}
+.punctuation.definition.string.begin.html, .punctuation.definition.string.end.html {
+  color: @base;
+}
+.entity.name.tag.block.any.html, .entity.name.tag.inline.any.html, .entity.name.tag.script.html, .entity.name.tag.structure.any.html, .entity.name.tag.html {
+  color: @rosybrown;
+}
+
+
+
+// new angular colors
+
+.keyword.control.js,
+.keyword.operator.js,
+.meta.tag.template.angular .keyword.operator.js {
+  color: @coral-tree;
+  font-weight: bold;
+}
+
+
+.meta.tag.template.angular {
+  color: @equator;
+}
+.meta.tag.template.angular .punctuation.definition.block.begin.angular, .meta.tag.template.angular .punctuation.definition.block.end.angular {
+  color: @dark-khaki;
+}
+
+.meta.tag.template.angular .meta.brace.curly.js  {
+  color: @dark-khaki;
+}
+
+.meta.attribute.html.angular .entity.other.attribute-name.html.angular {
+  color: @lingonbery;
+}

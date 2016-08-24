@@ -1,0 +1,21 @@
+# Generated with Atomizr – https://atom.io/packages/atomizr
+".text.html":
+	"Bootstrap Modal":
+		prefix: "modal"
+		body: """
+			<div class="modal fade" id="${1:modal-name}" data-backdrop="false">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4>${2:Modal Window}</h4>
+						</div>
+						<div class="modal-body">
+							$0
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>$3
+		"""

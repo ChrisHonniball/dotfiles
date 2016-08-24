@@ -1,0 +1,10 @@
+# Generated with Atomizr – https://atom.io/packages/atomizr
+".source.css, source.sass":
+	"Bootstrap default xs":
+		prefix: "media"
+		body: """
+			/* Bootstrap default xs */
+			@media (max-width: 767px) {
+				$0
+			}$1
+		"""
