@@ -1,21 +1,21 @@
 [
   { "keys": ["super+shift+,"], "command": "open_file", "args": {"file": "${packages}/User/Default (OSX).sublime-keymap"} },
-  
+
   // Switch Paste Behavior
   { "keys": ["super+v"], "command": "paste_and_indent" },
   { "keys": ["super+shift+v"], "command": "paste" },
-  
+
   // VIM Overrides
   { "keys": ["ctrl+d"],
     "command": "vi_scroll_lines",
     "args": { "forward": true }
   },
-  
+
   { "keys": ["ctrl+u"],
     "command": "vi_scroll_lines",
     "args": { "forward": false }
   },
-  
+
   // Exiting INSERT Mode
   { "keys": ["j", "j"],
     "command": "run_multiple_commands",
@@ -79,7 +79,7 @@
       { "key": "setting.is_widget", "operand": false }
     ]
   },
-  
+
   // Save Stuff
   {
     "keys": ["super+s"],
@@ -104,7 +104,7 @@
       ]
     }
   },
-  
+
   // Sidebar reveal file shortcut
   { "keys": ["g", "f"],
     "command": "side_bar_reveal",
@@ -114,26 +114,7 @@
       { "key": "setting.is_widget", "operand": false }
     ]
   },
-  
-  // VIM-like Tab Navigation
-  { "keys": ["g", "t"],
-    "command": "next_view",
-    "context":
-    [
-      { "key": "setting.command_mode", "operand": true },
-      { "key": "setting.is_widget", "operand": false }
-    ]
-  },
-  { "keys": ["g", "T"],
-    "command": "prev_view",
-    "context":
-    [
-      { "key": "setting.command_mode", "operand": true },
-      { "key": "setting.is_widget", "operand": false }
-    ]
-  },
-  
-  
+
   // ctrlp command for overlay
   { "keys": ["ctrl+p"],
     "command": "show_overlay",
@@ -161,7 +142,7 @@
     "command": "move",
     "args": { "by": "characters", "forward": false }
   },
-  
+
   // vim-multiple-cursors style multiple selections
   { "keys": ["ctrl+n"],
     "command": "find_under_expand"
@@ -180,21 +161,21 @@
   },
 
   // EasyMotion
-  { 
+  {
     "keys": [",", "f", "<character>"],
     "command": "easy_motion",
     "args": {"select_text": false}
   },
-  { 
+  {
     "keys": ["ctrl+f", "<character>"],
     "command": "easy_motion",
     "args": {"select_text": false}
   },
-  
+
   // Emmet
   {
     "keys": ["ctrl+t"],
-    "command": "run_emmet_action", 
+    "command": "run_emmet_action",
     "args": { "action": "matching_pair" },
     "context": [
       { "key": "emmet_action_enabled.matching_pair" }
@@ -206,7 +187,7 @@
     "args": {
       "commands" : [
         {
-          "command": "run_emmet_action", 
+          "command": "run_emmet_action",
           "args": {"action": "increment_number_by_1"},
           "context": [
               { "key": "emmet_action_enabled.increment_number_by_1" }
@@ -222,7 +203,7 @@
     "args": {
       "commands" : [
         {
-          "command": "run_emmet_action", 
+          "command": "run_emmet_action",
           "args": {"action": "decrement_number_by_1"},
           "context": [
               { "key": "emmet_action_enabled.decrement_number_by_1" }
@@ -238,7 +219,7 @@
     "args": {
       "commands" : [
         {
-          "command": "run_emmet_action", 
+          "command": "run_emmet_action",
           "args": {"action": "increment_number_by_1"},
           "context": [
               { "key": "emmet_action_enabled.increment_number_by_1" }
@@ -254,7 +235,7 @@
     "args": {
       "commands" : [
         {
-          "command": "run_emmet_action", 
+          "command": "run_emmet_action",
           "args": {"action": "decrement_number_by_1"},
           "context": [
               { "key": "emmet_action_enabled.decrement_number_by_1" }
@@ -264,11 +245,21 @@
       ]
     }
   },
-  
+
   // Tag
   {
     "keys": ["ctrl+shift+t"],
     "command": "expand_selection",
     "args": { "to": "tag" }
   },
+
+  // override CSS auto-insertion of semi-colon
+  { "keys": [":"], "command": "insert_snippet", "args": {"contents": ":$0"}, "context":
+    [
+      { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+      { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+      { "key": "selector", "operator": "equal", "operand": "source.css - meta.selector.css", "match_all": true },
+      { "key": "following_text", "operator": "regex_contains", "operand": "^(?:\t| |\\}|$)", "match_all": true }
+    ]
+  }
 ]

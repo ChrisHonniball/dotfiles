@@ -1,6 +1,6 @@
 {
 	"always_prompt_for_file_reload": false,
-	"always_show_minimap_viewport": false,
+	"always_show_minimap_viewport": true,
 	"animation_enabled": true,
 	"atomic_save": false,
 	"auto_close_tags": true,
@@ -44,7 +44,8 @@
 	"caret_style": "smooth",
 	"close_windows_when_empty": false,
 	"color_scheme": "Packages/Theme - Afterglow/Afterglow.tmTheme",
-	"copy_with_empty_selection": true,
+	"console_log": false,
+	"copy_with_empty_selection": false,
 	"create_window_at_startup": true,
 	"default_encoding": "UTF-8",
 	"default_line_ending": "system",
@@ -53,7 +54,7 @@
 	"drag_text": true,
 	"draw_centered": false,
 	"draw_indent_guides": true,
-	"draw_minimap_border": false,
+	"draw_minimap_border": true,
 	"draw_white_space": "selection",
 	"enable_hexadecimal_encoding": true,
 	"enable_tab_scrolling": true,
@@ -112,6 +113,7 @@
 	"hot_exit": false,
 	"ignored_packages":
 	[
+		"CSS"
 	],
 	"indent_guide_options":
 	[
@@ -153,7 +155,10 @@
 	"show_encoding": false,
 	"show_full_path": true,
 	"show_line_endings": false,
+	"show_panel": true,
 	"show_panel_on_build": true,
+	"show_popup": true,
+	"show_statusbar": false,
 	"show_tab_close_buttons": true,
 	"sidebar_size_14": true,
 	"smart_indent": true,
@@ -165,13 +170,12 @@
 	"tabs_padding_small": true,
 	"tabs_small": true,
 	"theme": "Afterglow-orange.sublime-theme",
-	"translate_tabs_to_spaces": true,
+	"translate_tabs_to_spaces": false,
 	"tree_animation_enabled": true,
 	"trim_automatic_white_space": true,
 	"trim_trailing_white_space_on_save": true,
 	"use_simple_full_screen": false,
 	"use_tab_stops": true,
-	"vintage_lines_show_line_numbers": true,
 	"vintage_start_in_command_mode": true,
 	"vintage_use_clipboard": true,
 	"word_separators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?",

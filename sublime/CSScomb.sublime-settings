@@ -35,7 +35,7 @@
         "remove-empty-rulesets": true,
 
         // Set space after `:` in declarations.
-        "space-after-colon": " ",
+        "space-after-colon": "",
 
         // Set space after combinator (for example, in selectors like `p > a`).
         "space-after-combinator": " ",
