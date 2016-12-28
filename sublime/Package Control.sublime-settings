@@ -6,6 +6,7 @@
 	"installed_packages":
 	[
 		"All Autocomplete",
+		"ApacheConf.tmLanguage",
 		"Asterisk Config",
 		"AutoSelect",
 		"Color Highlighter",
@@ -36,7 +37,7 @@
 		"SyncedSideBar",
 		"Text Pastry",
 		"Theme - Afterglow",
-		"Vintage Surround",
+		"Vintageous",
 		"WordHighlight",
 		"xml2json"
 	],

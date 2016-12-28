@@ -1,5 +1,0 @@
-# Generated with Atomizr – https://atom.io/packages/atomizr
-".text.html, sourece.php":
-	"Spacer Block":
-		prefix: "spacer-block"
-		body: "<div class=\"spacer-block\" style=\"height: ${1:15}px;\"></div>$2"

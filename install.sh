@@ -1,17 +1,63 @@
 #!/bin/bash
-############################
-# install.sh
-# This script creates symlinks from the home directory to any desired dotfiles in $dir
-############################
 
-########## Variables
+# Text colors.
+RED="\033[31m"
+GREEN="\033[32m"
+YELLOW="\033[33m"
+RESET="\033[0m"
 
+#echo -e "${GREEN}This text is green"
+#echo -e "${YELLOW}This text is yellow"
+#echo -e "${RED}This text is red"
+#echo -e "${RESET}This text is normal again"
+
+########################################
+#!             Variables               #
+########################################
+
+# Set a variable for the dir of this script.
+SCRIPT_ROOT=$PWD
+
+# Dev flag so that you can do a test run with debug output.
+DEVELOPMENT_ENVIRONMENT=false
+
+# Directory to send the files to.
+INSTALL_DIR=~
+
+# Whether or not to install fonts.
+INSTALL_FONTS=false
+
+# Dir to install fonts to.
+FONT_DIR=~/Library/Fonts
+
+# Whether or not to requrire root/sudo to run this script.
+REQUIRE_ROOT=false
+
+# Check to make sure we are running as the root user.
+# We need these permissions for some file/dir movement.
+if $REQUIRE_ROOT; then
+  if [[ $EUID -ne 0 ]]; then
+     echo -e "${RED}This script must be run as root${RESET}"
+     exit 1
+  fi
+fi
+
+
+########################################
+#!             Arguments               #
+########################################
+
+# Process through sent arguments. If any.
 while [[ $# > 0 ]]; do
   KEY=$1
-  
+
   case $KEY in
+    --install-dir)
+      INSTALL_DIR="$2"
+      shift
+    ;;
     -b|--backup-dir)
-      backupdir="$2"
+      BACKUPDIR="$2"
       shift
     ;;
     -f|--files)
@@ -19,62 +65,116 @@ while [[ $# > 0 ]]; do
       shift
     ;;
     --install-fonts)
-      installfonts=true
+      INSTALL_FONTS=true
       shift
     ;;
     --font-dir)
-      fontdir="$2"
+      FONT_DIR="$2"
       shift
     ;;
+    -T|--test)
+      echo -e "${RED}########## DEV ##########\n"
+      DEVELOPMENT_ENVIRONMENT=true
+    ;;
   esac
-  
+
   shift
 done
 
-dir=$PWD
-backupdir=${backupdir:-~/dotfiles_backup} # old dotfiles backup directory
-installfonts=${installfonts:-false}
-fontdir=${fontdir:-~/Library/Fonts}
+# change to the script's directory
+cd $SCRIPT_ROOT
 
-# list of files/folders to symlink in homedir
-files=${files:-"vimrc gvimrc vim zshrc oh-my-zsh bash_profile bashrc gitconfig atom"}
+########################################################
+#!             Set files to be symlinked               #
+########################################################
 
-##########
+# files array should contain this repo's file/dir that is to be symlinked.
+declare -a FILES
 
-# create dotfiles_backup in homedir
-echo -e "\033[33mCreating $backupdir for backup of any existing dotfiles"
-mkdir -p $backupdir
+# Import the lines from symlinks.def into an array for processing.
+if [ ! -f symlinks.def ]; then
+  echo -e "\n${RED}Unable to locate \"symlinks.def\".\n\nFAILED${RESET}"
+  exit 1
+fi
+while read LINE; do
+  FILES+=("$LINE")
+done < symlinks.def
 
-# change to the dotfiles directory
-cd $dir
+# create backup directory
+echo -e "${GREEN}Creating \"$SCRIPT_ROOT/backups\" for backup of any existing files"
+if $DEVELOPMENT_ENVIRONMENT; then
+  echo -e "TEST COMMAND: mkdir -p $SCRIPT_ROOT/backups"
+else
+  mkdir -p $SCRIPT_ROOT/backups
+fi
 
-# move any existing dotfiles in homedir to backup directory, then create symlinks 
-for file in $files; do
-  if [ -h ~/.$file ]; then
-    echo -e "\033[31m~/.$file symlink exists. Removing..."
-    rm ~/.$file
-  fi
-  
-  if [ -f ~/.$file ] || [ -d ~/$file ]; then
-    echo -e "\033[31mBacking up existing ~/$file to $backupdir/$file"
-    mv -f ~/.$file $backupdir/$file
-  fi
-  
-  if [ -f $dir/$file ] || [ -d $dir/$file ]; then
-    echo -e "\033[32mCreating symlink to ~/.$file"
-    ln -sf $dir/$file ~/.$file
+##########################################################
+#!             Loop through the files/dirs               #
+##########################################################
+
+# Set a variable to the length of the array.
+LENGTH=${#FILES[@]}
+echo -e "\n${GREEN}Processing through $LENGTH files..."
+
+# Loop through the files to create the symlinks.
+for FILE in ${FILES[@]}; do
+  echo -e "\n${GREEN}Processing file \"$FILE\""
+
+  # Check if the file/dir exists. If it does, back it up.
+  if [ -d $INSTALL_DIR/$FILE ] || [ -f $INSTALL_DIR/$FILE ]; then
+    # Move the file to this repo's backups folder.
+    echo -e "${YELLOW}Backing up existing \"$INSTALL_DIR/$FILE\" to \"$SCRIPT_ROOT/backups/$FILE\""
+
+    if $DEVELOPMENT_ENVIRONMENT; then
+      echo -e "mv -f $INSTALL_DIR/$FILE $SCRIPT_ROOT/backups/$FILE"
+    else
+      FILE_DIR=$(dirname "backups/$FILE")
+      if [ ! -d $FILE_DIR ]; then
+        mkdir -p $FILE_DIR
+      fi
+
+      mv -f $INSTALL_DIR/$FILE $SCRIPT_ROOT/backups/$FILE
+    fi
   else
-    echo -e "\033[31m~/.$file doesn't exist in $dir. Unable to create symlink."
+    echo -e "${YELLOW}No backup needed. File \"${INSTALL_DIR}/$FILE\" does not exist."
+  fi
+
+  echo -e "${GREEN}Creating symlink to \"${SCRIPT_ROOT}/$FILE\" at \"${INSTALL_DIR}/$FILE\""
+
+  # Make sure the destination directories exist.
+  if $DEVELOPMENT_ENVIRONMENT; then
+    # Create symlink to the repo's test directory.
+    echo -e "TEST COMMAND: ln -s \"${SCRIPT_ROOT}/$FILE\" \"${INSTALL_DIR}/$FILE\""
+  else
+    FILE_DIR=$(dirname "${INSTALL_DIR}/$FILE")
+    if [ ! -d $FILE_DIR ]; then
+      mkdir -p $FILE_DIR
+    fi
+
+    # Create symlink to the repo's directory.
+    ln -sf "${SCRIPT_ROOT}/$FILE" "${INSTALL_DIR}/$FILE"
   fi
 done
 
-if [ $installfonts ]; then
-  echo -e "\033[31mInstalling Fonts..."
-  cp -f $dir/fonts/* $fontdir
+if [ $INSTALL_FONTS ]; then
+  echo -e "\n${GREEN}Installing Fonts..."
+  if $DEVELOPMENT_ENVIRONMENT; then
+    echo -e "TEST COMMAND: cp -f $SCRIPT_ROOT/fonts/* $FONT_DIR"
+  else
+    cp -f $SCRIPT_ROOT/fonts/* $FONT_DIR
+  fi
 fi
 
-# remove backup directory if empty
-if [ ! "$(ls -A $backupdir)" ]; then
-  rmdir $backupdir
-  echo -e "\033[31mNo Backups required. Backup directory removed."
+if [ "$DEVELOPMENT_ENVIRONMENT" = false ]; then
+  # Remove backup directory if empty.
+  if [ ! "$(ls -A ${SCRIPT_ROOT}/backups)" ]; then
+    rmdir $SCRIPT_ROOT/backups
+    echo -e "\n${RED}No Backups required. Backup directory removed."
+  fi
 fi
+
+# Notify that the script is complete.
+echo -e "\n${GREEN}DONE!"
+
+# Reset the font colors.
+echo -e "${RESET}"

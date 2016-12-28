@@ -4,7 +4,7 @@
 	'VAR TEST: ${1:VarName}: %s',
 	print_r($1, true)
 );
-error_log("!! [" . __file__ . " (" . __LINE__ . ")] \$e_message");
+error_log("\n!! [" . __file__ . " (" . __LINE__ . ")] \$e_message");
 //*/
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->

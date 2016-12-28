@@ -1,4 +1,14 @@
 {
+	"added_words":
+	[
+		"Gozooga",
+		"Exceedia",
+		"exceedia",
+		"gozooga",
+		"app",
+		"Online",
+		"Remarketing"
+	],
 	"always_prompt_for_file_reload": false,
 	"always_show_minimap_viewport": true,
 	"animation_enabled": true,
@@ -113,7 +123,7 @@
 	"hot_exit": false,
 	"ignored_packages":
 	[
-		"CSS"
+		"Vintage"
 	],
 	"indent_guide_options":
 	[
@@ -178,6 +188,10 @@
 	"use_tab_stops": true,
 	"vintage_start_in_command_mode": true,
 	"vintage_use_clipboard": true,
+	"vintageous_log_level": "info",
+	"vintageous_reset_mode_when_switching_tabs": false,
+	"vintageous_use_sys_clipboard": true,
+	"vintageous_verbose": true,
 	"word_separators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?",
 	"word_wrap": true,
 	"wrap_width": 0

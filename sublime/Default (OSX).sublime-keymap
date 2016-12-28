@@ -22,7 +22,15 @@
     "args": {
       "commands": [
         { "command": "single_selection" },
-        { "command": "exit_insert_mode" },
+        {
+          "command": "_enter_normal_mode",
+          "args": {
+            "mode": "mode_insert"
+          },
+          "context": [
+            { "key": "vi_insert_mode_aware" }
+          ]
+        },
         {
           "command": "hide_overlay",
           "context": [
@@ -53,7 +61,15 @@
     "args": {
       "commands": [
         { "command": "single_selection" },
-        { "command": "exit_insert_mode" },
+        {
+          "command": "_enter_normal_mode",
+          "args": {
+            "mode": "mode_insert"
+          },
+          "context": [
+            { "key": "vi_insert_mode_aware" }
+          ]
+        },
         {
           "command": "hide_overlay",
           "context": [
@@ -80,6 +96,29 @@
     ]
   },
 
+  // Surround
+  {
+    "keys": ["ctrl+s"],
+    "command": "surround_selection",
+    "context": [
+      {"key": "vi_command_mode_aware"}
+    ]
+  },
+  {
+    "keys": ["ctrl+c", "ctrl+s"],
+    "command": "surround_change",
+    "context": [
+      {"key": "vi_command_mode_aware"}
+    ]
+  },
+  {
+    "keys": ["ctrl+d", "ctrl+s"],
+    "command": "surround_delete",
+    "context": [
+      {"key": "vi_command_mode_aware"}
+    ]
+  },
+
   // Save Stuff
   {
     "keys": ["super+s"],
@@ -87,19 +126,15 @@
     "args": {
       "commands": [
         { "command": "single_selection" },
-        { "command": "exit_visual_mode" },
-        { "command": "exit_insert_mode" },
-        { "command": "save" }
-      ]
-    }
-  },
-  { "keys": [":", "w", "enter"],
-    "command": "run_multiple_commands",
-    "args": {
-      "commands": [
-        { "command": "single_selection" },
-        { "command": "exit_visual_mode" },
-        { "command": "exit_insert_mode" },
+        {
+          "command": "_enter_normal_mode",
+          "args": {
+            "mode": "mode_insert"
+          },
+          "context": [
+            { "key": "vi_insert_mode_aware" }
+          ]
+        },
         { "command": "save" }
       ]
     }
@@ -160,18 +195,6 @@
     ]
   },
 
-  // EasyMotion
-  {
-    "keys": [",", "f", "<character>"],
-    "command": "easy_motion",
-    "args": {"select_text": false}
-  },
-  {
-    "keys": ["ctrl+f", "<character>"],
-    "command": "easy_motion",
-    "args": {"select_text": false}
-  },
-
   // Emmet
   {
     "keys": ["ctrl+t"],
@@ -180,70 +203,6 @@
     "context": [
       { "key": "emmet_action_enabled.matching_pair" }
     ]
-  },
-  {
-    "keys": ["ctrl+up"],
-    "command": "run_multiple_commands",
-    "args": {
-      "commands" : [
-        {
-          "command": "run_emmet_action",
-          "args": {"action": "increment_number_by_1"},
-          "context": [
-              { "key": "emmet_action_enabled.increment_number_by_1" }
-          ]
-        },
-        { "command": "exit_visual_mode" },
-      ]
-    }
-  },
-  {
-    "keys": ["ctrl+down"],
-    "command": "run_multiple_commands",
-    "args": {
-      "commands" : [
-        {
-          "command": "run_emmet_action",
-          "args": {"action": "decrement_number_by_1"},
-          "context": [
-              { "key": "emmet_action_enabled.decrement_number_by_1" }
-          ]
-        },
-        { "command": "exit_visual_mode" },
-      ]
-    }
-  },
-  {
-    "keys": ["ctrl+up"],
-    "command": "run_multiple_commands",
-    "args": {
-      "commands" : [
-        {
-          "command": "run_emmet_action",
-          "args": {"action": "increment_number_by_1"},
-          "context": [
-              { "key": "emmet_action_enabled.increment_number_by_1" }
-          ]
-        },
-        { "command": "exit_visual_mode" },
-      ]
-    }
-  },
-  {
-    "keys": ["ctrl+down"],
-    "command": "run_multiple_commands",
-    "args": {
-      "commands" : [
-        {
-          "command": "run_emmet_action",
-          "args": {"action": "decrement_number_by_1"},
-          "context": [
-              { "key": "emmet_action_enabled.decrement_number_by_1" }
-          ]
-        },
-        { "command": "exit_visual_mode" },
-      ]
-    }
   },
 
   // Tag
