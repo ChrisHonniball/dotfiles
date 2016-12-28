@@ -1,4 +1,5 @@
-vim/bundle/*
+.vim/bundle/*
+-.vim/bundle/Vundle.vim
 
 sublime/Color Highlighter
 sublime/Package Control.last-run
@@ -7,4 +8,4 @@ sublime/Package Control.ca-bundle
 sublime/Package Control.system-ca-bundle
 sublime/Package Control.cache/
 sublime/Package Control.ca-certs/
-/backups
+backups
