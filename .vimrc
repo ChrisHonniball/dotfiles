@@ -15,32 +15,17 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " other plugins
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-markdown'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-surround'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'godlygeek/tabular'
-Plugin 'guns/xterm-color-table.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'Townk/vim-autoclose'
-Plugin 'nelstrom/vim-markdown-folding'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'bling/vim-airline'
 Plugin 'jelera/vim-javascript-syntax'
-Plugin 'mattn/emmet-vim'
-Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'edsono/vim-matchit'
 Plugin 'tpope/vim-repeat'
-Plugin 'sjl/gundo.vim'
 Plugin 'haya14busa/incsearch.vim'
-Plugin 'rking/ag.vim'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'mkitt/tabline.vim'
-Plugin 'vim-scripts/BufOnly.vim'
-Plugin 'ChrisHonniball/vim-task'
 
 " All of your Plugins must be added before the following line
 "
