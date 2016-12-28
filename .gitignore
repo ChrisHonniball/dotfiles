@@ -1,5 +1,4 @@
 .vim/bundle/*
-!.vim/bundle/Vundle.vim
 
 sublime/Color Highlighter
 sublime/Package Control.last-run
