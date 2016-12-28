@@ -18,6 +18,9 @@ RESET="\033[0m"
 # Set a variable for the dir of this script.
 SCRIPT_ROOT=$PWD
 
+# Backup Directory
+BACKUP_DIR=$SCRIPT_ROOT/backups
+
 # Dev flag so that you can do a test run with debug output.
 DEVELOPMENT_ENVIRONMENT=false
 
@@ -57,7 +60,7 @@ while [[ $# > 0 ]]; do
       shift
     ;;
     -b|--backup-dir)
-      BACKUPDIR="$2"
+      BACKUP_DIR="$2"
       shift
     ;;
     -f|--files)
@@ -101,11 +104,11 @@ while read LINE; do
 done < symlinks.def
 
 # create backup directory
-echo -e "${GREEN}Creating \"$SCRIPT_ROOT/backups\" for backup of any existing files"
+echo -e "${GREEN}Creating \"$BACKUP_DIR\" for backup of any existing files"
 if $DEVELOPMENT_ENVIRONMENT; then
-  echo -e "TEST COMMAND: mkdir -p $SCRIPT_ROOT/backups"
+  echo -e "TEST COMMAND: mkdir -p $BACKUP_DIR"
 else
-  mkdir -p $SCRIPT_ROOT/backups
+  mkdir -p $BACKUP_DIR
 fi
 
 ##########################################################
@@ -123,17 +126,17 @@ for FILE in ${FILES[@]}; do
   # Check if the file/dir exists. If it does, back it up.
   if [ -d $INSTALL_DIR/$FILE ] || [ -f $INSTALL_DIR/$FILE ]; then
     # Move the file to this repo's backups folder.
-    echo -e "${YELLOW}Backing up existing \"$INSTALL_DIR/$FILE\" to \"$SCRIPT_ROOT/backups/$FILE\""
+    echo -e "${YELLOW}Backing up existing \"$INSTALL_DIR/$FILE\" to \"$BACKUP_DIR/$FILE\""
 
     if $DEVELOPMENT_ENVIRONMENT; then
-      echo -e "mv -f $INSTALL_DIR/$FILE $SCRIPT_ROOT/backups/$FILE"
+      echo -e "mv -f $INSTALL_DIR/$FILE $BACKUP_DIR/$FILE"
     else
       FILE_DIR=$(dirname "backups/$FILE")
       if [ ! -d $FILE_DIR ]; then
         mkdir -p $FILE_DIR
       fi
 
-      mv -f $INSTALL_DIR/$FILE $SCRIPT_ROOT/backups/$FILE
+      mv -f $INSTALL_DIR/$FILE $BACKUP_DIR/$FILE
     fi
   else
     echo -e "${YELLOW}No backup needed. File \"${INSTALL_DIR}/$FILE\" does not exist."
@@ -168,7 +171,7 @@ fi
 if [ "$DEVELOPMENT_ENVIRONMENT" = false ]; then
   # Remove backup directory if empty.
   if [ ! "$(ls -A ${SCRIPT_ROOT}/backups)" ]; then
-    rmdir $SCRIPT_ROOT/backups
+    rmdir $BACKUP_DIR
     echo -e "\n${RED}No Backups required. Backup directory removed."
   fi
 fi
