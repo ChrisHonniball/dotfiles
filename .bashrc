@@ -13,7 +13,7 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 PROMPT_COMMAND='__git_ps1 "
 \[$Black\]\[$On_Cyan\] \u@\h \[$Color_Off\] \D{%F %T %Z}
 \[$Black\]\[$On_Yellow\] \w \[$Color_Off\]
-\[$Color_Off\]" "↣ " " %s "'
+\[$Color_Off\]" "$ " "%s "'
 
 alias tower=gittower
 alias ll='ls -l'
