@@ -1,0 +1,48 @@
+
+{
+    // If you want exceptions reraised so you can see them in the console, change this to true.
+    "reraise_exceptions": false,
+
+    // If you want to have a syntax applied when new files are created, set new_file_syntax to the name of the syntax
+    // to use.  The format is exactly the same as "syntax" in the rules below. For example, if you want to have a new
+    // file use JavaScript syntax, set new_file_syntax to 'JavaScript'.
+    "new_file_syntax": false,
+
+    // Auto add extensions to language settings file in User folder.
+    // Do not manually remove "apply_syntax_extensions" from the settings file.
+    // "extenstions" are ignored by "match": "all" setting.
+    "add_exts_to_lang_settings": true,
+
+    // Control level of logging in the console.
+    // (true|false|"verbose")
+    "debug": "verbose",
+
+    // Put your custom syntax rules here:
+    "syntaxes": [
+        // Topher: To find the location open the sublime package and ST will ask to extract.
+        {
+            "syntax": "Markdown Extended/Syntaxes/Markdown Extended",
+            "extensions": ["README", "md", "markdown", "mdown"]
+        },
+        {
+            "syntax": "Asterisk Config/Asterisk config",
+            "match": "all",
+            "rules": [
+                {"file_path": "^.*asterisk.*"},
+            ]
+        },
+        {
+            "syntax": "ApacheConf.tmLanguage/ApacheConf",
+            "match": "all",
+            "rules": [
+                {"file_path": "^(?!.*(README|md|markdown|mdown)).*httpd.*"}
+            ]
+        },
+        {
+            "syntax": "Generic Config/GenericConfig",
+            "rules": [
+                {"file_path": "^.*config$"}
+            ]
+        }
+    ]
+}

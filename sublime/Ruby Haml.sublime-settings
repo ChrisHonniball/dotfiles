@@ -1,7 +1,6 @@
 {
 	"extensions":
 	[
-		"conf",
-		"bak"
+		"haml"
 	]
 }

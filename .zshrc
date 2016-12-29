@@ -122,8 +122,8 @@ function get_pwd() {
 
 function precmd () {
 __git_ps1 "
-%{$bg[cyan]%}%{$fg[black]%} %n@%m %{$reset_color%}%{$fg[cyan]%}
-%{$bg[yellow]%}%{$fg[black]%} $(get_pwd) %{$reset_color%}%{$fg[yellow]%}
+%{$bg[cyan]%}%{$fg[black]%} %n@%m %{$reset_color%} [%D{%F} %*]
+%{$bg[yellow]%}%{$fg[black]%} $(get_pwd) %{$reset_color%}
 %{$reset_color%}" "↣ " " %s "
 }
 
