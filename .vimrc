@@ -56,7 +56,6 @@ set autoread
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set list
-set listchars=tab:▸\ ,eol:¬
 
 " set splits to open on left or bottom
 set splitbelow
