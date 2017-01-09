@@ -54,9 +54,6 @@ filetype plugin on
 " Auto read changed files
 set autoread
 
-" Use the same symbols as TextMate for tabstops and EOLs
-set list
-
 " set splits to open on left or bottom
 set splitbelow
 set splitright
