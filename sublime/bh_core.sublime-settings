@@ -1,0 +1,13 @@
+{
+    "show_unmatched": true,
+    "show_in_minimap": true,
+    "search_threshold": 20000,
+    "high_visibility_style": "outline",
+    "bracket_styles": {
+        "default": {
+            "icon": "dot",
+            "color": "brackethighlighter.default",
+            "style": "stippled"
+        }
+    }
+}

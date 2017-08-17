@@ -1,17 +1,17 @@
 <snippet>
-	<content><![CDATA[<table class="layout-table">
+	<content><![CDATA[<table class="img-table">
 	<tbody>
 		<tr>
 			<td>
-				$0
+				<img width="100%" src="$0" />
 			</td>
 		</tr>
 	</tbody>
 </table>]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>email-layout-table</tabTrigger>
+	<tabTrigger>email-img-table</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>text.html, text.markdown</scope>
 	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
-	<description>Mandrill Email Layout Table</description>
+	<description>Mandrill Email Image Table</description>
 </snippet>

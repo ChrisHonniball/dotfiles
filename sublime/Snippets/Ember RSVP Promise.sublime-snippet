@@ -5,26 +5,30 @@
     url: ${2:url},
     dataType: "json",
     data: ${3:\{\}},
-    success: (response) => {
-      // Prior to the promise resolution.
-      return resolve(response);
-    },
-    error: (error) => {
-      // Prior to the promise rejection.
-      return reject(error);
-    }
+    success: (response) => resolve(response),
+    error: (error) => reject(error)
   };
-  
+
   Ember.\$.ajax(ajaxSettings);
 }).then(
   (/*response*/) => {
     // After AJAX resolution but before promise result is passed back to app.$0
-  }, (error) => {
+  }, (response) => {
     // After AJAX resolution but before promise result is passed back to app.
-    return Ember.RSVP.reject({
-      status: error.responseJSON.errors[0].status,
-      message: error.responseJSON.errors[0].detail
-    });
+    Ember.Logger.log(
+      "%c%s#promise\n response: %O",
+      "color: red", // http://www.w3schools.com/html/html_colornames.asp
+      this.toString(),
+      response
+    );
+
+    const error = (response.responseJSON) ? response.responseJSON.errors[0] : {
+      detail: "Unknown Error. Check Logs",
+      status: 500,
+      title: "Unknown API Error"
+    };
+
+    return Ember.RSVP.reject(error);
   }
 ).finally(() => {
   // After AJAX resolution but before promise result is passed back to app.

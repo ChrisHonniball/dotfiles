@@ -1,15 +1,16 @@
 <snippet>
-	<content><![CDATA[/* */
-\$e_message = sprintf(
-	"${1}"
-);
-error_log("\n${2:>>} [" . __file__ . " (" . __LINE__ . ")]\n\n\$e_message\n\n");
-//*/
+	<content><![CDATA[if(this.get('debug')) {
+	Ember.Logger.log(
+		"%c%s#$1",
+		"color: ${2:purple}", // http://www.w3schools.com/html/html_colornames.asp
+		${3:this}.toString()$0
+	);
+}
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>log</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<scope>source.php</scope>
+	<scope>source.js</scope>
 	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
-	<description>Standard file log</description>
+	<description>Ember Colored Console Log - Debug Only</description>
 </snippet>

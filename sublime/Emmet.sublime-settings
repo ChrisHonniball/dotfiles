@@ -1,3 +1,16 @@
 {
-  "disable_tab_abbreviations_for_scopes": "source.css"
+  "disable_tab_abbreviations_for_scopes": "source.css",
+  
+  "snippets": {
+    // "html": {
+    //  "abbreviations": {
+    //    "example": "<div class='example' title='Custom element example'>"
+    //  }
+    // }
+    "html": {
+      "abbreviations": {
+        "button": "<button type=\"${1:button}\">"
+      }
+    }
+  }
 }

@@ -16,86 +16,6 @@
     "args": { "forward": false }
   },
 
-  // Exiting INSERT Mode
-  { "keys": ["j", "j"],
-    "command": "run_multiple_commands",
-    "args": {
-      "commands": [
-        { "command": "single_selection" },
-        {
-          "command": "_enter_normal_mode",
-          "args": {
-            "mode": "mode_insert"
-          },
-          "context": [
-            { "key": "vi_insert_mode_aware" }
-          ]
-        },
-        {
-          "command": "hide_overlay",
-          "context": [
-            { "key": "overlay_visible", "operator": "equal", "operand": true }
-          ]
-        },
-        {
-          "command": "hide_popup",
-          "context": [
-            { "key": "popup_visible", "operator": "equal", "operand": true }
-          ]
-        },
-        {
-          "command": "hide_auto_complete",
-          "context": [
-            { "key": "auto_complete_visible", "operator": "equal", "operand": true }
-          ]
-        }
-      ]
-    },
-    "context": [
-      { "key": "setting.command_mode", "operand": false },
-      { "key": "setting.is_widget", "operand": false }
-    ]
-  },
-  { "keys": ["k", "k"],
-    "command": "run_multiple_commands",
-    "args": {
-      "commands": [
-        { "command": "single_selection" },
-        {
-          "command": "_enter_normal_mode",
-          "args": {
-            "mode": "mode_insert"
-          },
-          "context": [
-            { "key": "vi_insert_mode_aware" }
-          ]
-        },
-        {
-          "command": "hide_overlay",
-          "context": [
-            { "key": "overlay_visible", "operator": "equal", "operand": true }
-          ]
-        },
-        {
-          "command": "hide_popup",
-          "context": [
-            { "key": "popup_visible", "operator": "equal", "operand": true }
-          ]
-        },
-        {
-          "command": "hide_auto_complete",
-          "context": [
-            { "key": "auto_complete_visible", "operator": "equal", "operand": true }
-          ]
-        }
-      ]
-    },
-    "context": [
-      { "key": "setting.command_mode", "operand": false },
-      { "key": "setting.is_widget", "operand": false }
-    ]
-  },
-
   // Surround
   {
     "keys": ["ctrl+s"],
@@ -117,27 +37,6 @@
     "context": [
       {"key": "vi_command_mode_aware"}
     ]
-  },
-
-  // Save Stuff
-  {
-    "keys": ["super+s"],
-    "command": "run_multiple_commands",
-    "args": {
-      "commands": [
-        { "command": "single_selection" },
-        {
-          "command": "_enter_normal_mode",
-          "args": {
-            "mode": "mode_insert"
-          },
-          "context": [
-            { "key": "vi_insert_mode_aware" }
-          ]
-        },
-        { "command": "save" }
-      ]
-    }
   },
 
   // Sidebar reveal file shortcut

@@ -1,15 +1,10 @@
 <snippet>
-	<content><![CDATA[/* */
-\$e_message = sprintf(
-	"${1}"
-);
-error_log("\n${2:>>} [" . __file__ . " (" . __LINE__ . ")]\n\n\$e_message\n\n");
-//*/
+	<content><![CDATA[&ndash;
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>log</tabTrigger>
+	<tabTrigger>&-</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<scope>source.php</scope>
+	<scope>text.html</scope>
 	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
-	<description>Standard file log</description>
+	<description>Non-breaking nDash</description>
 </snippet>
