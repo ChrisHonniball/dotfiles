@@ -3,11 +3,6 @@
 	"draw_indent_guides": false,
 	"extensions":
 	[
-		"markdown",
-		"md",
-		"mdown",
-		"README",
-		"txt"
 	],
 	"spell_check": true,
 	"tab_size": 4,

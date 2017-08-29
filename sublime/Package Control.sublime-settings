@@ -52,6 +52,7 @@
 	"repositories":
 	[
 		"https://github.com/ChrisHonniball/VintageLines",
-		"https://github.com/skuroda/ImprovedMacros"
+		"https://github.com/skuroda/ImprovedMacros",
+		"https://github.com/titoBouzout/Tag"
 	]
 }
