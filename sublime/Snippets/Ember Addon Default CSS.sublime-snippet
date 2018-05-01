@@ -12,7 +12,7 @@
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>addon-css</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<scope>source.css, source.sass</scope>
+	<scope>source.css, source.sass, source.scss</scope>
 	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
 	<description>Ember Addon default CSS</description>
 </snippet>

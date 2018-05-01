@@ -133,3 +133,7 @@ source /Users/cjhonniball/.iterm2_shell_integration.zsh
 # Simpler command history nav.
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
+
+export MSDK_HOME=/www/html/localhost-tools/paymentech-sdk/JPMC_MSDK_1.0.0
+export JAVA_HOME=/Library/Java/Home
+export MSDK_LOG_DIR=/www/log

@@ -8,7 +8,12 @@
 		"app",
 		"Online",
 		"Remarketing",
-		"Trello"
+		"Trello",
+		"online",
+		"Equifax's",
+		"Equifax",
+		"Exceedia’s",
+		"Esurance"
 	],
 	"always_prompt_for_file_reload": false,
 	"always_show_minimap_viewport": true,
@@ -111,7 +116,7 @@
 		"bower_components",
 		".sass-cache"
 	],
-	"font_face": "Hack",
+	"font_face": "Fira Code",
 	"font_options":
 	[
 	],

@@ -1,0 +1,31 @@
+<snippet>
+	<content><![CDATA[\$table_name = "$1";
+\$table_columns = \$this->get_table_columns(\$table_name);
+
+// Reset the new object just in case it's used anywhere else above this task.
+$\$new_$2 = [];
+
+foreach(\$${1:object} as \$col => \$val) {
+	if( array_key_exists(\$col, \$table_columns) ){
+		\$val = \$this->sanitize_db_column(\$table_columns[\$col], \$val);
+		// Inject the cleaned value into the sent object.
+		\$$2[\$col] = \$val;
+		// Set the cleaned value for the new DB object.
+		\$new_$2[\$col] = \$this->real_escape_string(\$val);
+	}
+}
+
+\$query = sprintf(
+	'INSERT INTO %s (`%s`) VALUES ("%s");',
+	\$table_name,
+	implode('`, `', array_keys(\$new_$2)),
+	implode('", "', \$new_$2)
+);
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>sanitize</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.php</scope>
+	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
+	<description>Sanitize MySQLi table and INSERT with Loop</description>
+</snippet>

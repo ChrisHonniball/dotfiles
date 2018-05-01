@@ -1,8 +1,10 @@
 <snippet>
 	<content><![CDATA[/* */
 \$e_message = sprintf(
-	'VAR TEST: ${1:VarName}: %s',
-	print_r($1, true)
+	"\n=%1\\\$s=\n\n\\\$${1:VarName}: %3\\\$s\n\n=%2\\\$s=",
+  str_pad(' VAR TEST ', 78, '=', STR_PAD_BOTH),
+  str_pad('==', 78, '=', STR_PAD_BOTH),
+	print_r(\$$1, true)
 );
 error_log("\n!! [" . __file__ . " (" . __LINE__ . ")] \$e_message");
 //*/
@@ -12,5 +14,5 @@ error_log("\n!! [" . __file__ . " (" . __LINE__ . ")] \$e_message");
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>source.php</scope>
 	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
-	<description>Variable test</description>
+	<description>Variable Test Log</description>
 </snippet>

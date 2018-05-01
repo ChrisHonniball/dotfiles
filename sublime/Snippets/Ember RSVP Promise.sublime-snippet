@@ -15,18 +15,23 @@
     // After AJAX resolution but before promise result is passed back to app.$0
   }, (response) => {
     // After AJAX resolution but before promise result is passed back to app.
-    Ember.Logger.log(
-      "%c%s#promise\n response: %O",
-      "color: red", // http://www.w3schools.com/html/html_colornames.asp
-      this.toString(),
-      response
-    );
-
-    const error = (response.responseJSON) ? response.responseJSON.errors[0] : {
+    let error = {
       detail: "Unknown Error. Check Logs",
       status: 500,
       title: "Unknown API Error"
     };
+    if(response.responseText) error.detail = response.responseText;
+    if(response.statusText) error.detail = response.statusText;
+    if(response.message) error.detail = response.message;
+    if(response.responseJSON.errors) error = response.responseJSON.errors[0];
+    
+    Ember.Logger.log(
+      "%c%s#promise\n response: %O\n error: %O",
+      "color: red", // http://www.w3schools.com/html/html_colornames.asp
+      this.toString(),
+      response,
+      error
+    );
 
     return Ember.RSVP.reject(error);
   }

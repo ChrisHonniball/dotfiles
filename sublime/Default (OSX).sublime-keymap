@@ -1,4 +1,9 @@
 [
+  { "keys": ["super+k", "super+w"],
+    "command": "toggle_setting",
+    "args": {"setting": "word_wrap"}
+  },
+  
   { "keys": ["super+shift+,"], "command": "open_file", "args": {"file": "${packages}/User/Default (OSX).sublime-keymap"} },
 
   // Switch Paste Behavior

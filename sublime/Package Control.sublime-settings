@@ -7,7 +7,7 @@
 	[
 		"Advanced CSV",
 		"All Autocomplete",
-		"ApacheConf.tmLanguage",
+		"ApacheConf",
 		"ApplySyntax",
 		"Asterisk Config",
 		"AutoSelect",
@@ -32,6 +32,7 @@
 		"JavaScriptNext - ES6 Syntax",
 		"LinkOpener",
 		"Markdown Extended",
+		"MarkdownEditing",
 		"Package Control",
 		"Pretty JSON",
 		"RailsCasts Colour Scheme",

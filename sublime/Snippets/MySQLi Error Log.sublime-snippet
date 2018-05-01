@@ -11,5 +11,5 @@ error_log("${2:--} [" . __file__ . " (" . __LINE__ . ")] \$e_message");
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>source.php</scope>
 	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
-	<description>MySQLi Error</description>
+	<description>MySQLi Error Log</description>
 </snippet>

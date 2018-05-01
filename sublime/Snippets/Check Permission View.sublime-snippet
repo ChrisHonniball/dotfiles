@@ -1,9 +1,7 @@
 <snippet>
-	<content><![CDATA[{{#check-permission user=${1:model} permission=${2:0} killRender=${3:true} as |allowed|}}
-	{{#unless allowed}}
-	{{else}}
-	{{/unless}}
-{{/check-permission}}
+	<content><![CDATA[{{#if (array-contains authUser.allowedPermissions ${1:35})}}
+	$0
+{{/if}}
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>check-permission</tabTrigger>
