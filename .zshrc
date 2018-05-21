@@ -128,7 +128,7 @@ __git_ps1 "
 }
 
 # iTerm2 integration
-source /Users/cjhonniball/.iterm2_shell_integration.zsh
+source ~/dotfiles/.iterm2_shell_integration.zsh
 
 # Simpler command history nav.
 bindkey "^[[A" history-search-backward
