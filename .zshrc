@@ -96,6 +96,7 @@ alias lla='ls -lA'
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'
 alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
 alias mvim='mvim >& /dev/null'
+alias dc=docker-compose
 
 
 # Functions

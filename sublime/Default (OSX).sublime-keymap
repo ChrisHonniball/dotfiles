@@ -124,5 +124,12 @@
       { "key": "selector", "operator": "equal", "operand": "source.css - meta.selector.css", "match_all": true },
       { "key": "following_text", "operator": "regex_contains", "operand": "^(?:\t| |\\}|$)", "match_all": true }
     ]
-  }
+  },
+  
+  // Comments
+  { "keys": ["ctrl+forward_slash"], "command": "toggle_comment", "args": { "block": false } },
+  { "keys": ["ctrl+shift+forward_slash"], "command": "toggle_comment", "args": { "block": true } },
+  
+  // Alignment
+  { "keys": ["super+ctrl+a"], "command": "align_tab" },
 ]
