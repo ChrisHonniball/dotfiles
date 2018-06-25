@@ -20,5 +20,5 @@
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>text.html</scope>
 	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
-	<description>Check Model isLoaded</description>
+	<description>Ember Check Model isLoaded</description>
 </snippet>

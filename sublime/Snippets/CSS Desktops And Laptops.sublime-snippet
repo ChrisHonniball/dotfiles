@@ -1,12 +1,13 @@
 <snippet>
-	<content><![CDATA[{{#if (array-contains authUser.allowedPermissions ${1:35})}}
+	<content><![CDATA[/* Desktops and laptops */
+@media only screen  and (min-width : 1224px) {
 	$0
-{{/if}}
+}
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>check-permission</tabTrigger>
+	<tabTrigger>media</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<scope>text.html.handlebars</scope>
+	<scope>source.css, source.sass, source.scss</scope>
 	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
-	<description>Check Permission View</description>
+	<description>CSS Desktops and laptops</description>
 </snippet>
