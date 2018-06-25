@@ -1,10 +1,10 @@
 <snippet>
-	<content><![CDATA['dddd, MMMM Do YYYY h:mm a'
+	<content><![CDATA[YYYY-MM-DD HH:mm:ss
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>moment</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>source.js, text.html</scope>
 	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
-	<description>'Wednesday, February 2nd, 1983 8:00 am'</description>
+	<description>YYYY-MM-DD HH:mm:ss</description>
 </snippet>

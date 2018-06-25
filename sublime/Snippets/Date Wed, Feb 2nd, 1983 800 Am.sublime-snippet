@@ -1,5 +1,5 @@
 <snippet>
-	<content><![CDATA['D, M jS, Y g:i a'
+	<content><![CDATA[D, M jS, Y g:i a
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>date</tabTrigger>
