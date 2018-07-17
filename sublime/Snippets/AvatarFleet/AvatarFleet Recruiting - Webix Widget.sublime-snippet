@@ -31,7 +31,7 @@ class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends BaseWidget {
 
 /**
  * Creates a global function for the class constructor.
- * Is needed for old "conpliance" methodology.
+ * Is needed for old "compliance" methodology.
  * @return {object} - The view class that webix needs to construct the ui element.
  */
 function ${1/^(\w{1})(.*)$/\L$1\E$2/}() {
@@ -80,7 +80,7 @@ class $1Admin extends $1 {
 
 /**
  * Creates a global function for the class constructor.
- * Is needed for old "conpliance" methodology.
+ * Is needed for old "compliance" methodology.
  * @return {object} - The view class that webix needs to construct the ui element.
  */
 function ${1/^(\w{1})(.*)$/\L$1\E$2/}Admin() {
