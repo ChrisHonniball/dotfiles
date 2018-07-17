@@ -97,6 +97,7 @@ alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES && killal
 alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
 alias mvim='mvim >& /dev/null'
 alias dc=docker-compose
+alias awsconsole='ssh ec2-user@awsconsole.avatarfleet.com'
 
 
 # Functions
@@ -134,7 +135,3 @@ source ~/dotfiles/.iterm2_shell_integration.zsh
 # Simpler command history nav.
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
-
-export MSDK_HOME=/www/html/localhost-tools/paymentech-sdk/JPMC_MSDK_1.0.0
-export JAVA_HOME=/Library/Java/Home
-export MSDK_LOG_DIR=/www/log

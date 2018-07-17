@@ -42,5 +42,5 @@ export default class $1View extends JetView {
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>source.js</scope>
 	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
-	<description>Webix Jet View</description>
+	<description>Webix Jet View - Default</description>
 </snippet>

@@ -1,0 +1,96 @@
+<snippet>
+	<content><![CDATA[//////////////////////////////////////////
+//!          Frontend Version           //
+//////////////////////////////////////////
+
+class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends BaseWidget {
+	/**
+	 * Constructs the class.
+	 * Any object variables or options need to be configured here.
+	 * `super` not needed because `BaseWidget` does not have any `constuctor arguments.
+	 */
+	constructor(options) {
+	  options = options || {};
+
+	  webix.extend(
+	    { //defaults
+	      disabled: false
+	    },
+	    options,
+	    true
+	  );
+	  
+	  // Setup the webix view.
+	  let view = {
+	  };
+	  
+	  // Set a class variable to view config.
+	  this.view = view;
+	}
+}
+
+/**
+ * Creates a global function for the class constructor.
+ * Is needed for old "conpliance" methodology.
+ * @return {object} - The view class that webix needs to construct the ui element.
+ */
+function ${1/^(\w{1})(.*)$/\L$1\E$2/}() {
+	let widget = new $1();
+	return widget.config();
+}
+
+
+///////////////////////////////////////
+//!          Admin Version           //
+///////////////////////////////////////
+
+class $1Admin extends $1 {
+	/**
+	 * Constructs the class.
+	 * Any object variables or options need to be configured here.
+	 * `super` IS needed because the parent class has a `constructor`.
+	 * IF you add constructor arguments to the parend class you need to pass them to `super` AND include them in the list of arguments for this constructor otherwise they will be lost.
+	 * 
+	 * We do this a second time so that this view inherits all of the parent view's options.
+	 */
+	constructor(options) {
+	  // Call `super` to build the parent class.
+	  super(options);
+	  
+	  // Ensure options have some sane defaults.
+	  options = options || {};
+
+	  // Inject some defaults to ensure that we have values.
+	  webix.extend(
+	    { //defaults
+	      disabled: false
+	    },
+	    options,
+	    true
+	  );
+	  
+	  // Setup the webix view.
+	  let view = {
+	  };
+	  
+	  // Set a class variable to view config.
+	  this.view = view;
+	}
+}
+
+/**
+ * Creates a global function for the class constructor.
+ * Is needed for old "conpliance" methodology.
+ * @return {object} - The view class that webix needs to construct the ui element.
+ */
+function ${1/^(\w{1})(.*)$/\L$1\E$2/}Admin() {
+	let widget = new $1Admin();
+	return widget.config();
+}]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>widget</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
+	<description>AvatarFleet Recruiting - Webix Widget</description>
+</snippet>

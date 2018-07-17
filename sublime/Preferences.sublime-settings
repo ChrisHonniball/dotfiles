@@ -114,7 +114,8 @@
 		"dist",
 		"node_modules",
 		"bower_components",
-		".sass-cache"
+		".sass-cache",
+		".webassets-cache"
 	],
 	"font_face": "Source Code Pro",
 	"font_options":
@@ -125,6 +126,7 @@
 	"gutter": true,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
+	"horizontal_margin": 15,
 	"hot_exit": false,
 	"ignored_packages":
 	[
@@ -190,6 +192,7 @@
 	"trim_trailing_white_space_on_save": false,
 	"use_simple_full_screen": false,
 	"use_tab_stops": true,
+	"vertical_margin": 10,
 	"word_separators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?",
 	"word_wrap": true,
 	"wrap_width": 0
