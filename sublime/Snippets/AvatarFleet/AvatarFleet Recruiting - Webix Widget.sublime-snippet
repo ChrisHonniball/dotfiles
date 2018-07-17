@@ -7,9 +7,12 @@ class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends BaseWidget {
 	/**
 	 * Constructs the class.
 	 * Any object variables or options need to be configured here.
-	 * `super` not needed because `BaseWidget` does not have any `constuctor arguments.
 	 */
 	constructor(options) {
+	  // Call `super` to build the parent class.
+	  super();
+	  
+	  // Ensure options are an object.
 	  options = options || {};
 
 	  webix.extend(
@@ -56,6 +59,9 @@ class $1Admin extends $1 {
 	constructor(options) {
 	  // Call `super` to build the parent class.
 	  super(options);
+	  
+	  // Ensure options are an object.
+	  options = options || {};
 	  
 	  // Ensure options have some sane defaults.
 	  options = options || {};
