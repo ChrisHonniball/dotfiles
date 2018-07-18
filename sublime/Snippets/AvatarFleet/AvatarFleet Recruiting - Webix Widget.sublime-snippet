@@ -25,10 +25,14 @@ class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends BaseWidget {
 	  
 	  // Setup the webix view.
 	  let view = {
+	  	name: $1
 	  };
 	  
 	  // Set a class variable to view config.
 	  this.view = view;
+	  
+	  // Forward the options on to the view for easier querying.
+	  this.view.options = this.options;
 	}
 }
 
@@ -39,7 +43,7 @@ class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends BaseWidget {
  */
 function ${1/^(\w{1})(.*)$/\L$1\E$2/}() {
 	let widget = new $1();
-	return widget.config();
+	return widget.build();
 }
 
 
@@ -88,7 +92,7 @@ class $1Admin extends $1 {
  */
 function ${1/^(\w{1})(.*)$/\L$1\E$2/}Admin() {
 	let widget = new $1Admin();
-	return widget.config();
+	return widget.build();
 }]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>widget</tabTrigger>
