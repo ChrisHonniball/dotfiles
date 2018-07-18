@@ -31,6 +31,10 @@ class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} {
 	  this.view = view;
 	}
 	
+	getConfig() {
+		return this.view;
+	}
+	
 	build() {
 		this.view.viewClass = this;
 		
