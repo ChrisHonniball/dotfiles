@@ -15,7 +15,7 @@ class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends BaseWidget {
 	  // Ensure options are an object.
 	  options = options || {};
 
-	  webix.extend(
+	  this.options = webix.extend(
 	    { //defaults
 	      disabled: false
 	    },
@@ -60,14 +60,11 @@ class $1Admin extends $1 {
 	  // Call `super` to build the parent class.
 	  super(options);
 	  
-	  // Ensure options are an object.
-	  options = options || {};
-	  
 	  // Ensure options have some sane defaults.
 	  options = options || {};
 
 	  // Inject some defaults to ensure that we have values.
-	  webix.extend(
+	  this.options = webix.extend(
 	    { //defaults
 	      disabled: false
 	    },

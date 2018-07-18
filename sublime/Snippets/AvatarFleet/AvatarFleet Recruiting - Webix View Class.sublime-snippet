@@ -1,0 +1,46 @@
+<snippet>
+	<content><![CDATA[//////////////////////////////////////////
+//!          Frontend Version           //
+//////////////////////////////////////////
+
+class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} {
+	/**
+	 * Constructs the class.
+	 * Any object variables or options need to be configured here.
+	 */
+	constructor(options) {
+	  // Call `super` to build the parent class.
+	  super();
+	  
+	  // Ensure options are an object.
+	  options = options || {};
+
+	  this.options = webix.extend(
+	    { //defaults
+	      disabled: false
+	    },
+	    options,
+	    true
+	  );
+	  
+	  // Setup the webix view.
+	  let view = {
+	  };
+	  
+	  // Set a class variable to view config.
+	  this.view = view;
+	}
+	
+	build() {
+		this.view.viewClass = this;
+		
+		webix.ui(this.view);
+	}
+}]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>view</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
+	<description>AvatarFleet Recruiting - Webix View Class</description>
+</snippet>
