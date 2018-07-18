@@ -3,7 +3,7 @@
 //!          Frontend Version           //
 //////////////////////////////////////////
 
-class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} {
+class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends Baseview{
 	/**
 	 * Constructs the class.
 	 * Any object variables or options need to be configured here.
