@@ -63,25 +63,15 @@ class $1Admin extends $1 {
 	constructor(options) {
 	  // Call `super` to build the parent class.
 	  super(options);
-	  
-	  // Ensure options have some sane defaults.
-	  options = options || {};
 
 	  // Inject some defaults to ensure that we have values.
 	  this.options = webix.extend(
 	    { //defaults
 	      disabled: false
 	    },
-	    options,
+	    this.options,
 	    true
 	  );
-	  
-	  // Setup the webix view.
-	  let view = {
-	  };
-	  
-	  // Set a class variable to view config.
-	  this.view = view;
 	}
 }
 
