@@ -28,7 +28,7 @@ class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends Baseview{
 	  
 	  // Setup the webix view.
 	  let view = {
-	  	name: $1
+	  	name: "$1"
 	  };
 	  
 	  // Set a class variable to view config.
