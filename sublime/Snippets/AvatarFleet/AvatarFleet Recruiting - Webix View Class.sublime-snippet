@@ -10,7 +10,7 @@ class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends Baseview{
 	 */
 	constructor(options) {
 	  // Call `super` to build the parent class.
-	  super();
+	  super(options);
 	  
 	  // Ensure options are an object.
 	  options = options || {};
@@ -22,6 +22,9 @@ class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends Baseview{
 	    options,
 	    true
 	  );
+	  
+	  // Preserve the class instance of `this`.
+	  const self = this;
 	  
 	  // Setup the webix view.
 	  let view = {

@@ -10,7 +10,7 @@ class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends BaseWidget {
 	 */
 	constructor(options) {
 	  // Call `super` to build the parent class.
-	  super();
+	  super(options);
 	  
 	  // Ensure options are an object.
 	  options = options || {};
@@ -22,6 +22,9 @@ class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends BaseWidget {
 	    options,
 	    true
 	  );
+	  
+	  // Preserve the class instance of `this`.
+	  const self = this;
 	  
 	  // Setup the webix view.
 	  let view = {
@@ -41,8 +44,8 @@ class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends BaseWidget {
  * Is needed for old "compliance" methodology.
  * @return {object} - The view class that webix needs to construct the ui element.
  */
-function ${1/^(\w{1})(.*)$/\L$1\E$2/}() {
-	let widget = new $1();
+function ${1/^(\w{1})(.*)$/\L$1\E$2/}(options) {
+	let widget = new $1(options);
 	return widget.build();
 }
 
@@ -80,8 +83,8 @@ class $1Admin extends $1 {
  * Is needed for old "compliance" methodology.
  * @return {object} - The view class that webix needs to construct the ui element.
  */
-function ${1/^(\w{1})(.*)$/\L$1\E$2/}Admin() {
-	let widget = new $1Admin();
+function ${1/^(\w{1})(.*)$/\L$1\E$2/}Admin(options) {
+	let widget = new $1Admin(options);
 	return widget.build();
 }]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
