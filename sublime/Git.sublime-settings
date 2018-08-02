@@ -46,7 +46,7 @@
   ,"diff_syntax": "Packages/Diff/Diff.tmLanguage"
 
   // Rulers for commit view
-  ,"commit_rulers": [70]
+  ,"commit_rulers": 0
 
   // Watch for gitignore changes?
   ,"gitignore_sync": false

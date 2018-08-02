@@ -1,4 +1,7 @@
 [
+  // Use CMD+P for command pallete
+  { "keys": ["super+p"], "command": "show_overlay", "args": {"overlay": "command_palette"} },
+  
   { "keys": ["super+k", "super+w"],
     "command": "toggle_setting",
     "args": {"setting": "word_wrap"}

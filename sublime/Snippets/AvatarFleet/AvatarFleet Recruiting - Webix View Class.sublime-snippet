@@ -3,7 +3,7 @@
 //!          Frontend Version           //
 //////////////////////////////////////////
 
-class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends Baseview{
+class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends BaseView{
 	/**
 	 * Constructs the class.
 	 * Any object variables or options need to be configured here.
@@ -28,7 +28,7 @@ class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends Baseview{
 	  
 	  // Setup the webix view.
 	  let view = {
-	  	name: "$1"
+	  	name: "${1/^(\w+)(View|Widget)$/$1/}"
 	  };
 	  
 	  // Set a class variable to view config.
@@ -45,9 +45,9 @@ class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends Baseview{
 	build() {
 		this.view.viewClass = this;
 		
-		this.$scope = webix.ui(this.view);
+		this.\$scope = webix.ui(this.view);
 		
-		return this.$scope;
+		return this.\$scope;
 	}
 }]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
