@@ -1,0 +1,18 @@
+{
+  "color_scheme": "Packages/Theme - Afterglow/Afterglow-markdown.tmTheme",
+  "draw_centered": false,
+  "draw_indent_guides": false,
+  "extensions":
+  [
+    "md",
+    "mdown",
+    "markdown",
+    "README",
+    "txt"
+  ],
+  "spell_check": true,
+  "tab_size": 4,
+  "translate_tabs_to_spaces": false,
+  "trim_trailing_white_space_on_save": false,
+  "word_wrap": true
+}

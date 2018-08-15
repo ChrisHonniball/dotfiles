@@ -1,9 +1,5 @@
 <snippet>
-	<content><![CDATA[//////////////////////////////////////////
-//!          Frontend Version           //
-//////////////////////////////////////////
-
-class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends BaseView{
+	<content><![CDATA[class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends BaseView {
 	/**
 	 * Constructs the class.
 	 * Any object variables or options need to be configured here.
@@ -11,7 +7,7 @@ class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends BaseView{
 	constructor(options) {
 	  // Call `super` to build the parent class.
 	  super(options);
-	  
+
 	  // Ensure options are an object.
 	  options = options || {};
 
@@ -22,32 +18,20 @@ class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends BaseView{
 	    options,
 	    true
 	  );
-	  
+
 	  // Preserve the class instance of `this`.
 	  const self = this;
-	  
+
 	  // Setup the webix view.
 	  let view = {
 	  	name: "${1/^(\w+)(View|Widget)$/$1/}"
 	  };
-	  
+
 	  // Set a class variable to view config.
 	  this.view = view;
-	  
+
 	  // Forward the options on to the view for easier querying.
 	  this.view.options = this.options;
-	}
-	
-	getConfig() {
-		return this.view;
-	}
-	
-	build() {
-		this.view.viewClass = this;
-		
-		this.\$scope = webix.ui(this.view);
-		
-		return this.\$scope;
 	}
 }]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
