@@ -1,12 +1,12 @@
 [
   // Use CMD+P for command pallete
   { "keys": ["super+p"], "command": "show_overlay", "args": {"overlay": "command_palette"} },
-  
+
   { "keys": ["super+k", "super+w"],
     "command": "toggle_setting",
     "args": {"setting": "word_wrap"}
   },
-  
+
   { "keys": ["super+shift+,"], "command": "open_file", "args": {"file": "${packages}/User/Default (OSX).sublime-keymap"} },
 
   // Switch Paste Behavior
@@ -22,6 +22,53 @@
   { "keys": ["ctrl+u"],
     "command": "vi_scroll_lines",
     "args": { "forward": false }
+  },
+
+  { "keys": ["j", "j"], "command": "exit_auto_complete_and_insert_mode", "context":
+    [
+      { "key": "setting.command_mode", "operand": false },
+      { "key": "setting.is_widget", "operand": false }
+    ]
+  },
+
+  { "keys": ["k", "k"], "command": "exit_auto_complete_and_insert_mode", "context":
+    [
+      { "key": "setting.command_mode", "operand": false },
+      { "key": "setting.is_widget", "operand": false }
+    ]
+  },
+
+  // Bracket Highlighter
+  // Select text between brackets
+  {
+    "keys": ["ctrl+shift+m"],
+    "command": "bh_key",
+    "args":
+    {
+      "no_outside_adj": null,
+      "lines" : true,
+      "plugin":
+      {
+        "type": ["__all__"],
+        "command": "bh_modules.bracketselect"
+      }
+    }
+  },
+  // Select text including brackets
+  {
+    "keys": ["ctrl+alt+shift+m"],
+    "command": "bh_key",
+    "args":
+    {
+      "no_outside_adj": null,
+      "lines" : true,
+      "plugin":
+      {
+        "type": ["__all__"],
+        "command": "bh_modules.bracketselect",
+        "args": {"always_include_brackets": true}
+      }
+    }
   },
 
   // Surround
@@ -128,11 +175,11 @@
       { "key": "following_text", "operator": "regex_contains", "operand": "^(?:\t| |\\}|$)", "match_all": true }
     ]
   },
-  
+
   // Comments
   { "keys": ["ctrl+forward_slash"], "command": "toggle_comment", "args": { "block": false } },
   { "keys": ["ctrl+shift+forward_slash"], "command": "toggle_comment", "args": { "block": true } },
-  
+
   // Alignment
   { "keys": ["super+ctrl+a"], "command": "align_tab" },
 ]

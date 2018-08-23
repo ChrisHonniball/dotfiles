@@ -29,6 +29,7 @@
 		"Git",
 		"GitGutter",
 		"Handlebars",
+		"Hooks",
 		"HTML-CSS-JS Prettify",
 		"ImprovedMacros",
 		"Indent XML",
@@ -41,6 +42,7 @@
 		"RailsCasts Colour Scheme",
 		"Sass",
 		"ScopeHunter",
+		"SelectUntil",
 		"SideBarEnhancements",
 		"SortBy",
 		"SublimeLinter",
@@ -53,6 +55,7 @@
 		"Theme - Afterglow",
 		"TypeScript Syntax",
 		"URLEncode",
+		"Vintage Escape",
 		"WordHighlight",
 		"xml2json"
 	],
