@@ -35,7 +35,6 @@
 		"Indent XML",
 		"JavaScriptNext - ES6 Syntax",
 		"LinkOpener",
-		"Markdown Extended",
 		"Package Control",
 		"Pretty JSON",
 		"Python 3",
@@ -56,6 +55,7 @@
 		"TypeScript Syntax",
 		"URLEncode",
 		"Vintage Escape",
+		"Vintage Surround",
 		"WordHighlight",
 		"xml2json"
 	],

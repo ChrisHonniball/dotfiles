@@ -134,4 +134,6 @@ source ~/dotfiles/.iterm2_shell_integration.zsh
 
 # Simpler command history nav.
 bindkey "^[[A" history-search-backward
+bindkey "^k" history-search-backward
 bindkey "^[[B" history-search-forward
+bindkey "^j" history-search-forward

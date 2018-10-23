@@ -1,0 +1,44 @@
+<snippet>
+	<content><![CDATA[let modalConfig = {
+  view: "window",
+  modal: true,
+  position: "center",
+  name: "positionCreationDialog",
+  head: "$1",
+  width: 500,
+
+  body:{
+    rows: [
+      {
+        template: "$2",
+        borderless: true,
+        autoheight: true,
+      },
+
+      {
+        view: "toolbar",
+        cols: [
+          {
+            view: "button",
+            name: "${3:cancelButton}",
+            css: "button_primary",
+            value: "${4:Cancel}",
+            width: ${5:120},
+            click: function(btnId, evt){
+              this.getTopParentView().close();$0
+            }
+          },
+        ]
+      }
+    ]
+  },
+};
+
+webix.ui(modalConfig).show();]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>webix-window</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
+	<description>Webix Window</description>
+</snippet>

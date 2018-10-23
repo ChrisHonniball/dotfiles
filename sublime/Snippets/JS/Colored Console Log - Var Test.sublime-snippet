@@ -1,16 +1,16 @@
 <snippet>
 	<content><![CDATA[/* */
 console.log(
-	"%c%s#$1",
-	"color: ${2:royalblue};", // http://www.w3schools.com/html/html_colornames.asp
-	${3:this}.toString()$0
+  "%cTEST -> $1: %O",
+  "font-size: 14px; color: ${2:#DC143C};",
+  $1$0
 );
 //*/
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>log</tabTrigger>
+	<tabTrigger>log-var</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>source.js</scope>
 	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
-	<description>Ember Colored Console Log</description>
+	<description>Colored Console Log - Var Test</description>
 </snippet>

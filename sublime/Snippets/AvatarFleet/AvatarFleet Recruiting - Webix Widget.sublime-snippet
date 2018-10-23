@@ -11,31 +11,36 @@ class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends BaseWidget {
 	constructor(options) {
 	  // Call `super` to build the parent class.
 	  super(options);
-	  
+
+	  // Preserve the class instance of `this`.
+	  const self = this;
+
 	  // Ensure options are an object.
 	  options = options || {};
 
-	  this.options = webix.extend(
+	  self.options = webix.extend(
 	    { //defaults
 	      disabled: false
 	    },
-	    options,
+	    self.options,
 	    true
 	  );
-	  
-	  // Preserve the class instance of `this`.
-	  const self = this;
-	  
+
 	  // Setup the webix view.
 	  let view = {
 	  	name: "${1/^(\w+)(View|Widget)$/$1/}"
 	  };
-	  
+
+    // Retain any base `css` class setups.
+    if(typeof self.view.css === "string" || typeof view.css === "string") {
+      view.css = [self.view.css, view.css].join(" ");
+    }
+
 	  // Set a class variable to view config.
-	  this.view = view;
-	  
+	  self.view = webix.extend(self.view, view, true);
+
 	  // Forward the options on to the view for easier querying.
-	  this.view.options = this.options;
+	  self.view.options = self.options;
 	}
 }
 
@@ -60,21 +65,35 @@ class $1Admin extends $1 {
 	 * Any object variables or options need to be configured here.
 	 * `super` IS needed because the parent class has a `constructor`.
 	 * IF you add constructor arguments to the parend class you need to pass them to `super` AND include them in the list of arguments for this constructor otherwise they will be lost.
-	 * 
+	 *
 	 * We do this a second time so that this view inherits all of the parent view's options.
 	 */
 	constructor(options) {
 	  // Call `super` to build the parent class.
 	  super(options);
 
+	  // Preserve the class instance of `this`.
+	  const self = this;
+
 	  // Inject some defaults to ensure that we have values.
-	  this.options = webix.extend(
+	  self.options = webix.extend(
 	    { //defaults
 	      disabled: false
 	    },
-	    this.options,
+	    self.options,
 	    true
 	  );
+
+	  this.view = {
+	    view: "form",
+	    name: "widgetConfigForm",
+
+	    complexData: true,
+
+	    rows: [
+
+	    ]
+	  };
 	}
 }
 
@@ -88,7 +107,7 @@ function ${1/^(\w{1})(.*)$/\L$1\E$2/}Admin(options) {
 	return widget.build();
 }]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>widget</tabTrigger>
+	<tabTrigger>webix-widget</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>source.js</scope>
 	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->

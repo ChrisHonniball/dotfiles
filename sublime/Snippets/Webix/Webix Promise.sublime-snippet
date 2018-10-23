@@ -1,16 +1,11 @@
 <snippet>
-	<content><![CDATA[/* */
-console.log(
-	"%c%s#$1",
-	"color: ${2:royalblue};", // http://www.w3schools.com/html/html_colornames.asp
-	${3:this}.toString()$0
-);
-//*/
-]]></content>
+	<content><![CDATA[let ${1:promise} = webix.ajax()
+  .headers({ "Content-type":"application/json" })
+  .${2:get}($3);$0]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>log</tabTrigger>
+	<tabTrigger>webix-promise</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>source.js</scope>
 	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
-	<description>Ember Colored Console Log</description>
+	<description>Webix Promise</description>
 </snippet>

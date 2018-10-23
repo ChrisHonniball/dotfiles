@@ -1,5 +1,6 @@
 {
   "protected_regions": [
     "vintage_lines"
-  ]
+  ],
+  "show_line_annotation": "auto",
 }

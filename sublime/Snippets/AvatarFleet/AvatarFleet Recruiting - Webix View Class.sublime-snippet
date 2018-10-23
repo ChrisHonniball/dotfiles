@@ -8,34 +8,39 @@
 	  // Call `super` to build the parent class.
 	  super(options);
 
+	  // Preserve the class instance of `this`.
+	  const self = this;
+
 	  // Ensure options are an object.
 	  options = options || {};
 
-	  this.options = webix.extend(
+	  self.options = webix.extend(
 	    { //defaults
 	      disabled: false
 	    },
-	    options,
+	    self.options,
 	    true
 	  );
-
-	  // Preserve the class instance of `this`.
-	  const self = this;
 
 	  // Setup the webix view.
 	  let view = {
 	  	name: "${1/^(\w+)(View|Widget)$/$1/}"
 	  };
 
+	  // Retain any base `css` class setups.
+	  if(typeof self.view.css === "string" || typeof view.css === "string") {
+	    view.css = [self.view.css, view.css].join(" ");
+	  }
+
 	  // Set a class variable to view config.
-	  this.view = view;
+	  self.view = webix.extend(self.view, view, true);
 
 	  // Forward the options on to the view for easier querying.
-	  this.view.options = this.options;
+	  self.view.options = self.options;
 	}
 }]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>view</tabTrigger>
+	<tabTrigger>webix-view</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<scope>source.js</scope>
 	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->

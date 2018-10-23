@@ -1,0 +1,26 @@
+<snippet>
+	<content><![CDATA[.then(function(result) {
+  result = result.json();
+
+  /* */
+  console.log(
+    "%c${1:webix.promise.all}() -> SUCCESS -> result: %O",
+    "color: green",$2
+    result,
+  );
+  //*/$3
+})
+.fail(function(error) {
+  console.log(
+    "%c$1() -> FAIL -> error: %O",
+    "color: red",
+    error
+  );$4
+});$0]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>webix-promise-then-fail-callbacks</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
+	<description>Webix Promise Then & Fail Callbacks</description>
+</snippet>

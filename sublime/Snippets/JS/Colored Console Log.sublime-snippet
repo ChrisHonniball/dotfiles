@@ -2,7 +2,7 @@
 	<content><![CDATA[/* */
 console.log(
   "%c$1",
-  "color: ${2:purple}"$0
+  "color: ${2:royalblue};"$0
 );
 //*/
 ]]></content>
