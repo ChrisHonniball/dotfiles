@@ -40,6 +40,12 @@
     ]
   },
 
+  { "keys": ["i"], "command": "enter_insert_mode", "context":
+    [
+      { "key": "setting.is_widget", "operand": false }
+    ]
+  },
+
   // Bracket Highlighter
   // Select text between brackets
   {
