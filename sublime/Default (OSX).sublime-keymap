@@ -40,7 +40,7 @@
     ]
   },
 
-  { "keys": ["i"], "command": "enter_insert_mode", "context":
+  { "keys": ["ctrl+i"], "command": "enter_insert_mode", "context":
     [
       { "key": "setting.is_widget", "operand": false }
     ]
