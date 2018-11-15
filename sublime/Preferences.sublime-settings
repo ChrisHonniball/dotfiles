@@ -115,7 +115,8 @@
 		"node_modules",
 		"bower_components",
 		".sass-cache",
-		".webassets-cache"
+		".webassets-cache",
+		"pgdata"
 	],
 	"font_face": "Source Code Pro",
 	"font_options":
