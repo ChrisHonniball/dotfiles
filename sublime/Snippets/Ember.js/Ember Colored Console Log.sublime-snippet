@@ -1,8 +1,8 @@
 <snippet>
 	<content><![CDATA[/* */
 console.log(
-	"%c%s#$1",
-	"color: ${2:royalblue};", // http://www.w3schools.com/html/html_colornames.asp
+	'%c%s#$1',
+	'color: ${2:royalblue};', // http://www.w3schools.com/html/html_colornames.asp
 	${3:this}.toString()$0
 );
 //*/

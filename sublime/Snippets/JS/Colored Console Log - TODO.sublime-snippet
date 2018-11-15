@@ -1,8 +1,8 @@
 <snippet>
   <content><![CDATA[/* */
 console.log(
-  "%c[[TODO]] $1",
-  "color: ${2:deeppink}"$0
+  '%c[[TODO]] $1',
+  'color: ${2:deeppink}'$0
 );
 //*/
 ]]></content>

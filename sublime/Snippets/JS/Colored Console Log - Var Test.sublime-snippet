@@ -1,8 +1,8 @@
 <snippet>
 	<content><![CDATA[/* */
 console.log(
-  "%cTEST -> $1: %O",
-  "font-size: 14px; color: ${2:#DC143C};",
+  '%cTEST -> $1: %O',
+  'font-size: 14px; color: ${2:#DC143C};',
   $1$0
 );
 //*/
