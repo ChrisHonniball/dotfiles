@@ -1,0 +1,31 @@
+<snippet>
+	<content><![CDATA[{
+  \$\$locator: "checkboxContainer",
+  cols: [
+    {
+      view: "checkbox",
+      \$\$locator: "checkbox",
+
+      name: "$1",
+      checkValue: ${2:true},
+      uncheckValue: ${3:false},
+
+      label: false, // Label is the paired `template`.
+      labelWidth: 0, // Label is the paired `template`.
+      width: 20 // required for visibility of the check input.
+    },
+    {
+      \$\$locator: "checkboxLabel",
+      template: "$4",
+      autoheight: true,
+      borderless: true
+    }
+  ]
+},]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>webix-checkbox</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
+	<description>Webix View - Checkbox</description>
+</snippet>

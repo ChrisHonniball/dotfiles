@@ -59,7 +59,7 @@ function ${1/^(\w{1})(.*)$/\L$1\E$2/}(options) {
 //!          Admin Version           //
 ///////////////////////////////////////
 
-class $1Admin extends $1 {
+class $1Admin extends BaseWidget {
 	/**
 	 * Constructs the class.
 	 * Any object variables or options need to be configured here.
@@ -84,14 +84,19 @@ class $1Admin extends $1 {
 	    true
 	  );
 
-	  this.view = {
+	  self.view = {
 	    view: "form",
 	    name: "widgetConfigForm",
 
 	    complexData: true,
 
 	    rows: [
-
+        {
+          template: "This widget has no settings.",
+          css: "w3-text-orange",
+          autoheight: true,
+          borderless: true
+        }
 	    ]
 	  };
 	}
