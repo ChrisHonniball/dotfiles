@@ -3,14 +3,15 @@
   view: "window",
   modal: true,
   position: "center",
-  name: "positionCreationDialog",
-  head: "$1",
+  name: "$1",
+  head: "$2",
   width: 500,
+  css: "w3-topbar w3-border-${3:indigo}", // https://www.w3schools.com/w3css/w3css_colors.asp
 
   body:{
     rows: [
       {
-        template: "$2",
+        template: "$4",
         borderless: true,
         autoheight: true,
       },
@@ -20,10 +21,10 @@
         cols: [
           {
             view: "button",
-            name: "${3:cancelButton}",
+            name: "${5:cancelButton}",
             css: "button_primary",
-            value: "${4:Cancel}",
-            width: ${5:120},
+            value: "${6:Cancel}",
+            width: ${7:120},
             click: function(btnId, evt){
               this.getTopParentView().close();$0
             }
