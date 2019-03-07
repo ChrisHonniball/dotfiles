@@ -16,7 +16,7 @@
 
 	  self.options = webix.extend(
 	    { //defaults
-	      disabled: false
+	      debug: false
 	    },
 	    self.options,
 	    true
@@ -24,7 +24,7 @@
 
 	  // Setup the webix view.
 	  let view = {
-	  	name: "${1/^(\w+)(View|Widget)$/$1/}"
+	  	\$\$locator: "${1/^(\w+)(View|Widget)$/$1/}"
 	  };
 
 	  // Retain any base `css` class setups.

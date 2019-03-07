@@ -26,4 +26,5 @@ alias lla='ls -lA'
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'
 alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
 alias dc=docker-compose
+alias flask='docker-compose up -d --remove-orphans postgres python && docker-compose up flask'
 alias awsconsole='ssh ec2-user@awsconsole.avatarfleet.com'

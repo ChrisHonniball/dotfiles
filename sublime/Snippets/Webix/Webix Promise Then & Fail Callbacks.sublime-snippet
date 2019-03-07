@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[.then(function(result) {
-  result = result.json();
+  result = (typeof result.json === "function") ? result.json() : result;
 
   /* */
   console.log(
@@ -15,7 +15,12 @@
     "%c$1() -> FAIL -> error: %O",
     "color: red",
     error
-  );$4
+  );
+
+  webix.alert({
+    text: objectPath.get(error, "message", "An error occurred. Check logs."),
+    type: "alert-error", // "alert-warning" || "alert-error"
+  });$4
 });$0]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>webix-promise-then-fail-callbacks</tabTrigger>

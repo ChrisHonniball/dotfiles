@@ -3,12 +3,72 @@
   view: "window",
   modal: true,
   position: "center",
-  name: "$1",
-  head: "$2",
+  \$\$locator: "$1",
   width: 500,
-  css: "w3-topbar w3-border-${3:indigo}", // https://www.w3schools.com/w3css/w3css_colors.asp
+  css: "modal-window w3-topbar w3-border-${2:indigo}", // https://www.w3schools.com/w3css/w3css_colors.asp
 
-  body:{
+  head: {
+    view: "toolbar",
+    type: "clean",
+    \$\$locator: "$1Header",
+    css: "modal-window-header",
+    cols: [
+      {
+        view: "template",
+        template: "$3",
+        type: "header"
+      },
+      {
+        view: "button",
+        \$\$locator: "minimizeBtn",
+        type: "icon",
+        width: 30,
+        css: "app_button no-padding",
+        icon: "window-restore",
+        hidden: true,
+        click: function(){
+          const dialog = this.getTopParentView();
+          dialog.define("fullscreen", false);
+          dialog.resize();
+
+          dialog.queryView({ \$\$locator: "maximizeBtn" }).show();
+          dialog.queryView({ \$\$locator: "minimizeBtn" }).hide();
+        }
+      },
+      {
+        view: "button",
+        \$\$locator: "maximizeBtn",
+        type: "icon",
+        width: 30,
+        css: "app_button no-padding",
+        icon: "window-maximize",
+        hidden: false,
+        click: function(){
+          const dialog = this.getTopParentView();
+          dialog.define("fullscreen", true);
+          dialog.resize();
+
+          dialog.queryView({ \$\$locator: "maximizeBtn" }).hide();
+          dialog.queryView({ \$\$locator: "minimizeBtn" }).show();
+        }
+      },
+      {
+        view: "button",
+        \$\$locator: "closeBtn",
+        type: "icon",
+        width: 30,
+        css: "app_button no-padding",
+        icon: "close",
+        click: function(){
+          this.getTopParentView().close();
+        }
+      },
+    ],
+  },
+
+  body: {
+    \$\$locator: "$1Body",
+    css: "modal-window-body",
     rows: [
       {
         template: "$4",
@@ -18,15 +78,16 @@
 
       {
         view: "toolbar",
+        \$\$locator: "$1Toolbar",
         cols: [
           {
             view: "button",
-            name: "${5:cancelButton}",
+            \$\$locator: "cancelButton",
             css: "button_primary",
-            value: "${6:Cancel}",
-            width: ${7:120},
+            value: "Cancel",
+            width: 120,
             click: function(btnId, evt){
-              this.getTopParentView().close();$0
+              this.getTopParentView().close();
             }
           },
         ]
