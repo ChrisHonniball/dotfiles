@@ -59,7 +59,7 @@
 	"caret_extra_width": 1,
 	"caret_style": "smooth",
 	"close_windows_when_empty": false,
-	"color_scheme": "Packages/Theme - Afterglow/Afterglow-markdown.tmTheme",
+	"color_scheme": "Packages/Theme - Afterglow/Afterglow.tmTheme",
 	"console_log": false,
 	"copy_with_empty_selection": false,
 	"create_window_at_startup": false,
