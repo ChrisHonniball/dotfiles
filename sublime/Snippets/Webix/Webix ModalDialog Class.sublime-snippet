@@ -1,0 +1,40 @@
+<snippet>
+	<content><![CDATA[const dialog = new ModalDialog({
+  name: "$1",
+  title: "$2",
+  minHeight: 200,
+  maxHeight: window.innerHeight,
+  height: 400,
+  maxWidth: 500,
+  allowMaximize: false,
+  fullscreen: webix.env.mobile === true,
+  css: "$3",
+
+  body: {
+    rows: [
+      {
+        view: "scrollview",
+        body: {
+          rows: [
+            $4
+          ]
+        }
+      },
+      {
+        view: "toolbar",
+        cols: [
+          $5
+        ]
+      }
+    ]
+  }
+});
+
+dialog.showDialog();]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>ModalDialog</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
+	<description>Webix ModalDialog Class</description>
+</snippet>
