@@ -11,6 +11,17 @@
   //*/$3
 })
 .fail(function(error) {
+  try {
+    let parsedError = JSON.parse(error.responseText);
+    error = parsedError;
+  } catch(e) {
+    console.log(
+      "%cwebix.promise.all() -> Unable to parse message.",
+      "color: red"
+    );
+    console.error(e);
+  }
+
   console.log(
     "%c$1() -> FAIL -> error: %O",
     "color: red",

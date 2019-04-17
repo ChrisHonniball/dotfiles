@@ -122,7 +122,7 @@
 	"font_options":
 	[
 	],
-	"font_size": 14,
+	"font_size": 13,
 	"gpu_window_buffer": "auto",
 	"gutter": true,
 	"highlight_line": true,
