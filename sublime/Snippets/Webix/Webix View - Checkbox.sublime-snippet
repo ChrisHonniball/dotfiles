@@ -1,14 +1,14 @@
 <snippet>
 	<content><![CDATA[{
   \$\$locator: "checkboxContainer",
-  cols: [
+  ${1:cols}: [
     {
       view: "checkbox",
       \$\$locator: "checkbox",
 
-      name: "$1",
-      checkValue: ${2:true},
-      uncheckValue: ${3:false},
+      name: "$2",
+      checkValue: ${3:true},
+      uncheckValue: ${4:false},
 
       label: false, // Label is the paired `template`.
       labelWidth: 0, // Label is the paired `template`.
@@ -16,7 +16,7 @@
     },
     {
       \$\$locator: "checkboxLabel",
-      template: "$4",
+      template: "$5",
       autoheight: true,
       borderless: true
     }
