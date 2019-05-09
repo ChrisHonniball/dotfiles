@@ -1,18 +1,7 @@
 <snippet>
 	<content><![CDATA[class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends BaseView {
-	/**
-	 * Constructs the class.
-	 * Any object variables or options need to be configured here.
-	 */
-	constructor(options) {
-	  // Call `super` to build the parent class.
-	  super(options);
-
-	  // Preserve the class instance of `this`.
+	config() {
 	  const self = this;
-
-	  // Ensure options are an object.
-	  options = options || {};
 
 	  self.options = webix.extend(
 	    { //defaults
@@ -24,19 +13,22 @@
 
 	  // Setup the webix view.
 	  let view = {
-	  	\$\$locator: "${1/^(\w+)(View|Widget)$/$1/}"
+	  	name: self.options.name,
+      id: self.options.id,
+	  	\$\$locator: self.options.name,$0
 	  };
 
 	  // Retain any base `css` class setups.
-	  if(typeof self.view.css === "string" || typeof view.css === "string") {
-	    view.css = [self.view.css, view.css].join(" ");
-	  }
+    if(typeof objectPath.get(self, "options.css") === "string" || typeof objectPath.get(view, "css") === "string") {
+      view.css = [objectPath.get(self, "options.css", ""), objectPath.get(view, "css", ""), "widget"].join(" ");
+    }
 
-	  // Set a class variable to view config.
-	  self.view = webix.extend(self.view, view, true);
+    // Forward the options on to the view for easier querying.
+    view.options = self.options;
 
-	  // Forward the options on to the view for easier querying.
-	  self.view.options = self.options;
+    view.$scope = self;
+
+    return view;
 	}
 }]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->

@@ -3,44 +3,39 @@
 //!          Frontend Version           //
 //////////////////////////////////////////
 
-class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends BaseWidget {
-	/**
-	 * Constructs the class.
-	 * Any object variables or options need to be configured here.
-	 */
-	constructor(options) {
-	  // Call `super` to build the parent class.
-	  super(options);
-
-	  // Preserve the class instance of `this`.
+class ${1:${TM_FILENAME/(\w+)\.js/\1/g}} extends BaseView {
+	config() {
 	  const self = this;
-
-	  // Ensure options are an object.
-	  options = options || {};
 
 	  self.options = webix.extend(
 	    { //defaults
+		  	name: "$1"
 	      disabled: false
 	    },
 	    self.options,
 	    true
 	  );
 
-	  // Setup the webix view.
-	  let view = {
-	  	name: "${1/^(\w+)(View|Widget)$/$1/}"
-	  };
+    // Setup the webix view.
+    let view = {
+      name: self.options.name,
+      id: self.options.id,
+      \$\$locator: self.options.name,$0
+    };
 
     // Retain any base `css` class setups.
-    if(typeof self.view.css === "string" || typeof view.css === "string") {
-      view.css = [self.view.css, view.css].join(" ");
+    if(typeof objectPath.get(self, "options.css") === "string" || typeof objectPath.get(view, "css") === "string") {
+      view.css = [objectPath.get(self, "options.css", ""), objectPath.get(view, "css", ""), "widget"].join(" ");
     }
 
-	  // Set a class variable to view config.
-	  self.view = webix.extend(self.view, view, true);
+    // Forward the options on to the view for easier querying.
+    view.options = self.options;
 
-	  // Forward the options on to the view for easier querying.
-	  self.view.options = self.options;
+    view.$scope = self;
+
+    view.widget = true;
+
+    return view;
 	}
 }
 
@@ -60,24 +55,13 @@ function ${1/^(\w{1})(.*)$/\L$1\E$2/}(options) {
 ///////////////////////////////////////
 
 class $1Admin extends BaseWidget {
-	/**
-	 * Constructs the class.
-	 * Any object variables or options need to be configured here.
-	 * `super` IS needed because the parent class has a `constructor`.
-	 * IF you add constructor arguments to the parend class you need to pass them to `super` AND include them in the list of arguments for this constructor otherwise they will be lost.
-	 *
-	 * We do this a second time so that this view inherits all of the parent view's options.
-	 */
-	constructor(options) {
-	  // Call `super` to build the parent class.
-	  super(options);
-
-	  // Preserve the class instance of `this`.
+	config() {
 	  const self = this;
 
 	  // Inject some defaults to ensure that we have values.
 	  self.options = webix.extend(
 	    { //defaults
+        name: "widgetConfigForm",
 	      disabled: false
 	    },
 	    self.options,
@@ -86,7 +70,9 @@ class $1Admin extends BaseWidget {
 
 	  self.view = {
 	    view: "form",
-	    name: "widgetConfigForm",
+      name: self.options.name,
+      id: self.options.id,
+      \$\$locator: self.options.name,
 
 	    complexData: true,
 
