@@ -6,7 +6,7 @@
   console.log(
     "%c${1:webix.promise.all}() -> SUCCESS -> result: %O",
     "color: green",$2
-    result,
+    result
   );
   //*/$3
 })

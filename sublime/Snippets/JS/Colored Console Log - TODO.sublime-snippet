@@ -2,7 +2,7 @@
   <content><![CDATA[/* */
 console.log(
   '%c[[TODO]] $1',
-  'color: ${2:deeppink}'$0
+  'color: ${2:deeppink}; font-size: 18px;'$0
 );
 //*/
 ]]></content>
