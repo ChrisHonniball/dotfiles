@@ -51,7 +51,10 @@
 		"*.swf",
 		"*.tga",
 		"*.ttf",
-		"*.zip"
+		"*.zip",
+    "*.bundle.js",
+    "*.bundle.css",
+    "*.map"
 	],
 	"bold_folder_labels": false,
 	"caret_extra_bottom": 0,
@@ -75,7 +78,7 @@
 	"enable_hexadecimal_encoding": true,
 	"enable_tab_scrolling": true,
 	"enable_telemetry": "auto",
-	"ensure_newline_at_eof_on_save": false,
+	"ensure_newline_at_eof_on_save": true,
 	"extract_sublime_package_ask_on_open": true,
 	"fade_fold_buttons": true,
 	"fallback_encoding": "Western (Windows 1252)",
@@ -122,7 +125,7 @@
 	"font_options":
 	[
 	],
-	"font_size": 15,
+	"font_size": 16,
 	"gpu_window_buffer": "auto",
 	"gutter": true,
 	"highlight_line": true,

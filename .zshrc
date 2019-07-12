@@ -4,6 +4,7 @@ GIT_PS1_STATESEPARATOR=""
 
 source ~/dotfiles/shell/colors.sh
 source ~/dotfiles/shell/git-prompt.sh
+source ~/dotfiles/shell/aliases.sh
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/dotfiles/oh-my-zsh
@@ -89,16 +90,6 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/dotfiles/oh-my-zsh"
-alias tower=gittower
-alias ll='ls -l'
-alias la='ls -A'
-alias lla='ls -lA'
-alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'
-alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
-alias mvim='mvim >& /dev/null'
-alias dc=docker-compose
-alias flask='docker-compose up flask'
-alias awsconsole='ssh ec2-user@awsconsole.avatarfleet.com'
 
 
 # Functions
