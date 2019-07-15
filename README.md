@@ -11,9 +11,9 @@ git clone --recursive git@github.com:ChrisHonniball/dotfiles.git dotfiles
 
 ## Installation
 
-```
-./install.sh
-```
+- `./install.sh` - Installs the configuration files for _most_ editors.
+- `ln -s /Users/{username}/dotfiles/merge /Users/{username}/Library/Application\ Support/Sublime\ Text\ 3/Packages/User` - Install Sublime Text `User` items
+- `ln -s /Users/{username}/dotfiles/merge /Users/{username}/Library/Application\ Support/Sublime\ Merge/Packages/User` - Install Sublime Merge `User` items
 
 ## Uninstallation
 
