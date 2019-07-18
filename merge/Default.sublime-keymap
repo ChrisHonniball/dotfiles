@@ -20,4 +20,9 @@
     "command": "show_command_palette",
     "args": {"command": "merge_branch"}
   },
+  {
+    "keys": ["super+shift+b"],
+    "command": "show_command_palette",
+    "args": {"command": "create_branch_from_remote_branch"}
+  }
 ]
