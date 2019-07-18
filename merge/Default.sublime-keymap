@@ -1,0 +1,23 @@
+[
+  {
+    "keys": ["super+shift+u"],
+    "command": "show_command_palette",
+    "args": {"command": "push"}
+  },
+  {
+    "keys": ["super+shift+d"],
+    "command": "pull"
+  },
+  {
+    "keys": ["super+shift+f"],
+    "command": "show_command_palette",
+    "args": {
+      "command": "fetch"
+    }
+  },
+  {
+    "keys": ["super+shift+m"],
+    "command": "show_command_palette",
+    "args": {"command": "merge_branch"}
+  },
+]
