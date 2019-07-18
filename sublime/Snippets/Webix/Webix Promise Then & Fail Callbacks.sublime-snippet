@@ -1,11 +1,11 @@
 <snippet>
 	<content><![CDATA[.then(function(result) {
-  result = (typeof result.json === "function") ? result.json() : result;
+  result = (typeof result.json === 'function') ? result.json() : result;
 
   /* */
   console.log(
-    "%c${1:webix.promise.all}() -> SUCCESS -> result: %O",
-    "color: green",$2
+    '%c${1:webix.promise.all}() -> SUCCESS -> result: %O',
+    'color: green',$2
     result
   );
   //*/$3
@@ -16,21 +16,21 @@
     error = parsedError;
   } catch(e) {
     console.log(
-      "%cwebix.promise.all() -> Unable to parse message.",
-      "color: red"
+      '%cwebix.promise.all() -> Unable to parse message.',
+      'color: red'
     );
     console.error(e);
   }
 
   console.log(
-    "%c$1() -> FAIL -> error: %O",
-    "color: red",
+    '%c$1() -> FAIL -> error: %O',
+    'color: red',
     error
   );
 
   webix.alert({
-    text: objectPath.get(error, "message", "An error occurred. Check logs."),
-    type: "alert-error", // "alert-warning" || "alert-error"
+    text: objectPath.get(error, 'message', 'An error occurred. Check logs.'),
+    type: 'alert-error', // 'alert-warning' || 'alert-error'
   });$4
 });$0]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->

@@ -52,9 +52,9 @@
 		"*.tga",
 		"*.ttf",
 		"*.zip",
-    "*.bundle.js",
-    "*.bundle.css",
-    "*.map"
+		"*.bundle.js",
+		"*.bundle.css",
+		"*.map"
 	],
 	"bold_folder_labels": false,
 	"caret_extra_bottom": 0,

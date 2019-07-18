@@ -1,64 +1,64 @@
 <snippet>
 	<content><![CDATA[let modalConfig = {
-  view: "window",
+  view: 'window',
   modal: true,
-  position: "center",
-  \$\$locator: "$1",
+  position: 'center',
+  \$\$locator: '$1',
   width: 500,
-  css: "modal-window w3-topbar w3-border-${2:indigo}", // https://www.w3schools.com/w3css/w3css_colors.asp
+  css: 'modal-window w3-topbar w3-border-${2:indigo}', // https://www.w3schools.com/w3css/w3css_colors.asp
 
   head: {
-    view: "toolbar",
-    type: "clean",
-    \$\$locator: "$1Header",
-    css: "modal-window-header",
+    view: 'toolbar',
+    type: 'clean',
+    \$\$locator: '$1Header',
+    css: 'modal-window-header',
     cols: [
       {
-        view: "template",
-        template: "$3",
-        type: "header"
+        view: 'template',
+        template: '$3',
+        type: 'header'
       },
       {
-        view: "button",
-        \$\$locator: "minimizeBtn",
-        type: "icon",
+        view: 'button',
+        \$\$locator: 'minimizeBtn',
+        type: 'icon',
         width: 30,
-        css: "app_button no-padding",
-        icon: "window-restore",
+        css: 'app_button no-padding',
+        icon: 'window-restore',
         hidden: true,
         click: function(){
           const dialog = this.getTopParentView();
-          dialog.define("fullscreen", false);
+          dialog.define('fullscreen', false);
           dialog.resize();
 
-          dialog.queryView({ \$\$locator: "maximizeBtn" }).show();
-          dialog.queryView({ \$\$locator: "minimizeBtn" }).hide();
+          dialog.queryView({ \$\$locator: 'maximizeBtn' }).show();
+          dialog.queryView({ \$\$locator: 'minimizeBtn' }).hide();
         }
       },
       {
-        view: "button",
-        \$\$locator: "maximizeBtn",
-        type: "icon",
+        view: 'button',
+        \$\$locator: 'maximizeBtn',
+        type: 'icon',
         width: 30,
-        css: "app_button no-padding",
-        icon: "window-maximize",
+        css: 'app_button no-padding',
+        icon: 'window-maximize',
         hidden: false,
         click: function(){
           const dialog = this.getTopParentView();
-          dialog.define("fullscreen", true);
+          dialog.define('fullscreen', true);
           dialog.resize();
 
-          dialog.queryView({ \$\$locator: "maximizeBtn" }).hide();
-          dialog.queryView({ \$\$locator: "minimizeBtn" }).show();
+          dialog.queryView({ \$\$locator: 'maximizeBtn' }).hide();
+          dialog.queryView({ \$\$locator: 'minimizeBtn' }).show();
         }
       },
       {
-        view: "button",
-        \$\$locator: "closeBtn",
-        type: "icon",
+        view: 'button',
+        \$\$locator: 'closeBtn',
+        type: 'icon',
         width: 30,
-        css: "app_button no-padding",
-        icon: "close",
+        css: 'app_button no-padding',
+        icon: 'close',
         click: function(){
           this.getTopParentView().close();
         }
@@ -67,24 +67,24 @@
   },
 
   body: {
-    \$\$locator: "$1Body",
-    css: "modal-window-body",
+    \$\$locator: '$1Body',
+    css: 'modal-window-body',
     rows: [
       {
-        template: "$4",
+        template: '$4',
         borderless: true,
         autoheight: true,
       },
 
       {
-        view: "toolbar",
-        \$\$locator: "$1Toolbar",
+        view: 'toolbar',
+        \$\$locator: '$1Toolbar',
         cols: [
           {
-            view: "button",
-            \$\$locator: "cancelButton",
-            css: "button_primary",
-            value: "Cancel",
+            view: 'button',
+            \$\$locator: 'cancelButton',
+            css: 'button_primary',
+            value: 'Cancel',
             width: 120,
             click: function(btnId, evt){
               this.getTopParentView().close();

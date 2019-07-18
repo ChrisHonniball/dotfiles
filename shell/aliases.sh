@@ -9,6 +9,9 @@ alias dc=docker-compose
 
 # Asuite
 
+alias watch='npm run dev-watch'
+alias dev='npm run dev'
+
 # Get in to various servers:
 alias awsconsole='ssh ec2-user@awsconsole.avatarfleet.com'
 alias asuite='cd /www/af30'
