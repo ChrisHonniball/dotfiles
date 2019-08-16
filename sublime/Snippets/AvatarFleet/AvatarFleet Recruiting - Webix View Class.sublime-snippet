@@ -5,7 +5,9 @@
 
 	  self.options = webix.extend(
 	    { //defaults
-	      debug: false
+	      debug: false,
+
+        name: '$1'
 	    },
 	    self.options,
 	    true
@@ -19,14 +21,14 @@
 	  };
 
 	  // Retain any base `css` class setups.
-    if(typeof objectPath.get(self, "options.css") === "string" || typeof objectPath.get(view, "css") === "string") {
-      view.css = [objectPath.get(self, "options.css", ""), objectPath.get(view, "css", ""), "widget"].join(" ");
+    if(typeof objectPath.get(self, 'options.css') === 'string' || typeof objectPath.get(view, 'css') === 'string') {
+      view.css = [objectPath.get(self, 'options.css', ''), objectPath.get(view, 'css', ''), 'widget'].join(' ');
     }
 
     // Forward the options on to the view for easier querying.
     view.options = self.options;
 
-    view.$scope = self;
+    view.\$scope = self;
 
     return view;
 	}

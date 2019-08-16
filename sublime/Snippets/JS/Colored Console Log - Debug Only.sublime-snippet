@@ -1,10 +1,10 @@
 <snippet>
-	<content><![CDATA[if(window.session.debug === true) {
+	<content><![CDATA[if(App.logLevel >= ${1:5}) {
   console.log(
-    '%c$1',
-    'color: ${2:royalblue};'$0
+    '%c$2',
+    'color: ${3:royalblue};'
   );
-}
+}$0
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>logdebug</tabTrigger>

@@ -42,6 +42,6 @@ alias flask='docker-compose kill flask celery-worker && docker-compose up flask'
 alias git-prune-match-remote='git fetch --prune && git branch -r | awk "{print \$1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}" | xargs git branch -d'
 
 # DB Builds and backups
-alias build_db='docker-compose down && docker-compose up -d python && sleep 5 && docker-compose exec python python /af30/scripts/asuite/run_build_db.py'
+alias build_db='docker-compose up -d python && sleep 5 && docker-compose exec python python /af30/scripts/asuite/run_build_db.py'
 alias backups='asuite ./backups.sh'
 alias restore='asuite ./restore_backup.sh'

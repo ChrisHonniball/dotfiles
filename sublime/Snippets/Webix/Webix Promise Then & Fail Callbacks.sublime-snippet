@@ -23,10 +23,10 @@
   }
 
   console.log(
-    '%c$1() -> FAIL -> error: %O',
-    'color: red',
-    error
+    '%c$1() -> FAIL -> error:',
+    'color: red'
   );
+  console.error(error);
 
   webix.alert({
     text: objectPath.get(error, 'message', 'An error occurred. Check logs.'),
