@@ -1,8 +1,9 @@
 <snippet>
 	<content><![CDATA[/* */
 console.log(
-  '%cTEST -> $1: %O',
+  '%cTEST ->\n\t${1:arguments}[%s]: %O',
   'font-size: 14px; color: ${2:#DC143C};',
+  typeof $1,
   $1
 );
 //*/
