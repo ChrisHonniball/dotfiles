@@ -160,6 +160,7 @@
 	"match_selection": true,
 	"match_tags": true,
 	"move_to_limit_on_up_down": false,
+	"native_tabs": "disabled",
 	"on_post_save_user":
 	[
 		{
@@ -193,9 +194,12 @@
 	"smart_indent": true,
 	"spell_check": false,
 	"spelling_selector": "markup.raw, source string.quoted - punctuation - meta.preprocessor.c.include, source comment - source comment.block.preprocessor, -(source, constant, keyword, storage, support, variable, markup.underline.link, meta.tag)",
+	"status_bar_brighter": true,
 	"status_bar_lighter": true,
+	"statusbar_size_14": true,
 	"tab_completion": true,
 	"tab_size": 2,
+	"tabs_medium": true,
 	"tabs_padding_small": true,
 	"tabs_small": true,
 	"theme": "Afterglow-orange.sublime-theme",

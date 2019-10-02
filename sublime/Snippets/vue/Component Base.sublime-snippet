@@ -1,0 +1,32 @@
+<snippet>
+  <content><![CDATA[<template>
+  <div id="template">
+
+  </div>
+</template>
+
+
+
+
+<script>
+  export default {
+    name: 'template',
+  }
+</script>
+
+
+
+
+<style lang="scss">
+  #template {
+
+  }
+</style>
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>vuecomponent</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.html.vue</scope>
+  <!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
+  <description>Vue Component</description>
+</snippet>
