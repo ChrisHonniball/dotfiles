@@ -1,6 +1,6 @@
 <snippet>
   <content><![CDATA[<template>
-  <div id="template">
+  <div id="${1:template}">
 
   </div>
 </template>
@@ -9,16 +9,16 @@
 
 
 <script>
-  export default {
-    name: 'template',
-  }
+export default {
+  name: '${1}',
+}
 </script>
 
 
 
 
 <style lang="scss">
-  #template {
+  #${1} {
 
   }
 </style>
