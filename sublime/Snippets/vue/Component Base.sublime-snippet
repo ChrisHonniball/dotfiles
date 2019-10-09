@@ -1,18 +1,18 @@
 <snippet>
-  <content><![CDATA[<template>
-  <div id="${1:template}">
-
-  </div>
-</template>
-
-
-
-
-<script>
+  <content><![CDATA[<script>
 export default {
   name: '${1}',$0
 };
 </script>
+
+
+
+
+<template>
+  <div id="${1:template}">
+
+  </div>
+</template>
 
 
 
