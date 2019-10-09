@@ -1,0 +1,24 @@
+<snippet>
+  <content><![CDATA[import { Model } from '@vuex-orm/core'
+import Axios from 'axios'
+
+class Context extends Model {
+  static fields() {
+    return {
+      ${1:some_prop}: this.${2:attr}(${3:''})
+    }
+  }
+}
+
+Context.entity = '$4'
+// Context.url = `\${process.env.VUE_APP_API_URL}/api/${5:$4}`
+
+export default Context
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>vuemodel</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.html.vue</scope>
+  <!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
+  <description>Vue Model</description>
+</snippet>
