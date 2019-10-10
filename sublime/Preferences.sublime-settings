@@ -14,7 +14,9 @@
 		"Equifax",
 		"Exceedia’s",
 		"Esurance",
-		"webinar"
+		"webinar",
+		"plugin",
+		"Plugins"
 	],
 	"always_prompt_for_file_reload": false,
 	"always_show_minimap_viewport": true,
@@ -135,6 +137,7 @@
 	"hot_exit": false,
 	"ignored_packages":
 	[
+		"JavaScript"
 	],
 	"indent_guide_options":
 	[
