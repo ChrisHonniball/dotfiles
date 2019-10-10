@@ -11,7 +11,49 @@ class Context extends Model {
 }
 
 Context.entity = '$4'
-// Context.url = `\${process.env.VUE_APP_API_URL}/api/${5:$4}`
+
+Context.methodConf = {
+  http: {
+    url: `${5:/api/$4}`
+  },
+  methods: {
+    $fetch: {
+      name: 'fetch',
+      http: {
+        url: '',
+        method: 'get',
+      },
+    },
+    $get: {
+      name: 'get',
+      http: {
+        url: '/:id',
+        method: 'get',
+      },
+    },
+    $create: {
+      name: 'create',
+      http: {
+        url: '',
+        method: 'post',
+      },
+    },
+    $update: {
+      name: 'update',
+      http: {
+        url: '/:id',
+        method: 'put',
+      },
+    },
+    $delete: {
+      name: 'delete',
+      http: {
+        url: '/:id',
+        method: 'delete',
+      },
+    },
+  },
+}
 
 export default Context
 ]]></content>

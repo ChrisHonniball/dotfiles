@@ -1,13 +1,8 @@
 {
 	"extensions":
 	[
+		".ext-list",
 		"sublime-settings",
-    ".jshintrc",
-    ".csslintrc",
-    ".bowerrc",
-    ".eslintrc",
-    ".jscsrc",
-    "geojson",
-    ".ext-list"
+		"json"
 	]
 }
