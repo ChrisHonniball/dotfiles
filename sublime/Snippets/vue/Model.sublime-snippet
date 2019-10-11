@@ -1,58 +1,57 @@
 <snippet>
   <content><![CDATA[import { Model } from '@vuex-orm/core'
-import Axios from 'axios'
 
 class Context extends Model {
+  static entity = '$1'
+
+  static methodConf = {
+    http: {
+      url: '$2s'
+    },
+    methods: {
+      \$fetch: {
+        name: 'fetch',
+        http: {
+          url: '',
+          method: 'get',
+        },
+      },
+      \$get: {
+        name: 'get',
+        http: {
+          url: '/:id',
+          method: 'get',
+        },
+      },
+      \$create: {
+        name: 'create',
+        http: {
+          url: '',
+          method: 'post',
+        },
+      },
+      \$update: {
+        name: 'update',
+        http: {
+          url: '/:id',
+          method: 'put',
+        },
+      },
+      \$delete: {
+        name: 'delete',
+        http: {
+          url: '/:id',
+          method: 'delete',
+        },
+      },
+    },
+  }
+
   static fields() {
     return {
-      ${1:some_prop}: this.${2:attr}(${3:''})
+      $3
     }
   }
-}
-
-Context.entity = '$4'
-
-Context.methodConf = {
-  http: {
-    url: `${5:/api/$4}`
-  },
-  methods: {
-    $fetch: {
-      name: 'fetch',
-      http: {
-        url: '',
-        method: 'get',
-      },
-    },
-    $get: {
-      name: 'get',
-      http: {
-        url: '/:id',
-        method: 'get',
-      },
-    },
-    $create: {
-      name: 'create',
-      http: {
-        url: '',
-        method: 'post',
-      },
-    },
-    $update: {
-      name: 'update',
-      http: {
-        url: '/:id',
-        method: 'put',
-      },
-    },
-    $delete: {
-      name: 'delete',
-      http: {
-        url: '/:id',
-        method: 'delete',
-      },
-    },
-  },
 }
 
 export default Context
