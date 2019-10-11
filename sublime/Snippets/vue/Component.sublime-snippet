@@ -7,14 +7,14 @@
 export default {
   name: '${3:template}',
 
+  //components: {},
+
   data() {
     return {
       loading: true,
       error: null
     }
   },
-
-  //components: {},
 
   //computed: {},
 
