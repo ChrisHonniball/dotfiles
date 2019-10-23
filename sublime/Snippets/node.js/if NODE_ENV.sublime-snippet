@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[if(process.env.NODE_ENV === '${1:development}') {
+  $0
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>ifnodeenv</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
+	<description>if(process.env.NODE_ENV) {...}</description>
+</snippet>
