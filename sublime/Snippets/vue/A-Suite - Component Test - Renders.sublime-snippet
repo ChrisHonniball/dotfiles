@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[it('renders ${1:div#some-id}', () => {
+  const wrapper = mount(Component, { localVue, router, store })
+  const selector = '$1'
+  const node = wrapper.find(selector)
+  assert(node.exists(), `can not locate \${selector}`)
+})
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>testrenders</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.js</scope>
+  <!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
+  <description>Vue Component Test - Renders</description>
+</snippet>
