@@ -123,13 +123,15 @@
 		"bower_components",
 		".sass-cache",
 		".webassets-cache",
-		"pgdata"
+		"pgdata",
+		"frontend/vendor",
+		"flask_af30/static"
 	],
 	"font_face": "Source Code Pro",
 	"font_options":
 	[
 	],
-	"font_size": 16,
+	"font_size": 17,
 	"gpu_window_buffer": "auto",
 	"gutter": true,
 	"highlight_line": true,
@@ -164,7 +166,7 @@
 	"match_selection": true,
 	"match_tags": true,
 	"move_to_limit_on_up_down": false,
-	"native_tabs": "disabled",
+	"native_tabs": "enabled",
 	"on_post_save_user":
 	[
 		{

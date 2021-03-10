@@ -16,7 +16,7 @@
 		"BracketHighlighter",
 		"Case Conversion",
 		"Color Highlighter",
-		"Crontab Syntax",
+		"Crontab",
 		"CSS Format",
 		"CSS Unminifier",
 		"DocBlockr",
@@ -58,6 +58,7 @@
 		"Vintage Escape",
 		"Vintage Surround",
 		"Vue Syntax Highlight",
+		"WordCount",
 		"WordHighlight",
 		"xml2json"
 	],

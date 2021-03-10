@@ -9,7 +9,7 @@
     result
   );
   //*/$3
-})
+})//.fail(webix.globalAjaxFailCallback);
 .fail(function(error) {
   try {
     let parsedError = JSON.parse(error.responseText);
