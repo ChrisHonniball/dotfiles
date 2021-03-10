@@ -1,16 +1,15 @@
 {
-  "disable_tab_abbreviations_for_scopes": "source.css",
-  
-  "snippets": {
-    // "html": {
-    //  "abbreviations": {
-    //    "example": "<div class='example' title='Custom element example'>"
-    //  }
-    // }
-    "html": {
-      "abbreviations": {
-        "button": "<button type=\"${1:button}\">"
-      }
-    }
-  }
+	"disable_tab_abbreviations_for_scopes": "source.css",
+	"snippets":
+	{
+		"html":
+		{
+			"abbreviations":
+			{
+				"button": "<button type=\"${1:button}\">"
+			}
+		}
+	},
+	"telemetry": true,
+	"uid": "48aaee83-4e5d-4e4c-989d-3fc4b207f042"
 }

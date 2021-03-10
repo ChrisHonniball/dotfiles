@@ -1,7 +1,9 @@
 [
-  { "keys": ["super+alt+w"], "command": "close_all" },
+  { "keys": ["ctrl+shift+s"], "command": "save_all" },
 
-  { "keys": ["super+k", "super+w"],
+  { "keys": ["ctrl+alt+w"], "command": "close_all" },
+
+  { "keys": ["ctrl+k", "ctrl+w"],
     "command": "toggle_setting",
     "args": {"setting": "word_wrap"}
   },
@@ -9,19 +11,8 @@
   { "keys": ["super+shift+,"], "command": "open_file", "args": {"file": "${packages}/User/Default (OSX).sublime-keymap"} },
 
   // Switch Paste Behavior
-  { "keys": ["super+v"], "command": "paste_and_indent" },
-  { "keys": ["super+shift+v"], "command": "paste" },
-
-  // VIM Overrides
-  { "keys": ["ctrl+d"],
-    "command": "vi_scroll_lines",
-    "args": { "forward": true }
-  },
-
-  { "keys": ["ctrl+u"],
-    "command": "vi_scroll_lines",
-    "args": { "forward": false }
-  },
+  // { "keys": ["ctrl+v"], "command": "paste_and_indent" },
+  // { "keys": ["ctrl+shift+v"], "command": "paste" },
 
   { "keys": ["j", "j"], "command": "exit_auto_complete_and_insert_mode", "context":
     [
@@ -115,45 +106,6 @@
     "args": { "overlay": "goto", "show_files": true }
   },
 
-  // VIM-like Movement
-  {
-    "keys": ["ctrl+j"],
-    "command": "move",
-    "args": { "by": "lines", "forward": true }
-  },
-  {
-    "keys": ["ctrl+k"],
-    "command": "move",
-    "args": { "by": "lines", "forward": false }
-  },
-  {
-    "keys": ["ctrl+l"],
-    "command": "move",
-    "args": { "by": "characters", "forward": true }
-  },
-  {
-    "keys": ["ctrl+h"],
-    "command": "move",
-    "args": { "by": "characters", "forward": false }
-  },
-
-  // vim-multiple-cursors style multiple selections
-  { "keys": ["ctrl+n"],
-    "command": "find_under_expand"
-  },
-  { "keys": ["ctrl+x"],
-    "command": "find_under_expand_skip",
-    "context": [
-      { "key": "num_selections", "operator": "not_equal", "operand": 0 }
-    ]
-  },
-  { "keys": ["ctrl+b"],
-    "command": "soft_undo",
-    "context": [
-      { "key": "num_selections", "operator": "not_equal", "operand": 0 }
-    ]
-  },
-
   // Emmet
   {
     "keys": ["ctrl+t"],
@@ -183,8 +135,5 @@
 
   // Comments
   { "keys": ["ctrl+forward_slash"], "command": "toggle_comment", "args": { "block": false } },
-  { "keys": ["ctrl+shift+forward_slash"], "command": "toggle_comment", "args": { "block": true } },
-
-  // Alignment
-  { "keys": ["super+ctrl+a"], "command": "align_tab" },
+  { "keys": ["ctrl+shift+forward_slash"], "command": "toggle_comment", "args": { "block": true } }
 ]

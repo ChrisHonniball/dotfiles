@@ -16,6 +16,7 @@
 		"BracketHighlighter",
 		"Case Conversion",
 		"Color Highlighter",
+		"Crontab",
 		"CSS Format",
 		"CSS Unminifier",
 		"DocBlockr",
@@ -34,6 +35,7 @@
 		"ImprovedMacros",
 		"Indent XML",
 		"JavaScriptNext - ES6 Syntax",
+		"LESS",
 		"LinkOpener",
 		"Package Control",
 		"Pretty JSON",
@@ -58,8 +60,7 @@
 		"Vintage Surround",
 		"Vue Syntax Highlight",
 		"WordHighlight",
-		"xml2json",
-		"Crontab"
+		"xml2json"
 	],
 	"repositories":
 	[
