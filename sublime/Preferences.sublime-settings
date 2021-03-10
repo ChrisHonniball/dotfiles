@@ -17,8 +17,7 @@
 		"webinar",
 		"plugin",
 		"Plugins",
-		"Facebook",
-		"internet"
+		"Facebook"
 	],
 	"always_prompt_for_file_reload": false,
 	"always_show_minimap_viewport": true,
@@ -44,8 +43,6 @@
 	"auto_match_enabled": true,
 	"binary_file_patterns":
 	[
-		"*.bundle.css",
-		"*.bundle.js",
 		"*.dds",
 		"*.eot",
 		"*.gif",
@@ -53,15 +50,15 @@
 		"*.jar",
 		"*.jpeg",
 		"*.jpg",
-		"*.map",
 		"*.pdf",
 		"*.png",
 		"*.swf",
 		"*.tga",
 		"*.ttf",
 		"*.zip",
-		"/G/Grid Finder/Local Site/app/public/wp-content/plugins/gridfinder-plugin/assets/**",
-		"assets/**"
+		"*.bundle.js",
+		"*.bundle.css",
+		"*.map"
 	],
 	"bold_folder_labels": false,
 	"caret_extra_bottom": 0,
@@ -127,13 +124,14 @@
 		".sass-cache",
 		".webassets-cache",
 		"pgdata",
-		"_site"
+		"frontend/vendor",
+		"flask_af30/static"
 	],
 	"font_face": "Source Code Pro",
 	"font_options":
 	[
 	],
-	"font_size": 14,
+	"font_size": 17,
 	"gpu_window_buffer": "auto",
 	"gutter": true,
 	"highlight_line": true,
@@ -168,7 +166,7 @@
 	"match_selection": true,
 	"match_tags": true,
 	"move_to_limit_on_up_down": false,
-	"native_tabs": "disabled",
+	"native_tabs": "enabled",
 	"on_post_save_user":
 	[
 		{
