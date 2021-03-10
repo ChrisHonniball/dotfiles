@@ -1,13 +1,19 @@
 <snippet>
 	<content><![CDATA[---
-layout: ${1:post}
-title: ${2:Post Title}
----	
-]]></content>
+title: "$1"
+permalink: ${1/^(\w)|(?:\s(\w))/(?1\L$1:)(?2-\L$2:)/g}
+image: assets/images/posts/$2
+categories: [$3]
+tags: [${4:featured}]
+author: ${5:chris}
+layout: ${6:post}
+---
+
+$0]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>post</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<scope>source.markdown</scope>
+	<scope>text.html.markdown</scope>
 	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
 	<description>Post Header</description>
 </snippet>

@@ -1,13 +1,10 @@
 <snippet>
-	<content><![CDATA[---
-layout: post
-title: $1
----
+	<content><![CDATA[F jS, Y g:i a
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>post</tabTrigger>
+	<tabTrigger>date</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<scope>source.mkd</scope>
+	<scope>source.php</scope>
 	<!-- Optional: Set a description for the snippet. Sublime will default to file name if not present -->
-	<description>Jekyll Post Meta</description>
+	<description>February 2nd, 1983 8:00 am</description>
 </snippet>
