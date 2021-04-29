@@ -16,7 +16,7 @@ git clone --recursive git@github.com:ChrisHonniball/dotfiles.git dotfiles
 - Switch default shell to zsh: `chsh -s $(which zsh)`
 - `./install.sh` - Installs the configuration files for _most_ editors.
 - **If connected to a server do not logout!!!**
-- Connect to server using a separate teminal to wnsure all works.
+- Connect to server using a separate teminal to ensure all works.
   - If not... debug that shit...
 - PROFIT
 
