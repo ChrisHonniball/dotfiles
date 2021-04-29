@@ -11,6 +11,9 @@ git clone --recursive git@github.com:ChrisHonniball/dotfiles.git dotfiles
 
 ## Installation
 
+- Verify that the host computer has zsh installed: `which zsh`
+  - If not installed, install it using a pachage manager
+- Switch default shell to zsh: `chsh -s $(which zsh)`
 - `./install.sh` - Installs the configuration files for _most_ editors.
 - `ln -s /Users/cjhonniball/dotfiles/sublime/ /Users/cjhonniball/Library/Application\ Support/Sublime\ Text\ 3/Packages/User` - Install Sublime Text `User` items
 - `ln -s /Users/cjhonniball/dotfiles/merge/ /Users/cjhonniball/Library/Application\ Support/Sublime\ Merge/Packages/User` - Install Sublime Merge `User` items
