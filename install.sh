@@ -46,6 +46,12 @@ if $REQUIRE_ROOT; then
 fi
 
 
+if ! command -v zsh &> /dev/null
+then
+    echo -e "${RED}command zsh not found. Please install first.${RESET}"
+    exit
+fi
+
 ########################################
 #!             Arguments               #
 ########################################
