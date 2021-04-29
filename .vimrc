@@ -1,48 +1,6 @@
 set nocompatible
 filetype off
 
-" ======
-" VUNDLE
-" ======
-"
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-" call vundle#begin('~/some/path/here')
-"
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" other plugins
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tpope/vim-surround'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'bling/vim-airline'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'tpope/vim-repeat'
-Plugin 'haya14busa/incsearch.vim'
-Plugin 'StanAngeloff/php.vim'
-Plugin 'mkitt/tabline.vim'
-
-" All of your Plugins must be added before the following line
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-call vundle#end()
-
-" Change cursor shape between insert and normal mode in iTerm2.app
-if $TERM_PROGRAM =~ "iTerm"
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
-endif
-
 " set <leader>
 let mapleader=","
 set viminfo='0,<0,s10,h
@@ -74,13 +32,8 @@ set nocursorcolumn
 " turn on auto indentation
 set autoindent
 
-" set backups directory
-set swapfile
-set dir=~/.vim/swp
-
 " add line numbers
 set number
-set relativenumber
 
 " always display status (useful for vim-airline)
 set laststatus=2
@@ -130,9 +83,7 @@ syntax on
 
 " theme settings
 set background=dark
-colorscheme afterglow-custom
 set t_Co=256
-set guifont=Hack:h14
 
 " set tabs for specific filetypes
 autocmd Filetype snippet setlocal ts=4 sts=4 sw=4
