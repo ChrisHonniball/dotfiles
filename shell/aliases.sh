@@ -25,3 +25,5 @@ alias vue_build='docker-compose run --rm -w /af30/vue-frontend fleetsuite npm ru
 alias vue_watch='docker-compose exec fleetsuite bash -c "cd vue-frontend; npm run dev"'
 alias webix_build='docker-compose run --rm -w /af30/frontend fleetsuite npm run build'
 alias webix_watch='docker-compose run --rm -w /af30/frontend fleetsuite npm run dev-watch'
+alias ezapp_build='docker-compose run --rm -w /af30/ez-app fleetsuite npm run build'
+alias ezapp_watch='docker-compose exec fleetsuite bash -c "cd ez-app; npm run dev"'
