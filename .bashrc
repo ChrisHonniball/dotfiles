@@ -1,3 +1,5 @@
+source ~/dotfiles/backups/.bashrc > /dev/null
+
 source ~/dotfiles/shell/colors.sh
 source ~/dotfiles/shell/git-prompt.sh
 source ~/dotfiles/shell/aliases.sh
