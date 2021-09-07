@@ -29,7 +29,7 @@ DEVELOPMENT_ENVIRONMENT=false
 INSTALL_DIR=""
 
 # Whether or not to requrire root/sudo to run this script.
-REQUIRE_ROOT=true
+REQUIRE_ROOT=false
 
 # Check to make sure we are running as the root user.
 # We need these permissions for some file/dir movement.
