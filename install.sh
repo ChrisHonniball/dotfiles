@@ -15,23 +15,23 @@ RESET="\033[0m"
 #!             Variables               #
 ########################################
 
-# Set a variable for the dir of this script.
-SCRIPT_ROOT=$PWD
+# The directory this script lives in (works no matter where it's run from).
+SCRIPT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Backup Directory
-BACKUP_DIR=$SCRIPT_ROOT/backups
+BACKUP_DIR="$SCRIPT_ROOT/backups"
 
 # Dev flag so that you can do a test run with debug output.
 DEVELOPMENT_ENVIRONMENT=false
 
 # Directory to send the files to.
-INSTALL_DIR=~
+INSTALL_DIR="$HOME"
 
 # Whether or not to install fonts.
 INSTALL_FONTS=false
 
 # Dir to install fonts to.
-FONT_DIR=~/Library/Fonts
+FONT_DIR="$HOME/Library/Fonts"
 
 # Whether or not to requrire root/sudo to run this script.
 REQUIRE_ROOT=false
@@ -75,7 +75,6 @@ while [[ $# > 0 ]]; do
     ;;
     --install-fonts)
       INSTALL_FONTS=true
-      shift
     ;;
     --font-dir)
       FONT_DIR="$2"
@@ -91,7 +90,7 @@ while [[ $# > 0 ]]; do
 done
 
 # change to the script's directory
-cd $SCRIPT_ROOT
+cd "$SCRIPT_ROOT"
 
 ########################################################
 #!             Set files to be symlinked               #
@@ -105,7 +104,20 @@ if [ ! -f symlinks.def ]; then
   echo -e "\n${RED}Unable to locate \"symlinks.def\".\n\nFAILED${RESET}"
   exit 1
 fi
-while read LINE; do
+# Blank lines and "#" comments are skipped, surrounding whitespace is trimmed,
+# and absolute or "../" paths are rejected so an entry can never point outside
+# the repo (or, if blank, at the whole install dir).
+# The "|| [ -n ... ]" keeps a final line that has no trailing newline.
+while IFS= read -r LINE || [ -n "$LINE" ]; do
+  LINE="${LINE#"${LINE%%[![:space:]]*}"}"
+  LINE="${LINE%"${LINE##*[![:space:]]}"}"
+  if [ -z "$LINE" ] || [[ "$LINE" == \#* ]]; then
+    continue
+  fi
+  if [[ "$LINE" == /* ]] || [[ "$LINE" == ".." ]] || [[ "$LINE" == ../* ]] || [[ "$LINE" == */../* ]] || [[ "$LINE" == */.. ]]; then
+    echo -e "${RED}Ignoring invalid entry in symlinks.def: \"$LINE\"${RESET}"
+    continue
+  fi
   FILES+=("$LINE")
 done < symlinks.def
 
@@ -126,7 +138,7 @@ LENGTH=${#FILES[@]}
 echo -e "\n${GREEN}Processing through $LENGTH files..."
 
 # Loop through the files to create the symlinks.
-for FILE in ${FILES[@]}; do
+for FILE in "${FILES[@]}"; do
   SRC="$SCRIPT_ROOT/$FILE"
   DEST="$INSTALL_DIR/$FILE"
   echo -e "\n${GREEN}Processing file \"$FILE\""
@@ -169,12 +181,13 @@ for FILE in ${FILES[@]}; do
   fi
 done
 
-if [ $INSTALL_FONTS ]; then
-  echo -e "\n${GREEN}Installing Fonts..."
+if $INSTALL_FONTS; then
+  echo -e "\n${GREEN}Installing Fonts to \"$FONT_DIR\"..."
   if $DEVELOPMENT_ENVIRONMENT; then
-    echo -e "TEST COMMAND: cp -f $SCRIPT_ROOT/fonts/* $FONT_DIR"
+    echo -e "TEST COMMAND: cp -f \"$SCRIPT_ROOT\"/fonts/* \"$FONT_DIR\""
   else
-    cp -f $SCRIPT_ROOT/fonts/* $FONT_DIR
+    mkdir -p "$FONT_DIR"
+    cp -f "$SCRIPT_ROOT"/fonts/* "$FONT_DIR"
   fi
 fi
 
