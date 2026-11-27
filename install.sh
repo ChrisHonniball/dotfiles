@@ -50,6 +50,20 @@ SET_SHELL=false
 # Remove the symlinks and restore backups instead of installing.
 UNINSTALL=false
 
+# The files this repo can link, as "path|description". Paths are relative to
+# the repo and to the install dir. Add new dotfiles here.
+DOTFILES=(
+  ".zshrc|zsh config: oh-my-zsh, prompt, aliases"
+  ".bashrc|bash config: prompt, aliases"
+  ".bash_profile|bash login setup: loads .bashrc and RVM"
+  ".gitconfig|git settings and aliases"
+  ".vimrc|vim config"
+)
+
+# How to pick files: "menu" (interactive), "all", or "only" (from --only).
+SELECT_MODE="menu"
+ONLY_LIST=""
+
 # Whether or not to requrire root/sudo to run this script.
 REQUIRE_ROOT=false
 
@@ -57,16 +71,20 @@ usage() {
   cat <<EOF
 Usage: $(basename "$0") [options]
 
-Symlinks the files listed in symlinks.def from this repo into your home
-directory. Existing real files are moved to a timestamped backup folder first.
-Safe to run again: links that are already correct are left alone.
+Shows a checklist of this repo's dotfiles and symlinks the ones you pick into
+your home directory. Existing real files are moved to a timestamped backup
+folder first. Safe to run again: links that are already correct are left alone.
 
-Before linking it fetches the git submodules (oh-my-zsh) if needed.
+Before linking .zshrc it fetches the git submodules (oh-my-zsh) if needed.
 
 With --uninstall it removes only the symlinks that point into this repo and
 restores each file's most recent backup.
 
+Files: $(i=0; while [ $i -lt ${#DOTFILES[@]} ]; do printf '%s ' "${DOTFILES[$i]%%|*}"; i=$((i + 1)); done)
+
 Options:
+  -a, --all             Use every file, without showing the checklist
+  --only LIST           Use only these files, e.g. --only .zshrc,.vimrc
   -u, --uninstall       Remove the symlinks and restore backups
   --install-dir DIR     Where to create the symlinks (default: \$HOME)
   -b, --backup-dir DIR  Where to keep backups (default: <repo>/backups)
@@ -127,6 +145,15 @@ while [ $# -gt 0 ]; do
     -u|--uninstall)
       UNINSTALL=true
     ;;
+    -a|--all)
+      SELECT_MODE="all"
+    ;;
+    --only)
+      require_value "$@"
+      SELECT_MODE="only"
+      ONLY_LIST="$2"
+      shift
+    ;;
     -T|--test)
       echo -e "${RED}########## DEV ##########\n"
       DEVELOPMENT_ENVIRONMENT=true
@@ -170,57 +197,182 @@ fi
 # change to the script's directory
 cd "$SCRIPT_ROOT"
 
+########################################################
+#!             Choose files to be symlinked            #
+########################################################
+
+NUM_ITEMS=${#DOTFILES[@]}
+
+item_name() { echo "${DOTFILES[$1]%%|*}"; }
+item_desc() { echo "${DOTFILES[$1]#*|}"; }
+
+# True if the file is already linked into the install dir from this repo.
+is_linked() {
+  [ -L "$INSTALL_DIR/$1" ] && [ "$(readlink "$INSTALL_DIR/$1")" = "$SCRIPT_ROOT/$1" ]
+}
+
+# A short note on what installing would do to each file.
+item_status() {
+  local dest="$INSTALL_DIR/$1"
+  if is_linked "$1"; then
+    echo "linked"
+  elif [ ! -e "$SCRIPT_ROOT/$1" ]; then
+    echo "missing from repo"
+  elif [ -L "$dest" ]; then
+    echo "other symlink, will be replaced"
+  elif [ -e "$dest" ]; then
+    echo "existing file, will be backed up"
+  else
+    echo "not installed"
+  fi
+}
+
+# SELECTED[i] is 1 when DOTFILES[i] is picked.
+SELECTED=()
+i=0
+while [ $i -lt $NUM_ITEMS ]; do
+  if $UNINSTALL; then
+    # Uninstall: start with what's currently linked.
+    if is_linked "$(item_name $i)"; then SELECTED[$i]=1; else SELECTED[$i]=0; fi
+  else
+    SELECTED[$i]=1
+  fi
+  i=$((i + 1))
+done
+
+# Interactive checklist drawn on the terminal. Arrow keys or j/k move, space
+# toggles, "a" toggles all, enter confirms, q or Esc cancels.
+choose_files() {
+  local cur=0 key rest i count first=true action mark pointer
+  if $UNINSTALL; then action="uninstall"; else action="install"; fi
+
+  # Hide the cursor while the menu is up and always restore it on exit.
+  trap 'printf "\033[?25h" > /dev/tty' EXIT
+  printf '\033[?25l' > /dev/tty
+
+  while true; do
+    # Redraw in place: jump back to the top of the previous drawing.
+    if ! $first; then printf '\033[%dA' $((NUM_ITEMS + 2)) > /dev/tty; fi
+    first=false
+
+    printf '\r\033[K%bChoose files to %s%b  (↑/↓ move, space toggle, a all, enter confirm, q quit)\n' \
+      "$GREEN" "$action" "$RESET" > /dev/tty
+    count=0
+    i=0
+    while [ $i -lt $NUM_ITEMS ]; do
+      if [ "${SELECTED[$i]}" = 1 ]; then mark="x"; count=$((count + 1)); else mark=" "; fi
+      if [ $i -eq $cur ]; then pointer="${YELLOW}>${RESET}"; else pointer=" "; fi
+      printf '\r\033[K %b [%s] %-14s %-40s %b(%s)%b\n' "$pointer" "$mark" \
+        "$(item_name $i)" "$(item_desc $i)" "$YELLOW" "$(item_status "$(item_name $i)")" "$RESET" > /dev/tty
+      i=$((i + 1))
+    done
+    printf '\r\033[K  %d of %d selected\n' "$count" "$NUM_ITEMS" > /dev/tty
+
+    IFS= read -rsn1 key < /dev/tty || key="q"
+    if [ "$key" = $'\033' ]; then
+      # Arrow keys arrive as ESC [ A / ESC [ B. A lone ESC means cancel.
+      IFS= read -rsn2 -t 1 rest < /dev/tty || rest=""
+      key="$key$rest"
+    fi
+
+    case "$key" in
+      $'\033[A'|k) cur=$(( (cur - 1 + NUM_ITEMS) % NUM_ITEMS )) ;;
+      $'\033[B'|j) cur=$(( (cur + 1) % NUM_ITEMS )) ;;
+      " ")
+        if [ "${SELECTED[$cur]}" = 1 ]; then SELECTED[$cur]=0; else SELECTED[$cur]=1; fi
+      ;;
+      a|A)
+        # Select all, or clear all if everything is already selected.
+        local new=1
+        if [ $count -eq $NUM_ITEMS ]; then new=0; fi
+        i=0
+        while [ $i -lt $NUM_ITEMS ]; do SELECTED[$i]=$new; i=$((i + 1)); done
+      ;;
+      "") break ;;
+      q|Q|$'\033')
+        printf '\033[?25h' > /dev/tty
+        echo -e "\n${YELLOW}Cancelled. Nothing was changed.${RESET}"
+        exit 0
+      ;;
+    esac
+  done
+
+  printf '\033[?25h' > /dev/tty
+  trap - EXIT
+}
+
+case "$SELECT_MODE" in
+  all)
+    i=0
+    while [ $i -lt $NUM_ITEMS ]; do SELECTED[$i]=1; i=$((i + 1)); done
+  ;;
+  only)
+    i=0
+    while [ $i -lt $NUM_ITEMS ]; do SELECTED[$i]=0; i=$((i + 1)); done
+    WANTED=()
+    IFS=',' read -r -a WANTED <<< "$ONLY_LIST" || true
+    # (Indexed loop: bash 3.2 errors on "${EMPTY[@]}" under set -u.)
+    j=0
+    while [ $j -lt ${#WANTED[@]} ]; do
+      NAME="${WANTED[$j]// /}"
+      j=$((j + 1))
+      if [ -z "$NAME" ]; then continue; fi
+      FOUND=false
+      i=0
+      while [ $i -lt $NUM_ITEMS ]; do
+        if [ "$(item_name $i)" = "$NAME" ]; then SELECTED[$i]=1; FOUND=true; fi
+        i=$((i + 1))
+      done
+      $FOUND || die "Unknown file in --only: \"$NAME\". See --help for the list."
+    done
+  ;;
+  menu)
+    if [ ! -t 0 ] || [ ! -t 1 ]; then
+      die "No terminal for the checklist. Use --all or --only FILE,FILE (see --help)."
+    fi
+    choose_files
+  ;;
+esac
+
+# FILES holds the chosen paths, in list order.
+FILES=()
+i=0
+while [ $i -lt $NUM_ITEMS ]; do
+  NAME="$(item_name $i)"
+  if [ "${SELECTED[$i]}" = 1 ]; then
+    # Don't create dangling links for entries that aren't in the repo.
+    # (Uninstall still processes them so old links can be cleaned up.)
+    if ! $UNINSTALL && [ ! -e "$SCRIPT_ROOT/$NAME" ]; then
+      echo -e "${YELLOW}Skipping \"$NAME\": not found in $SCRIPT_ROOT${RESET}"
+    else
+      FILES+=("$NAME")
+    fi
+  fi
+  i=$((i + 1))
+done
+
+if [ ${#FILES[@]} -eq 0 ]; then
+  echo -e "${YELLOW}No files selected. Nothing to do.${RESET}"
+  exit 0
+fi
+
 ########################################
 #!             Submodules              #
 ########################################
 
 # .zshrc sources oh-my-zsh from this repo, so make sure it's checked out
-# before linking. Skipped when this isn't a git checkout (e.g. a zip download).
-if ! $UNINSTALL && $INIT_SUBMODULES && [ -f .gitmodules ] && git rev-parse --git-dir &> /dev/null; then
+# before linking it. Skipped when this isn't a git checkout (e.g. a zip download).
+ZSHRC_SELECTED=false
+for NAME in "${FILES[@]}"; do
+  if [ "$NAME" = ".zshrc" ]; then ZSHRC_SELECTED=true; fi
+done
+if ! $UNINSTALL && $ZSHRC_SELECTED && $INIT_SUBMODULES && [ -f .gitmodules ] && git rev-parse --git-dir &> /dev/null; then
   echo -e "${GREEN}Updating git submodules..."
   if $DEVELOPMENT_ENVIRONMENT; then
     echo -e "TEST COMMAND: git submodule sync --recursive && git submodule update --init --recursive"
   elif ! { git submodule sync --recursive > /dev/null && git submodule update --init --recursive; }; then
     echo -e "${RED}WARNING: git submodule update failed. oh-my-zsh may be missing and zsh will not load it.${RESET}"
   fi
-fi
-
-########################################################
-#!             Set files to be symlinked               #
-########################################################
-
-# files array should contain this repo's file/dir that is to be symlinked.
-FILES=()
-
-# Import the lines from symlinks.def into an array for processing.
-if [ ! -f symlinks.def ]; then
-  die "\nUnable to locate \"symlinks.def\".\n\nFAILED"
-fi
-# Blank lines and "#" comments are skipped, surrounding whitespace is trimmed,
-# and absolute or "../" paths are rejected so an entry can never point outside
-# the repo (or, if blank, at the whole install dir).
-# The "|| [ -n ... ]" keeps a final line that has no trailing newline.
-while IFS= read -r LINE || [ -n "$LINE" ]; do
-  LINE="${LINE#"${LINE%%[![:space:]]*}"}"
-  LINE="${LINE%"${LINE##*[![:space:]]}"}"
-  if [ -z "$LINE" ] || [[ "$LINE" == \#* ]]; then
-    continue
-  fi
-  if [[ "$LINE" == /* ]] || [[ "$LINE" == ".." ]] || [[ "$LINE" == ../* ]] || [[ "$LINE" == */../* ]] || [[ "$LINE" == */.. ]]; then
-    echo -e "${RED}Ignoring invalid entry in symlinks.def: \"$LINE\"${RESET}"
-    continue
-  fi
-  # Don't create dangling links for entries that aren't in the repo.
-  # (Uninstall still processes them so old links can be cleaned up.)
-  if ! $UNINSTALL && [ ! -e "$SCRIPT_ROOT/$LINE" ]; then
-    echo -e "${YELLOW}Skipping \"$LINE\": not found in $SCRIPT_ROOT${RESET}"
-    continue
-  fi
-  FILES+=("$LINE")
-done < symlinks.def
-
-if [ ${#FILES[@]} -eq 0 ]; then
-  die "symlinks.def has no entries. Nothing to do."
 fi
 
 # Run a command, or just print it in test mode.

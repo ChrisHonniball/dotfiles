@@ -14,7 +14,10 @@ git clone --recursive git@github.com:ChrisHonniball/dotfiles.git dotfiles
 - Clone to `~/dotfiles`. `.zshrc` expects oh-my-zsh at `~/dotfiles/oh-my-zsh`.
 - Verify that the host computer has zsh installed: `which zsh`
   - If not installed, install it using a pachage manager
-- `./install.sh --set-shell` - Fetches oh-my-zsh, symlinks the files in `symlinks.def`, and switches the login shell to zsh.
+- `./install.sh --set-shell` - Shows a checklist of dotfiles to link, fetches oh-my-zsh, and switches the login shell to zsh.
+  - In the checklist: ↑/↓ (or j/k) to move, space to toggle, `a` for all/none, enter to confirm, `q` to cancel.
+  - Skip the checklist with `--all` or `--only .zshrc,.vimrc` (needed when there's no terminal, e.g. in a script).
+  - The list of files lives in the `DOTFILES` array at the top of `install.sh`.
   - Existing files are moved to `backups/<timestamp>/`. Safe to re-run.
   - Add `--install-fonts` to install the fonts in `fonts/`.
   - Add `-T` for a dry run, `--help` for all options.
@@ -29,4 +32,4 @@ git clone --recursive git@github.com:ChrisHonniball/dotfiles.git dotfiles
 ./uninstall.sh   # same as ./install.sh --uninstall
 ```
 
-Removes only the symlinks that point into this repo and restores the most recent backup of each file. Add `-T` for a dry run.
+Shows the same checklist, with the currently linked files pre-selected. Removes only the symlinks that point into this repo and restores the most recent backup of each file. Add `-T` for a dry run.
