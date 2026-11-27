@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Stop on errors, unset variables and failures inside pipelines.
+set -euo pipefail
+
 # Text colors.
 RED="\033[31m"
 GREEN="\033[32m"
@@ -36,47 +39,60 @@ FONT_DIR="$HOME/Library/Fonts"
 # Whether or not to requrire root/sudo to run this script.
 REQUIRE_ROOT=false
 
-# Check to make sure we are running as the root user.
-# We need these permissions for some file/dir movement.
-if $REQUIRE_ROOT; then
-  if [[ $EUID -ne 0 ]]; then
-     echo -e "${RED}This script must be run as root${RESET}"
-     exit 1
-  fi
-fi
+usage() {
+  cat <<EOF
+Usage: $(basename "$0") [options]
 
+Symlinks the files listed in symlinks.def from this repo into your home
+directory. Existing real files are moved to a timestamped backup folder first.
+Safe to run again: links that are already correct are left alone.
 
-if ! command -v zsh &> /dev/null
-then
-    echo -e "${RED}command zsh not found. Please install first.${RESET}"
-    exit
-fi
+Options:
+  --install-dir DIR     Where to create the symlinks (default: \$HOME)
+  -b, --backup-dir DIR  Where to keep backups (default: <repo>/backups)
+  --install-fonts       Also copy fonts/* into the font directory
+  --font-dir DIR        Font directory (default: ~/Library/Fonts)
+  -T, --test            Dry run: print what would happen, change nothing
+  -h, --help            Show this help
+EOF
+}
+
+die() {
+  echo -e "${RED}$*${RESET}" >&2
+  exit 1
+}
 
 ########################################
 #!             Arguments               #
 ########################################
 
-# Process through sent arguments. If any.
-while [[ $# > 0 ]]; do
-  KEY=$1
+# Make sure an option that takes a value actually got one.
+require_value() {
+  if [ $# -lt 2 ] || [ -z "$2" ] || [[ "$2" == -* ]]; then
+    die "Option $1 requires a value. See --help."
+  fi
+}
 
-  case $KEY in
+# Process through sent arguments. If any.
+while [ $# -gt 0 ]; do
+  KEY="$1"
+
+  case "$KEY" in
     --install-dir)
+      require_value "$@"
       INSTALL_DIR="$2"
       shift
     ;;
     -b|--backup-dir)
+      require_value "$@"
       BACKUP_DIR="$2"
-      shift
-    ;;
-    -f|--files)
-      files="$2"
       shift
     ;;
     --install-fonts)
       INSTALL_FONTS=true
     ;;
     --font-dir)
+      require_value "$@"
       FONT_DIR="$2"
       shift
     ;;
@@ -84,10 +100,33 @@ while [[ $# > 0 ]]; do
       echo -e "${RED}########## DEV ##########\n"
       DEVELOPMENT_ENVIRONMENT=true
     ;;
+    -h|--help)
+      usage
+      exit 0
+    ;;
+    *)
+      echo -e "${RED}Unknown option: $KEY${RESET}\n" >&2
+      usage >&2
+      exit 1
+    ;;
   esac
 
   shift
 done
+
+########################################
+#!             Checks                  #
+########################################
+
+# Check to make sure we are running as the root user.
+# We need these permissions for some file/dir movement.
+if $REQUIRE_ROOT && [ "$EUID" -ne 0 ]; then
+  die "This script must be run as root"
+fi
+
+if ! command -v zsh &> /dev/null; then
+  die "command zsh not found. Please install first."
+fi
 
 # change to the script's directory
 cd "$SCRIPT_ROOT"
@@ -97,12 +136,11 @@ cd "$SCRIPT_ROOT"
 ########################################################
 
 # files array should contain this repo's file/dir that is to be symlinked.
-declare -a FILES
+FILES=()
 
 # Import the lines from symlinks.def into an array for processing.
 if [ ! -f symlinks.def ]; then
-  echo -e "\n${RED}Unable to locate \"symlinks.def\".\n\nFAILED${RESET}"
-  exit 1
+  die "\nUnable to locate \"symlinks.def\".\n\nFAILED"
 fi
 # Blank lines and "#" comments are skipped, surrounding whitespace is trimmed,
 # and absolute or "../" paths are rejected so an entry can never point outside
@@ -120,6 +158,10 @@ while IFS= read -r LINE || [ -n "$LINE" ]; do
   fi
   FILES+=("$LINE")
 done < symlinks.def
+
+if [ ${#FILES[@]} -eq 0 ]; then
+  die "symlinks.def has no entries. Nothing to do."
+fi
 
 # Each run gets its own timestamped backup folder so earlier backups are never
 # overwritten. It is only created if something actually needs backing up.
