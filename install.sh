@@ -109,13 +109,13 @@ while read LINE; do
   FILES+=("$LINE")
 done < symlinks.def
 
-# create backup directory
-echo -e "${GREEN}Creating \"$BACKUP_DIR\" for backup of any existing files"
-if $DEVELOPMENT_ENVIRONMENT; then
-  echo -e "TEST COMMAND: mkdir -p $BACKUP_DIR"
-else
-  mkdir -p $BACKUP_DIR
+# Each run gets its own timestamped backup folder so earlier backups are never
+# overwritten. It is only created if something actually needs backing up.
+RUN_BACKUP_DIR="$BACKUP_DIR/$(date +%Y-%m-%d_%H%M%S)"
+if [ -e "$RUN_BACKUP_DIR" ]; then
+  RUN_BACKUP_DIR="$RUN_BACKUP_DIR-$$"
 fi
+BACKED_UP=false
 
 ##########################################################
 #!             Loop through the files/dirs               #
@@ -127,41 +127,45 @@ echo -e "\n${GREEN}Processing through $LENGTH files..."
 
 # Loop through the files to create the symlinks.
 for FILE in ${FILES[@]}; do
+  SRC="$SCRIPT_ROOT/$FILE"
+  DEST="$INSTALL_DIR/$FILE"
   echo -e "\n${GREEN}Processing file \"$FILE\""
 
-  # Check if the file/dir exists. If it does, back it up.
-  if [ -d $INSTALL_DIR/$FILE ] || [ -f $INSTALL_DIR/$FILE ]; then
-    # Move the file to this repo's backups folder.
-    echo -e "${YELLOW}Backing up existing \"$INSTALL_DIR/$FILE\" to \"$BACKUP_DIR/$FILE\""
-
+  if [ -L "$DEST" ] && [ "$(readlink "$DEST")" = "$SRC" ]; then
+    # Already installed. Nothing to do.
+    echo -e "${GREEN}Already linked: \"$DEST\" -> \"$SRC\""
+    continue
+  elif [ -L "$DEST" ]; then
+    # A symlink pointing somewhere else (or dangling). Links hold no data, so
+    # replace it without backing it up.
+    echo -e "${YELLOW}Replacing existing symlink \"$DEST\" -> \"$(readlink "$DEST")\""
     if $DEVELOPMENT_ENVIRONMENT; then
-      echo -e "mv -f $INSTALL_DIR/$FILE $BACKUP_DIR/$FILE"
+      echo -e "TEST COMMAND: rm \"$DEST\""
     else
-      FILE_DIR=$(dirname "backups/$FILE")
-      if [ ! -d $FILE_DIR ]; then
-        mkdir -p $FILE_DIR
-      fi
-
-      mv -f $INSTALL_DIR/$FILE $BACKUP_DIR/$FILE
+      rm "$DEST"
     fi
+  elif [ -e "$DEST" ]; then
+    # A real file/dir. Move it into this run's backup folder.
+    echo -e "${YELLOW}Backing up existing \"$DEST\" to \"$RUN_BACKUP_DIR/$FILE\""
+    if $DEVELOPMENT_ENVIRONMENT; then
+      echo -e "TEST COMMAND: mv \"$DEST\" \"$RUN_BACKUP_DIR/$FILE\""
+    else
+      mkdir -p "$(dirname "$RUN_BACKUP_DIR/$FILE")"
+      mv "$DEST" "$RUN_BACKUP_DIR/$FILE"
+    fi
+    BACKED_UP=true
   else
-    echo -e "${YELLOW}No backup needed. File \"${INSTALL_DIR}/$FILE\" does not exist."
+    echo -e "${YELLOW}No backup needed. File \"$DEST\" does not exist."
   fi
 
-  echo -e "${GREEN}Creating symlink to \"${SCRIPT_ROOT}/$FILE\" at \"${INSTALL_DIR}/$FILE\""
+  echo -e "${GREEN}Creating symlink to \"$SRC\" at \"$DEST\""
 
-  # Make sure the destination directories exist.
   if $DEVELOPMENT_ENVIRONMENT; then
-    # Create symlink to the repo's test directory.
-    echo -e "TEST COMMAND: ln -s \"${SCRIPT_ROOT}/$FILE\" \"${INSTALL_DIR}/$FILE\""
+    echo -e "TEST COMMAND: ln -s \"$SRC\" \"$DEST\""
   else
-    FILE_DIR=$(dirname "${INSTALL_DIR}/$FILE")
-    if [ ! -d $FILE_DIR ]; then
-      mkdir -p $FILE_DIR
-    fi
-
-    # Create symlink to the repo's directory.
-    ln -sf "${SCRIPT_ROOT}/$FILE" "${INSTALL_DIR}/$FILE"
+    # Make sure the destination directories exist.
+    mkdir -p "$(dirname "$DEST")"
+    ln -s "$SRC" "$DEST"
   fi
 done
 
@@ -174,12 +178,10 @@ if [ $INSTALL_FONTS ]; then
   fi
 fi
 
-if [ "$DEVELOPMENT_ENVIRONMENT" = false ]; then
-  # Remove backup directory if empty.
-  if [ ! "$(ls -A ${SCRIPT_ROOT}/backups)" ]; then
-    rmdir $BACKUP_DIR
-    echo -e "\n${RED}No Backups required. Backup directory removed."
-  fi
+if $BACKED_UP; then
+  echo -e "\n${YELLOW}Backups saved to \"$RUN_BACKUP_DIR\""
+else
+  echo -e "\n${GREEN}No backups required."
 fi
 
 # Notify that the script is complete.
