@@ -21,7 +21,7 @@ git clone --recursive git@github.com:ChrisHonniball/dotfiles.git dotfiles
   - `.claude` is the Claude Code user config, stored as `claude/` in the repo (no dot, so Claude Code doesn't also read it as this repo's project config). Only hand-written config (`settings.json`, `CLAUDE.md`, `agents/`, `commands/`, `hooks/`, ...) is tracked; transcripts, credentials, caches and synced plugins/skills are git-ignored. Check `git status` before committing anything new in there.
   - Existing files are moved to `backups/<timestamp>/`. Safe to re-run.
   - Add `--install-fonts` to install the fonts in `fonts/`.
-  - Add `-T` for a dry run, `--help` for all options.
+  - Add `--dry-run` (or `-n`) to see what would happen without changing anything, `--help` for all options.
 - **If connected to a server do not logout!!!**
 - Connect to server using a separate teminal to ensure all works.
   - If not... debug that shit...
@@ -33,4 +33,4 @@ git clone --recursive git@github.com:ChrisHonniball/dotfiles.git dotfiles
 ./uninstall.sh   # same as ./install.sh --uninstall
 ```
 
-Shows the same checklist, with the currently linked files pre-selected. Removes only the symlinks that point into this repo and restores the most recent backup of each file. Add `-T` for a dry run.
+Shows the same checklist, with the currently linked files pre-selected. Removes only the symlinks that point into this repo and restores the most recent backup of each file. Add `--dry-run` to preview it first.

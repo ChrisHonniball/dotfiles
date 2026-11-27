@@ -96,7 +96,7 @@ Options:
   --font-dir DIR        Font directory (default: ${FONT_DIR:-none for $OS, required})
   --set-shell           Change your login shell to zsh (asks for your password)
   --no-submodules       Don't fetch/update git submodules
-  -T, --test            Dry run: print what would happen, change nothing
+  -n, --dry-run         Print what would happen, change nothing (also -T, --test)
   -h, --help            Show this help
 EOF
 }
@@ -158,8 +158,8 @@ while [ $# -gt 0 ]; do
       ONLY_LIST="$2"
       shift
     ;;
-    -T|--test)
-      echo -e "${RED}########## DEV ##########\n"
+    -n|--dry-run|-T|--test)
+      echo -e "${RED}########## DRY RUN: nothing will be changed ##########${RESET}\n"
       DEVELOPMENT_ENVIRONMENT=true
     ;;
     -h|--help)
