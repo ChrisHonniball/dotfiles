@@ -156,6 +156,11 @@ while IFS= read -r LINE || [ -n "$LINE" ]; do
     echo -e "${RED}Ignoring invalid entry in symlinks.def: \"$LINE\"${RESET}"
     continue
   fi
+  # Don't create dangling links for entries that aren't in the repo.
+  if [ ! -e "$SCRIPT_ROOT/$LINE" ]; then
+    echo -e "${YELLOW}Skipping \"$LINE\": not found in $SCRIPT_ROOT${RESET}"
+    continue
+  fi
   FILES+=("$LINE")
 done < symlinks.def
 

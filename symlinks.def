@@ -1,5 +1,6 @@
+# Files/dirs in this repo to symlink into the install dir (default: $HOME).
+# One path per line, relative to the repo root. Blank lines and # comments are ignored.
 .vimrc
-.vim
 .zshrc
 .bash_profile
 .bashrc
