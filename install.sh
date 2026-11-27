@@ -50,14 +50,18 @@ SET_SHELL=false
 # Remove the symlinks and restore backups instead of installing.
 UNINSTALL=false
 
-# The files this repo can link, as "path|description". Paths are relative to
-# the repo and to the install dir. Add new dotfiles here.
+# The files this repo can link, as "name|description" or
+# "name|description|repo path". The name is the path in the install dir (and
+# what --only takes); the repo path defaults to the same name. Add new ones here.
 DOTFILES=(
   ".zshrc|zsh config: oh-my-zsh, prompt, aliases"
   ".bashrc|bash config: prompt, aliases"
   ".bash_profile|bash login setup: loads .bashrc and RVM"
   ".gitconfig|git settings and aliases"
   ".vimrc|vim config"
+  # Stored as "claude/" (no dot) so Claude Code doesn't also read it as this
+  # repo's project-level .claude config. See .gitignore for what's tracked.
+  ".claude|Claude Code user config (settings, skills)|claude"
 )
 
 # How to pick files: "menu" (interactive), "all", or "only" (from --only).
@@ -204,11 +208,25 @@ cd "$SCRIPT_ROOT"
 NUM_ITEMS=${#DOTFILES[@]}
 
 item_name() { echo "${DOTFILES[$1]%%|*}"; }
-item_desc() { echo "${DOTFILES[$1]#*|}"; }
+item_desc() { local rest="${DOTFILES[$1]#*|}"; echo "${rest%%|*}"; }
+# Path inside the repo: the optional third field, else the name.
+item_src() {
+  local rest="${DOTFILES[$1]#*|}"
+  if [[ "$rest" == *"|"* ]]; then echo "${rest#*|}"; else item_name "$1"; fi
+}
+# Repo path for a name (as used in FILES).
+src_for() {
+  local i=0
+  while [ $i -lt $NUM_ITEMS ]; do
+    if [ "$(item_name $i)" = "$1" ]; then item_src $i; return; fi
+    i=$((i + 1))
+  done
+  echo "$1"
+}
 
 # True if the file is already linked into the install dir from this repo.
 is_linked() {
-  [ -L "$INSTALL_DIR/$1" ] && [ "$(readlink "$INSTALL_DIR/$1")" = "$SCRIPT_ROOT/$1" ]
+  [ -L "$INSTALL_DIR/$1" ] && [ "$(readlink "$INSTALL_DIR/$1")" = "$SCRIPT_ROOT/$(src_for "$1")" ]
 }
 
 # A short note on what installing would do to each file.
@@ -216,12 +234,12 @@ item_status() {
   local dest="$INSTALL_DIR/$1"
   if is_linked "$1"; then
     echo "linked"
-  elif [ ! -e "$SCRIPT_ROOT/$1" ]; then
+  elif [ ! -e "$SCRIPT_ROOT/$(src_for "$1")" ]; then
     echo "missing from repo"
   elif [ -L "$dest" ]; then
     echo "other symlink, will be replaced"
   elif [ -e "$dest" ]; then
-    echo "existing file, will be backed up"
+    echo "exists, will be backed up"
   else
     echo "not installed"
   fi
@@ -262,7 +280,7 @@ choose_files() {
     while [ $i -lt $NUM_ITEMS ]; do
       if [ "${SELECTED[$i]}" = 1 ]; then mark="x"; count=$((count + 1)); else mark=" "; fi
       if [ $i -eq $cur ]; then pointer="${YELLOW}>${RESET}"; else pointer=" "; fi
-      printf '\r\033[K %b [%s] %-14s %-40s %b(%s)%b\n' "$pointer" "$mark" \
+      printf '\r\033[K %b [%s] %-14s %-42s %b(%s)%b\n' "$pointer" "$mark" \
         "$(item_name $i)" "$(item_desc $i)" "$YELLOW" "$(item_status "$(item_name $i)")" "$RESET" > /dev/tty
       i=$((i + 1))
     done
@@ -342,8 +360,8 @@ while [ $i -lt $NUM_ITEMS ]; do
   if [ "${SELECTED[$i]}" = 1 ]; then
     # Don't create dangling links for entries that aren't in the repo.
     # (Uninstall still processes them so old links can be cleaned up.)
-    if ! $UNINSTALL && [ ! -e "$SCRIPT_ROOT/$NAME" ]; then
-      echo -e "${YELLOW}Skipping \"$NAME\": not found in $SCRIPT_ROOT${RESET}"
+    if ! $UNINSTALL && [ ! -e "$SCRIPT_ROOT/$(item_src $i)" ]; then
+      echo -e "${YELLOW}Skipping \"$NAME\": $(item_src $i) not found in $SCRIPT_ROOT${RESET}"
     else
       FILES+=("$NAME")
     fi
@@ -397,7 +415,7 @@ if $UNINSTALL; then
   echo -e "\n${GREEN}Uninstalling ${#FILES[@]} files..."
 
   for FILE in "${FILES[@]}"; do
-    SRC="$SCRIPT_ROOT/$FILE"
+    SRC="$SCRIPT_ROOT/$(src_for "$FILE")"
     DEST="$INSTALL_DIR/$FILE"
     echo -e "\n${GREEN}Processing file \"$FILE\""
 
@@ -466,7 +484,7 @@ echo -e "\n${GREEN}Processing through $LENGTH files..."
 
 # Loop through the files to create the symlinks.
 for FILE in "${FILES[@]}"; do
-  SRC="$SCRIPT_ROOT/$FILE"
+  SRC="$SCRIPT_ROOT/$(src_for "$FILE")"
   DEST="$INSTALL_DIR/$FILE"
   echo -e "\n${GREEN}Processing file \"$FILE\""
 

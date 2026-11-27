@@ -3,3 +3,17 @@
 /backups
 
 .DS_Store
+
+# Claude Code user config (linked to ~/.claude). Claude Code writes session
+# transcripts, shell snapshots, IDE auth tokens, credentials (on Linux), caches
+# and synced plugins/skills here, so ignore everything and allow only
+# hand-written config.
+/claude/*
+!/claude/settings.json
+!/claude/CLAUDE.md
+!/claude/keybindings.json
+!/claude/agents/
+!/claude/commands/
+!/claude/hooks/
+!/claude/output-styles/
+!/claude/statusline*

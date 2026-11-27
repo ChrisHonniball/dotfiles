@@ -18,6 +18,7 @@ git clone --recursive git@github.com:ChrisHonniball/dotfiles.git dotfiles
   - In the checklist: ↑/↓ (or j/k) to move, space to toggle, `a` for all/none, enter to confirm, `q` to cancel.
   - Skip the checklist with `--all` or `--only .zshrc,.vimrc` (needed when there's no terminal, e.g. in a script).
   - The list of files lives in the `DOTFILES` array at the top of `install.sh`.
+  - `.claude` is the Claude Code user config, stored as `claude/` in the repo (no dot, so Claude Code doesn't also read it as this repo's project config). Only hand-written config (`settings.json`, `CLAUDE.md`, `agents/`, `commands/`, `hooks/`, ...) is tracked; transcripts, credentials, caches and synced plugins/skills are git-ignored. Check `git status` before committing anything new in there.
   - Existing files are moved to `backups/<timestamp>/`. Safe to re-run.
   - Add `--install-fonts` to install the fonts in `fonts/`.
   - Add `-T` for a dry run, `--help` for all options.
