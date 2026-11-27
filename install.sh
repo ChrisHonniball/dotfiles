@@ -33,8 +33,19 @@ INSTALL_DIR="$HOME"
 # Whether or not to install fonts.
 INSTALL_FONTS=false
 
-# Dir to install fonts to.
-FONT_DIR="$HOME/Library/Fonts"
+# Dir to install fonts to. Depends on the OS; empty means "unknown, pass --font-dir".
+OS="$(uname -s)"
+case "$OS" in
+  Darwin) FONT_DIR="$HOME/Library/Fonts" ;;
+  Linux)  FONT_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/fonts" ;;
+  *)      FONT_DIR="" ;;
+esac
+
+# Whether to fetch git submodules (oh-my-zsh) before linking.
+INIT_SUBMODULES=true
+
+# Whether to change the login shell to zsh.
+SET_SHELL=false
 
 # Whether or not to requrire root/sudo to run this script.
 REQUIRE_ROOT=false
@@ -47,11 +58,15 @@ Symlinks the files listed in symlinks.def from this repo into your home
 directory. Existing real files are moved to a timestamped backup folder first.
 Safe to run again: links that are already correct are left alone.
 
+Before linking it fetches the git submodules (oh-my-zsh) if needed.
+
 Options:
   --install-dir DIR     Where to create the symlinks (default: \$HOME)
   -b, --backup-dir DIR  Where to keep backups (default: <repo>/backups)
   --install-fonts       Also copy fonts/* into the font directory
-  --font-dir DIR        Font directory (default: ~/Library/Fonts)
+  --font-dir DIR        Font directory (default: ${FONT_DIR:-none for $OS, required})
+  --set-shell           Change your login shell to zsh (asks for your password)
+  --no-submodules       Don't fetch/update git submodules
   -T, --test            Dry run: print what would happen, change nothing
   -h, --help            Show this help
 EOF
@@ -96,6 +111,12 @@ while [ $# -gt 0 ]; do
       FONT_DIR="$2"
       shift
     ;;
+    --set-shell)
+      SET_SHELL=true
+    ;;
+    --no-submodules)
+      INIT_SUBMODULES=false
+    ;;
     -T|--test)
       echo -e "${RED}########## DEV ##########\n"
       DEVELOPMENT_ENVIRONMENT=true
@@ -128,8 +149,27 @@ if ! command -v zsh &> /dev/null; then
   die "command zsh not found. Please install first."
 fi
 
+if $INSTALL_FONTS && [ -z "$FONT_DIR" ]; then
+  die "No default font directory for $OS. Pass --font-dir DIR."
+fi
+
 # change to the script's directory
 cd "$SCRIPT_ROOT"
+
+########################################
+#!             Submodules              #
+########################################
+
+# .zshrc sources oh-my-zsh from this repo, so make sure it's checked out
+# before linking. Skipped when this isn't a git checkout (e.g. a zip download).
+if $INIT_SUBMODULES && [ -f .gitmodules ] && git rev-parse --git-dir &> /dev/null; then
+  echo -e "${GREEN}Updating git submodules..."
+  if $DEVELOPMENT_ENVIRONMENT; then
+    echo -e "TEST COMMAND: git submodule sync --recursive && git submodule update --init --recursive"
+  elif ! { git submodule sync --recursive > /dev/null && git submodule update --init --recursive; }; then
+    echo -e "${RED}WARNING: git submodule update failed. oh-my-zsh may be missing and zsh will not load it.${RESET}"
+  fi
+fi
 
 ########################################################
 #!             Set files to be symlinked               #
@@ -235,6 +275,35 @@ if $INSTALL_FONTS; then
   else
     mkdir -p "$FONT_DIR"
     cp -f "$SCRIPT_ROOT"/fonts/* "$FONT_DIR"
+    # Linux needs the font cache refreshed; macOS picks fonts up automatically.
+    if [ "$OS" = Linux ] && command -v fc-cache &> /dev/null; then
+      fc-cache -f "$FONT_DIR" > /dev/null
+    fi
+  fi
+fi
+
+if $SET_SHELL; then
+  ZSH_PATH="$(command -v zsh)"
+  # Look up the real login shell; $SHELL can be stale or overridden.
+  if [ "$OS" = Darwin ]; then
+    LOGIN_SHELL="$(dscl . -read "/Users/$(id -un)" UserShell 2> /dev/null | awk '{print $2}' || true)"
+  else
+    LOGIN_SHELL="$(getent passwd "$(id -un)" 2> /dev/null | cut -d: -f7 || true)"
+  fi
+  LOGIN_SHELL="${LOGIN_SHELL:-$SHELL}"
+
+  if [ "$LOGIN_SHELL" = "$ZSH_PATH" ]; then
+    echo -e "\n${GREEN}Login shell is already $ZSH_PATH"
+  elif ! grep -qx "$ZSH_PATH" /etc/shells; then
+    echo -e "\n${RED}$ZSH_PATH is not listed in /etc/shells, so chsh will refuse it. Add it with:"
+    echo -e "  echo \"$ZSH_PATH\" | sudo tee -a /etc/shells${RESET}"
+  else
+    echo -e "\n${GREEN}Changing login shell from $LOGIN_SHELL to $ZSH_PATH..."
+    if $DEVELOPMENT_ENVIRONMENT; then
+      echo -e "TEST COMMAND: chsh -s \"$ZSH_PATH\""
+    else
+      chsh -s "$ZSH_PATH"
+    fi
   fi
 fi
 

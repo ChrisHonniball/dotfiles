@@ -11,10 +11,13 @@ git clone --recursive git@github.com:ChrisHonniball/dotfiles.git dotfiles
 
 ## Installation
 
+- Clone to `~/dotfiles`. `.zshrc` expects oh-my-zsh at `~/dotfiles/oh-my-zsh`.
 - Verify that the host computer has zsh installed: `which zsh`
   - If not installed, install it using a pachage manager
-- Switch default shell to zsh: `chsh -s $(which zsh)`
-- `./install.sh` - Installs the configuration files for _most_ editors.
+- `./install.sh --set-shell` - Fetches oh-my-zsh, symlinks the files in `symlinks.def`, and switches the login shell to zsh.
+  - Existing files are moved to `backups/<timestamp>/`. Safe to re-run.
+  - Add `--install-fonts` to install the fonts in `fonts/`.
+  - Add `-T` for a dry run, `--help` for all options.
 - **If connected to a server do not logout!!!**
 - Connect to server using a separate teminal to ensure all works.
   - If not... debug that shit...
