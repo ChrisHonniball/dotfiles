@@ -47,6 +47,9 @@ INIT_SUBMODULES=true
 # Whether to change the login shell to zsh.
 SET_SHELL=false
 
+# Remove the symlinks and restore backups instead of installing.
+UNINSTALL=false
+
 # Whether or not to requrire root/sudo to run this script.
 REQUIRE_ROOT=false
 
@@ -60,7 +63,11 @@ Safe to run again: links that are already correct are left alone.
 
 Before linking it fetches the git submodules (oh-my-zsh) if needed.
 
+With --uninstall it removes only the symlinks that point into this repo and
+restores each file's most recent backup.
+
 Options:
+  -u, --uninstall       Remove the symlinks and restore backups
   --install-dir DIR     Where to create the symlinks (default: \$HOME)
   -b, --backup-dir DIR  Where to keep backups (default: <repo>/backups)
   --install-fonts       Also copy fonts/* into the font directory
@@ -117,6 +124,9 @@ while [ $# -gt 0 ]; do
     --no-submodules)
       INIT_SUBMODULES=false
     ;;
+    -u|--uninstall)
+      UNINSTALL=true
+    ;;
     -T|--test)
       echo -e "${RED}########## DEV ##########\n"
       DEVELOPMENT_ENVIRONMENT=true
@@ -145,7 +155,11 @@ if $REQUIRE_ROOT && [ "$EUID" -ne 0 ]; then
   die "This script must be run as root"
 fi
 
-if ! command -v zsh &> /dev/null; then
+if $UNINSTALL && { $INSTALL_FONTS || $SET_SHELL; }; then
+  die "--uninstall can't be combined with --install-fonts or --set-shell."
+fi
+
+if ! $UNINSTALL && ! command -v zsh &> /dev/null; then
   die "command zsh not found. Please install first."
 fi
 
@@ -162,7 +176,7 @@ cd "$SCRIPT_ROOT"
 
 # .zshrc sources oh-my-zsh from this repo, so make sure it's checked out
 # before linking. Skipped when this isn't a git checkout (e.g. a zip download).
-if $INIT_SUBMODULES && [ -f .gitmodules ] && git rev-parse --git-dir &> /dev/null; then
+if ! $UNINSTALL && $INIT_SUBMODULES && [ -f .gitmodules ] && git rev-parse --git-dir &> /dev/null; then
   echo -e "${GREEN}Updating git submodules..."
   if $DEVELOPMENT_ENVIRONMENT; then
     echo -e "TEST COMMAND: git submodule sync --recursive && git submodule update --init --recursive"
@@ -197,7 +211,8 @@ while IFS= read -r LINE || [ -n "$LINE" ]; do
     continue
   fi
   # Don't create dangling links for entries that aren't in the repo.
-  if [ ! -e "$SCRIPT_ROOT/$LINE" ]; then
+  # (Uninstall still processes them so old links can be cleaned up.)
+  if ! $UNINSTALL && [ ! -e "$SCRIPT_ROOT/$LINE" ]; then
     echo -e "${YELLOW}Skipping \"$LINE\": not found in $SCRIPT_ROOT${RESET}"
     continue
   fi
@@ -206,6 +221,79 @@ done < symlinks.def
 
 if [ ${#FILES[@]} -eq 0 ]; then
   die "symlinks.def has no entries. Nothing to do."
+fi
+
+# Run a command, or just print it in test mode.
+run() {
+  if $DEVELOPMENT_ENVIRONMENT; then
+    echo -e "TEST COMMAND: $*"
+  else
+    "$@"
+  fi
+}
+
+##########################################################
+#!             Uninstall                                 #
+##########################################################
+
+if $UNINSTALL; then
+  # Timestamped backup folders, oldest first (the names sort chronologically).
+  shopt -s nullglob
+  RUN_DIRS=("$BACKUP_DIR"/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]_[0-9]*)
+  shopt -u nullglob
+
+  echo -e "\n${GREEN}Uninstalling ${#FILES[@]} files..."
+
+  for FILE in "${FILES[@]}"; do
+    SRC="$SCRIPT_ROOT/$FILE"
+    DEST="$INSTALL_DIR/$FILE"
+    echo -e "\n${GREEN}Processing file \"$FILE\""
+
+    if [ -L "$DEST" ] && [ "$(readlink "$DEST")" = "$SRC" ]; then
+      echo -e "${GREEN}Removing symlink \"$DEST\""
+      run rm "$DEST"
+    elif [ -e "$DEST" ] || [ -L "$DEST" ]; then
+      # Never touch anything we didn't create.
+      echo -e "${YELLOW}Leaving \"$DEST\" alone: it isn't a symlink to this repo."
+      continue
+    fi
+
+    # Find the most recent backup: newest timestamped folder first, then the
+    # old flat layout (backups/<file>) used by earlier versions of this script.
+    BACKUP=""
+    i=$(( ${#RUN_DIRS[@]} - 1 ))
+    while [ $i -ge 0 ]; do
+      if [ -e "${RUN_DIRS[$i]}/$FILE" ] || [ -L "${RUN_DIRS[$i]}/$FILE" ]; then
+        BACKUP="${RUN_DIRS[$i]}/$FILE"
+        break
+      fi
+      i=$(( i - 1 ))
+    done
+    if [ -z "$BACKUP" ] && { [ -e "$BACKUP_DIR/$FILE" ] || [ -L "$BACKUP_DIR/$FILE" ]; }; then
+      BACKUP="$BACKUP_DIR/$FILE"
+    fi
+
+    if [ -n "$BACKUP" ]; then
+      echo -e "${YELLOW}Restoring backup \"$BACKUP\" to \"$DEST\""
+      run mkdir -p "$(dirname "$DEST")"
+      run mv "$BACKUP" "$DEST"
+    else
+      echo -e "${YELLOW}No backup to restore for \"$FILE\"."
+    fi
+  done
+
+  # Tidy up backup folders that are now empty.
+  if ! $DEVELOPMENT_ENVIRONMENT; then
+    i=0
+    while [ $i -lt ${#RUN_DIRS[@]} ]; do
+      find "${RUN_DIRS[$i]}" -depth -type d -empty -delete
+      i=$(( i + 1 ))
+    done
+    rmdir "$BACKUP_DIR" 2> /dev/null || true
+  fi
+
+  echo -e "\n${GREEN}DONE!${RESET}"
+  exit 0
 fi
 
 # Each run gets its own timestamped backup folder so earlier backups are never

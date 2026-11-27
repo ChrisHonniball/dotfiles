@@ -4,7 +4,7 @@ This (like other dotfiles) repositories are all of my dotfiles for setting on my
 
 ## Cloning
 
-```
+```bash
 cd ~
 git clone --recursive git@github.com:ChrisHonniball/dotfiles.git dotfiles
 ```
@@ -25,6 +25,8 @@ git clone --recursive git@github.com:ChrisHonniball/dotfiles.git dotfiles
 
 ## Uninstallation
 
+```bash
+./uninstall.sh   # same as ./install.sh --uninstall
 ```
-./uninstall.sh
-```
+
+Removes only the symlinks that point into this repo and restores the most recent backup of each file. Add `-T` for a dry run.
